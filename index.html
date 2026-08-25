@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Defesa da Proposta — Vila Aurora · IA (MDC050)</title>
+<meta name="description" content="Material de estudo e defesa da proposta de domínio do agente de roteirização de entregas de Vila Aurora. Inteligência Artificial, IESB, 2026/2.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2315242A'/><circle cx='9' cy='22' r='3' fill='%23E7EBE8'/><circle cx='23' cy='10' r='3' fill='%23C9803A'/><path d='M9 22 L16 19 L23 10' stroke='%232A6F8E' stroke-width='2' fill='none'/></svg>">
+
+<style>
+/* ─────────────────────────────────────────────
+   Vila Aurora — sistema de tokens
+   Paleta de prancheta de topografia: papel cinza-sálvia frio,
+   tinta ardósia-petróleo, azul do rio como acento primário.
+   ───────────────────────────────────────────── */
+:root{
+  --paper:#E7EBE8;
+  --surface:#F4F6F3;
+  --surface-2:#DDE2DE;
+  --ink:#15242A;
+  --ink-2:#33474D;
+  --muted:#5F7278;
+  --line:#C3CCC6;
+  --line-soft:#D5DCD7;
+
+  --river:#25627E;      /* acento primário — Rio Aurora */
+  --river-soft:#7FA9BC;
+  --park:#3F6E44;       /* Parque Aurora */
+  --clay:#B4671D;       /* rota / destaque */
+
+  --crit:#A2372B;
+  --high:#AC6A1A;
+  --mid:#7E7018;
+  --low:#3F7350;
+
+  --r:3px;
+  --w-text:70ch;
+
+  --f-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --f-body:"Literata",Georgia,serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#0F1A1F;
+    --surface:#15242A;
+    --surface-2:#1D3037;
+    --ink:#DFE6E3;
+    --ink-2:#B4C3C2;
+    --muted:#87999C;
+    --line:#2C4048;
+    --line-soft:#22343B;
+    --river:#6FAFCB;
+    --river-soft:#3C6C82;
+    --park:#77A879;
+    --clay:#DB9A54;
+    --crit:#E38578;
+    --high:#DDA75C;
+    --mid:#C4B44E;
+    --low:#7DB78D;
+  }
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:17px;
+  line-height:1.62;
+  font-optical-sizing:auto;
+}
+
+/* ── Hairline de milimetrado, muito discreto ── */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:44px 44px;
+  opacity:.35;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 70%);
+}
+
+/* ═══════════ CABEÇALHO / MAPA VIVO ═══════════ */
+.masthead{position:relative;z-index:1;border-bottom:1px solid var(--line);background:var(--surface)}
+.masthead__inner{max-width:1180px;margin:0 auto;padding:34px 24px 0}
+.eyebrow{
+  font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 14px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;
+}
+.eyebrow span{white-space:nowrap}
+.eyebrow span+span::before{content:"·";margin-right:14px;color:var(--line)}
+h1.title{
+  font-family:var(--f-display);font-weight:800;
+  font-size:clamp(2.1rem,6vw,4.1rem);line-height:.98;letter-spacing:-.03em;
+  margin:0 0 10px;max-width:16ch;
+}
+h1.title em{font-style:normal;color:var(--river);display:block}
+.deck{
+  font-size:1.03rem;color:var(--ink-2);max-width:56ch;margin:0 0 26px;
+}
+
+/* ── Mapa ── */
+.mapwrap{margin:0 -24px;padding:0 24px 22px;position:relative}
+figure.map{margin:0}
+.map svg{display:block;width:100%;height:auto;background:transparent}
+.map__hud{
+  display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;
+  border-top:1px solid var(--line);padding:12px 0 0;margin-top:6px;
+  font-family:var(--f-mono);font-size:12px;
+}
+.hud__stat{display:flex;align-items:baseline;gap:7px;color:var(--muted)}
+.hud__stat b{font-size:17px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;min-width:3ch}
+.hud__stat b.is-river{color:var(--river)}
+.hud__spacer{flex:1 1 auto}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.seg button{
+  font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  background:transparent;color:var(--muted);border:0;padding:7px 13px;cursor:pointer;
+  transition:background .15s,color .15s;
+}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--river);color:var(--surface)}
+@media (prefers-color-scheme: dark){.seg button[aria-pressed="true"]{color:#0F1A1F}}
+.seg button:hover:not([aria-pressed="true"]){background:var(--surface-2);color:var(--ink)}
+.btn-ghost{
+  font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--line);border-radius:var(--r);
+  color:var(--muted);padding:7px 13px;cursor:pointer;transition:border-color .15s,color .15s;
+}
+.btn-ghost:hover{border-color:var(--river);color:var(--river)}
+figcaption{
+  font-family:var(--f-mono);font-size:11.5px;line-height:1.6;color:var(--muted);
+  margin-top:10px;max-width:74ch;
+}
+:where(a,button,summary,input):focus-visible{outline:2px solid var(--clay);outline-offset:2px;border-radius:2px}
+
+/* ═══════════ ESTRUTURA ═══════════ */
+.shell{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 24px;
+       display:grid;grid-template-columns:224px minmax(0,1fr);gap:52px;align-items:start}
+nav.rail{position:sticky;top:0;max-height:100vh;overflow-y:auto;padding:34px 0 40px;font-family:var(--f-mono)}
+.rail h2{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:500}
+.rail ol{list-style:none;margin:0;padding:0}
+.rail li{margin:0}
+.rail a{
+  display:block;padding:5px 0 5px 12px;font-size:12.5px;line-height:1.4;
+  color:var(--muted);text-decoration:none;border-left:2px solid var(--line-soft);
+  transition:color .15s,border-color .15s;
+}
+.rail a:hover{color:var(--ink)}
+.rail a.is-active{color:var(--river);border-left-color:var(--river);font-weight:500}
+.rail .rail__num{color:var(--line);margin-right:7px}
+.rail a.is-active .rail__num{color:var(--river-soft)}
+.rail__foot{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.55}
+
+main{padding:38px 0 100px;min-width:0;max-width:var(--w-text)}
+
+/* ═══════════ TIPOGRAFIA DE CONTEÚDO ═══════════ */
+.part{scroll-margin-top:20px;padding-top:34px;border-top:1px solid var(--line);margin-top:52px}
+.part:first-of-type{border-top:0;margin-top:0;padding-top:0}
+.part__label{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--river);margin:0 0 8px;
+}
+h2.part__title{
+  font-family:var(--f-display);font-weight:700;font-size:clamp(1.6rem,3.6vw,2.35rem);
+  line-height:1.06;letter-spacing:-.022em;margin:0 0 6px;
+}
+.part__sub{color:var(--muted);font-size:.94rem;margin:0 0 26px;max-width:58ch}
+h3{
+  font-family:var(--f-display);font-weight:700;font-size:1.24rem;line-height:1.2;
+  letter-spacing:-.012em;margin:40px 0 12px;scroll-margin-top:20px;
+}
+h4{font-family:var(--f-display);font-weight:600;font-size:1.02rem;margin:26px 0 8px;letter-spacing:-.005em}
+p{margin:0 0 15px}
+strong{font-weight:600}
+a{color:var(--river);text-decoration-thickness:1px;text-underline-offset:2px}
+code{font-family:var(--f-mono);font-size:.86em;background:var(--surface-2);padding:1px 5px;border-radius:2px}
+pre{
+  font-family:var(--f-mono);font-size:12.5px;line-height:1.65;background:var(--surface);
+  border:1px solid var(--line);border-left:2px solid var(--river);border-radius:var(--r);
+  padding:16px 18px;overflow-x:auto;margin:0 0 20px;color:var(--ink-2);
+}
+pre code{background:none;padding:0;font-size:inherit}
+ul,ol{margin:0 0 16px;padding-left:1.25em}
+li{margin:0 0 6px}
+hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+
+/* ── Tags de proveniência ── */
+.tag{
+  font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.07em;
+  padding:1.5px 5px;border-radius:2px;vertical-align:.12em;white-space:nowrap;
+  border:1px solid currentColor;
+}
+.tag--pdf{color:var(--river)}
+.tag--ded{color:var(--park)}
+.tag--aula{color:var(--clay)}
+.tag--eu{color:var(--muted)}
+.tag--gap{color:var(--crit)}
+
+/* ── Blocos ── */
+blockquote{
+  margin:0 0 20px;padding:14px 18px;background:var(--surface);
+  border-left:2px solid var(--line);border-radius:0 var(--r) var(--r) 0;
+  font-size:.97rem;color:var(--ink-2);
+}
+blockquote p:last-child{margin-bottom:0}
+blockquote.defense{border-left-color:var(--clay);background:var(--surface)}
+blockquote.defense::before{
+  content:"Frase de defesa";display:block;font-family:var(--f-mono);font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:7px;
+}
+.callout{
+  border:1px solid var(--line);border-left:3px solid var(--muted);border-radius:0 var(--r) var(--r) 0;
+  background:var(--surface);padding:15px 18px;margin:0 0 22px;font-size:.96rem;
+}
+.callout p:last-child{margin-bottom:0}
+.callout__head{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  margin:0 0 8px;font-weight:600;
+}
+.callout--crit{border-left-color:var(--crit)} .callout--crit .callout__head{color:var(--crit)}
+.callout--high{border-left-color:var(--high)} .callout--high .callout__head{color:var(--high)}
+.callout--mid{border-left-color:var(--mid)}  .callout--mid  .callout__head{color:var(--mid)}
+.callout--low{border-left-color:var(--low)}  .callout--low  .callout__head{color:var(--low)}
+.callout--river{border-left-color:var(--river)} .callout--river .callout__head{color:var(--river)}
+
+/* ── Tabelas ── */
+.tablewrap{overflow-x:auto;margin:0 0 24px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.5}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+thead th{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;background:var(--surface-2);border-bottom:1px solid var(--line);
+}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+table.qa td:first-child{font-weight:400}
+table.num td:first-child{font-family:var(--f-mono);font-size:.85rem;color:var(--muted);width:3ch;font-weight:400}
+
+/* ── Cadeias problema→resultado ── */
+.chain{
+  border:1px solid var(--line);border-radius:var(--r);background:var(--surface);
+  padding:0;margin:0 0 20px;overflow:hidden;
+}
+.chain__title{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--river);padding:11px 18px;border-bottom:1px solid var(--line);background:var(--surface-2);
+}
+.chain ol{list-style:none;margin:0;padding:14px 18px}
+.chain li{margin:0;padding:0 0 12px 74px;position:relative;font-size:.95rem}
+.chain li:last-child{padding-bottom:0}
+.chain li::before{
+  content:attr(data-step);position:absolute;left:0;top:2px;
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);
+}
+.chain li[data-step="Resultado"]::before{color:var(--clay)}
+
+/* ── Cartões de pergunta (modo autoteste) ── */
+.qcard{
+  border:1px solid var(--line);border-radius:var(--r);background:var(--surface);
+  margin:0 0 9px;overflow:hidden;
+}
+.qcard>summary{
+  cursor:pointer;padding:13px 16px 13px 46px;position:relative;list-style:none;
+  font-size:.97rem;font-weight:600;line-height:1.45;
+}
+.qcard>summary::-webkit-details-marker{display:none}
+.qcard>summary::before{
+  content:attr(data-n);position:absolute;left:15px;top:14px;
+  font-family:var(--f-mono);font-size:11px;color:var(--muted);font-weight:500;
+}
+.qcard>summary::after{
+  content:"revelar";position:absolute;right:16px;top:15px;
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+}
+.qcard[open]>summary::after{content:"ocultar"}
+.qcard[open]>summary{border-bottom:1px solid var(--line-soft)}
+.qcard>summary:hover{background:var(--surface-2)}
+.qcard__body{padding:14px 16px 4px 46px;font-size:.95rem}
+.qcard__body p:last-child{margin-bottom:12px}
+.qcard--crit{border-left:3px solid var(--crit)}
+.qcard--trap{border-left:3px solid var(--ink-2)}
+.answer-lead{
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-bottom:4px;
+}
+
+.qbank__head{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:38px 0 14px;
+  padding-bottom:8px;border-bottom:1px solid var(--line);
+}
+.qbank__head h3{margin:0;font-size:1.15rem}
+.qbank__count{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.difficulty{
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 7px;border-radius:2px;border:1px solid currentColor;
+}
+.difficulty--1{color:var(--low)} .difficulty--2{color:var(--mid)}
+.difficulty--3{color:var(--crit)} .difficulty--4{color:var(--ink-2)}
+
+.toolbar{
+  display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:12px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+
+/* ── Fecho ── */
+.keyline{
+  border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin:0 0 22px;
+  background:var(--surface);
+}
+.keyline ol{counter-reset:kl;list-style:none;padding:0;margin:0}
+.keyline li{counter-increment:kl;padding-left:34px;position:relative;margin-bottom:14px;font-size:1rem}
+.keyline li:last-child{margin-bottom:0}
+.keyline li::before{
+  content:counter(kl);position:absolute;left:0;top:1px;
+  font-family:var(--f-mono);font-size:12px;color:var(--surface);background:var(--river);
+  width:21px;height:21px;display:grid;place-items:center;border-radius:50%;
+}
+@media (prefers-color-scheme: dark){.keyline li::before{color:#0F1A1F}}
+
+.thread{
+  font-family:var(--f-mono);font-size:13px;line-height:1.85;
+  border:1px solid var(--river);border-radius:var(--r);padding:18px 20px;
+  background:var(--surface);color:var(--ink-2);margin:0 0 20px;
+}
+.thread b{color:var(--river);font-weight:600}
+
+footer.colophon{
+  position:relative;z-index:1;border-top:1px solid var(--line);background:var(--surface);
+  padding:30px 24px 44px;font-family:var(--f-mono);font-size:11.5px;color:var(--muted);line-height:1.75;
+}
+footer.colophon .inner{max-width:1180px;margin:0 auto}
+
+/* ═══════════ RESPONSIVO ═══════════ */
+@media (max-width:920px){
+  body{font-size:16.5px}
+  .shell{grid-template-columns:1fr;gap:0;padding:0 20px}
+  .masthead__inner{padding:26px 20px 0}
+  .mapwrap{margin:0 -20px;padding:0 20px 18px}
+  nav.rail{position:static;max-height:none;padding:24px 0 4px;border-bottom:1px solid var(--line)}
+  .rail ol{columns:2;column-gap:22px}
+  .rail li{break-inside:avoid}
+  .rail__foot{display:none}
+  main{padding:28px 0 72px}
+  .chain li{padding-left:0;padding-top:16px}
+  .chain li::before{top:0}
+  .qcard>summary{padding-left:42px}
+  .qcard__body{padding-left:42px}
+}
+@media (max-width:560px){
+  .eyebrow{font-size:10.5px}
+  .map__hud{gap:8px 14px}
+  .hud__spacer{display:none}
+  th,td{padding:8px 10px;font-size:.85rem}
+}
+
+/* ═══════════ IMPRESSÃO ═══════════ */
+@media print{
+  body::before,nav.rail,.toolbar,.map__hud,.btn-ghost,.seg{display:none!important}
+  body{background:#fff;color:#000;font-size:10.5pt}
+  .shell{display:block;max-width:none;padding:0}
+  main{max-width:none;padding:0}
+  .part{break-before:page;border-top:0}
+  .part:first-of-type{break-before:avoid}
+  .qcard,.callout,.chain,.keyline,blockquote,.tablewrap{break-inside:avoid;background:#fff}
+  .qcard__body{display:block!important}
+  .qcard>summary::after{display:none}
+  a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ CABEÇALHO COM MAPA VIVO ══════════════ -->
+<header class="masthead">
+  <div class="masthead__inner">
+    <p class="eyebrow">
+      <span>Inteligência Artificial · MDC050</span><span>IESB Asa Sul · ENGCNM2B</span><span>2026/2</span><span>Prof. Rodrigo Gonçalves</span>
+    </p>
+    <h1 class="title">Defesa da proposta<em>Vila Aurora</em></h1>
+    <p class="deck">Material de estudo para a apresentação de 26 de agosto. Cada decisão da proposta, por que ela foi tomada, o que perderíamos com a alternativa — e onde o professor tem munição.</p>
+
+    <div class="mapwrap">
+      <figure class="map">
+        <svg id="cityMap" viewBox="0 0 880 340" role="img" aria-label="Mapa da cidade fictícia de Vila Aurora: a Zona Planejada à esquerda com malha regular, o Rio Aurora ao centro atravessado por duas pontes, a Zona de Crescimento Orgânico à direita com malha irregular, e o Parque Aurora bloqueando parte da zona sul. Os cruzamentos acendem na ordem em que o algoritmo de busca os expande, e a rota encontrada é desenhada por cima."></svg>
+        <div class="map__hud">
+          <span class="hud__stat">nós expandidos <b id="statExp" class="is-river">—</b></span>
+          <span class="hud__stat">custo da rota <b id="statCost">—</b><span style="font-size:11px">m</span></span>
+          <span class="hud__spacer"></span>
+          <span class="seg" role="group" aria-label="Escolher algoritmo de busca">
+            <button type="button" id="btnAstar" aria-pressed="true">A*</button>
+            <button type="button" id="btnUcs" aria-pressed="false">Custo uniforme</button>
+          </span>
+          <button type="button" class="btn-ghost" id="btnReplay">Rodar de novo</button>
+        </div>
+        <figcaption>
+          Vila Aurora, gerada nesta página a partir de uma semente fixa — e a busca roda de verdade, no seu navegador. Os cruzamentos acendem na ordem em que são expandidos. Alterne entre os dois algoritmos e compare a contagem: <strong>o custo da rota é idêntico nos dois</strong>, porque ambos são ótimos. Só o esforço muda. É esse o experimento da Fase 1.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+
+<!-- ══════════════ ÍNDICE LATERAL ══════════════ -->
+<nav class="rail" aria-label="Índice do documento">
+  <h2>Índice</h2>
+  <ol>
+    <li><a href="#p0"><span class="rail__num">00</span>O projeto em dez linhas</a></li>
+    <li><a href="#p1"><span class="rail__num">01</span>A proposta destrinchada</a></li>
+    <li><a href="#p2"><span class="rail__num">02</span>Cada decisão, uma a uma</a></li>
+    <li><a href="#p3"><span class="rail__num">03</span>Os conceitos por trás</a></li>
+    <li><a href="#p4"><span class="rail__num">04</span>Por que fizemos isso?</a></li>
+    <li><a href="#p5"><span class="rail__num">05</span>Onde o professor vai bater</a></li>
+    <li><a href="#p6"><span class="rail__num">06</span>Problema → resultado</a></li>
+    <li><a href="#p7"><span class="rail__num">07</span>Simulação de banca</a></li>
+    <li><a href="#p8"><span class="rail__num">08</span>Banco de perguntas</a></li>
+    <li><a href="#p9"><span class="rail__num">09</span>O que não está definido</a></li>
+    <li><a href="#p10"><span class="rail__num">10</span>Resumo da véspera</a></li>
+  </ol>
+  <div class="rail__foot">
+    <strong style="color:var(--ink)">Legenda</strong><br>
+    <span class="tag tag--pdf">PDF</span> está na proposta<br>
+    <span class="tag tag--ded">DED</span> decorre do que está<br>
+    <span class="tag tag--aula">AULA</span> material do professor<br>
+    <span class="tag tag--eu">EU</span> acréscimo, não está lá<br>
+    <span class="tag tag--gap">LACUNA</span> falta decidir
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════════ PARTE 0 ══════════ -->
+<section class="part" id="p0">
+  <p class="part__label">Parte 00</p>
+  <h2 class="part__title">O projeto em dez linhas</h2>
+  <p class="part__sub">Se te pararem no corredor e perguntarem "do que é o trabalho de vocês?", é isso. Decore a lógica, não a frase.</p>
+
+  <blockquote>
+    <p>Construímos um agente que planeja rota de entrega numa cidade fictícia chamada Vila Aurora, modelada como grafo: cruzamentos são nós, vias são arestas. O mesmo problema é resolvido três vezes, com inteligências diferentes. Na Fase&nbsp;1 o agente só conhece distância e resolve com busca em espaço de estados — custo uniforme como referência e A* com heurística de linha reta. Na Fase&nbsp;2 o custo da aresta deixa de ser distância e passa a ser tempo previsto por um modelo de aprendizado treinado sobre atributos das vias. Na Fase&nbsp;3 um LLM interpreta o pedido em português, escolhe a ferramenta e chama a busca — ele não calcula rota nenhuma. A cidade é sintética, gerada por nós, e tem barreiras propositais (rio com duas pontes, um parque) para que os algoritmos produzam resultados diferentes e mensuráveis.</p>
+  </blockquote>
+
+  <div class="callout callout--river">
+    <p class="callout__head">Como ler este material</p>
+    <p>Cada afirmação vem marcada com a origem, porque na arguição dizer "está na proposta" quando não está é o erro que mais custa nota. Ordem recomendada: <a href="#p5">Parte 05</a> primeiro, que é onde o professor vai bater, depois <a href="#p10">Parte 10</a>, e o resto conforme o tempo.</p>
+  </div>
+</section>
+
+<!-- ══════════ PARTE 1 ══════════ -->
+<section class="part" id="p1">
+  <p class="part__label">Parte 01</p>
+  <h2 class="part__title">A proposta destrinchada</h2>
+  <p class="part__sub">O que está escrito, o que se deduz, e como as peças se encaixam.</p>
+
+  <h3>Qual problema estamos resolvendo</h3>
+  <p><span class="tag tag--aula">AULA</span> O enunciado oficial define o problema para todos os trios: <em>um agente que planeja a melhor rota para um veículo de entregas que precisa visitar um conjunto de endereços em uma cidade</em>, com a cidade representada como grafo. O que torna o problema interessante, segundo o enunciado, é que <strong>o custo de percorrer cada via não é fixo</strong> — uma rua mais curta pode ser mais lenta que um contorno mais longo.</p>
+  <p><span class="tag tag--pdf">PDF</span> A proposta instancia isso em Vila Aurora e assume a pergunta recorrente: <em>qual a melhor rota?</em> — com o significado de "melhor" mudando a cada fase.</p>
+  <p><span class="tag tag--ded">DED</span> Na Fase 1, "melhor" = menor distância total. Nas Fases 2 e 3, "melhor" = menor tempo previsto.</p>
+
+  <h3>A solução, componente por componente</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Componente</th><th>O que é</th><th>Origem</th></tr></thead>
+    <tbody>
+      <tr><td>Grafo da cidade</td><td>Não dirigido; nós = cruzamentos com par (x,&nbsp;y) em metros; arestas = vias com comprimento real</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Duas regiões</td><td>Zona Planejada (traçado regular, boa conectividade) e Zona de Crescimento Orgânico (traçado irregular, conectividade variada, gargalos)</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Barreiras</td><td>Rio Aurora separando as regiões, ligadas por apenas duas travessias; Parque Aurora bloqueando parte da zona sul</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Invariante geométrico</td><td>Comprimento de cada via ≥ distância em linha reta entre suas duas pontas</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Atributos das arestas</td><td>Comprimento, nº de lombadas, quantidade de semáforos, tipo e condição do pavimento, se há bloqueio, região</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Horário</td><td>Parâmetro do pedido, <strong>não</strong> atributo da via</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>PEAS</td><td>Descrito em prosa: P, E, A, S</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Classificação do ambiente</td><td>Seis dimensões para a Fase 1; mudança declarada para as Fases 2 e 3</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Espaço de estados</td><td>Cinco componentes clássicos explicitados</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Origem dos dados</td><td>Sintética, gerada pelo grupo, com três malhas de ~25, ~200 e ~1.500 cruzamentos</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Reprodutibilidade</td><td>Gerador e parâmetros — incluindo semente aleatória e velocidade máxima admitida — documentados no notebook</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Algoritmos</td><td>Busca de custo uniforme e A* com heurística admissível</td><td><span class="tag tag--pdf">PDF</span></td></tr>
+      <tr><td>Heurística concreta</td><td><strong>Não nomeada no texto</strong></td><td><span class="tag tag--gap">LACUNA</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Como os componentes se relacionam</h3>
+  <p>Esta é a cadeia lógica da proposta, e é ela que você precisa saber recitar:</p>
+<pre><code>grafo com coordenadas (x,y)
+        │
+        ├─→ permite calcular distância em linha reta entre dois nós
+        │            │
+        │            └─→ que é a heurística h(n) da Fase 1
+        │
+        └─→ invariante "comprimento ≥ linha reta"
+                     │
+                     └─→ garante h(n) ≤ custo real ⇒ heurística admissível
+                                  │
+                                  └─→ garante que o A* devolve a rota ótima
+                                               │
+                                               └─→ e por ser ótimo, dá para comparar
+                                                    com a UCS medindo só o esforço</code></pre>
+  <p>E, em paralelo:</p>
+<pre><code>atributos extras nas arestas (lombadas, semáforos, pavimento…)
+        │
+        ├─→ ignorados na Fase 1 (ambiente permanece estático e determinístico)
+        │
+        └─→ viram features do modelo da Fase 2
+                     │
+                     └─→ que prevê tempo de travessia
+                                  │
+                                  └─→ que substitui a distância como custo da aresta
+                                               │
+                                               └─→ e o A* da Fase 1 é reutilizado sem mudança</code></pre>
+  <p>O ponto que vale nota: <strong>a Fase 1 já foi projetada para receber a Fase 2 sem reescrita.</strong> O algoritmo não muda; muda a função de custo que ele consulta.</p>
+
+  <h3>Conceitos da disciplina que aparecem</h3>
+  <p><strong>Inteligência Artificial:</strong> agente racional; PEAS; seis dimensões do ambiente de tarefa; agente baseado em objetivos; busca não informada; busca informada; heurística; admissibilidade; otimalidade; aprendizado supervisionado (Fase 2); uso de ferramentas por LLM (Fase 3).</p>
+  <p><strong>Algoritmos e estruturas de dados:</strong> grafo; lista de adjacência; fila de prioridade (heap); busca em grafo com conjunto de explorados; reconstrução de caminho por ponteiro de pai; complexidade em tempo e espaço.</p>
+  <p><strong>Engenharia de software:</strong> reprodutibilidade por semente aleatória; separação entre geração de dados, algoritmo e avaliação; contrato de interface estável entre fases; controle de versão.</p>
+  <div class="callout callout--river">
+    <p class="callout__head">Termo exato do professor</p>
+    <p><span class="tag tag--aula">AULA</span> Ele classifica o Marco 1 como <strong>agente baseado em objetivos</strong>: "o agente sabe o que quer e planeja como chegar lá". Use exatamente esse termo se perguntarem qual tipo de agente é o de vocês na Fase 1.</p>
+  </div>
+</section>
+
+<!-- ══════════ PARTE 2 ══════════ -->
+<section class="part" id="p2">
+  <p class="part__label">Parte 02</p>
+  <h2 class="part__title">Cada decisão, destrinchada</h2>
+  <p class="part__sub">Formato fixo: o que foi decidido → que problema resolve → alternativas → por que a nossa ganha → desvantagens → quando não seria a melhor → a frase que você repete na apresentação.</p>
+
+  <h3>1 · Cidade como grafo não dirigido</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> Cruzamentos viram nós, vias viram arestas, o grafo não tem direção.</p>
+  <p><strong>Que problema resolve.</strong> Transforma "uma cidade" num objeto matemático finito e enumerável, sobre o qual algoritmos de busca têm garantias provadas. Sem essa abstração não existe espaço de estados e o problema não é atacável por busca.</p>
+  <p><strong>Alternativas.</strong> Grafo dirigido, com duas arestas por via; grade de células tipo labirinto, com movimento em 4 ou 8 direções; espaço contínuo com planejamento geométrico.</p>
+  <p><strong>Por que a nossa pode ser melhor.</strong> O grafo não dirigido é a menor representação suficiente para a Fase 1: o custo é distância, e distância é simétrica — ir de A para B custa o mesmo que voltar. Representar dois sentidos dobraria as arestas sem acrescentar informação alguma. E, comparado à grade, o grafo com coordenadas arbitrárias permite modelar traçado irregular, que é o que a Zona de Crescimento Orgânico exige.</p>
+  <p><strong>Desvantagens e limitações.</strong> Não representa mão única, conversão proibida, nem tempo assimétrico. Vias reais são frequentemente unidirecionais.</p>
+  <div class="callout callout--high">
+    <p class="callout__head">Quando não seria a melhor</p>
+    <p><strong>Na Fase 2.</strong> Tempo de travessia não é necessariamente simétrico: subida e descida, semáforo que só existe num sentido, fila que se forma numa direção só. Se a Fase 2 gerar tempos assimétricos, o grafo não dirigido vira uma limitação real, não teórica.</p>
+  </div>
+  <p><strong>O que mudaria com a alternativa.</strong> Com grafo dirigido: dobro de arestas, custo de memória e de expansão maior na Fase 1 sem ganho nenhum, mas a Fase 2 ganharia expressividade. É uma troca deliberada de generalidade por simplicidade na fase em que a generalidade não serve para nada.</p>
+  <blockquote class="defense"><p>Escolhemos grafo não dirigido porque na Fase 1 o custo é distância, que é simétrica por definição — dobrar as arestas custaria memória sem acrescentar informação. Se a Fase 2 produzir tempos assimétricos, a mudança é local: duplicamos as arestas e o algoritmo de busca continua o mesmo.</p></blockquote>
+
+  <h3>2 · Nós guardam coordenadas (x, y) em metros</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> Cada nó carrega um par de coordenadas em metros.</p>
+  <p><strong>Que problema resolve.</strong> Sem geometria não há heurística. A distância em linha reta só existe se os nós tiverem posição. Este é o dado que separa a Fase 1 de um problema de busca cega.</p>
+  <p><strong>Alternativas.</strong> Grafo puramente topológico (só quem liga com quem, sem posição); coordenadas em latitude e longitude.</p>
+  <p><strong>Por que a nossa pode ser melhor.</strong> Coordenadas cartesianas em metros deixam a distância euclidiana e o custo da aresta <strong>na mesma unidade</strong>, o que é pré-requisito para somar <code>g + h</code>. Lat/long exigiria fórmula de Haversine e conversão, sem ganho para uma cidade fictícia.</p>
+  <p><strong>Limitação.</strong> Se o grafo fosse topológico, nenhuma heurística geométrica existiria e a Fase 1 estaria restrita a busca cega. A decisão 2 é o que <strong>viabiliza</strong> a decisão 5.</p>
+  <blockquote class="defense"><p>As coordenadas não são enfeite: são a fonte da heurística. Sem posição no plano não existe distância em linha reta, e sem ela o A* não teria informação nenhuma além do que a busca de custo uniforme já tem.</p></blockquote>
+
+  <h3>3 · Duas regiões com traçados diferentes</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> Zona Planejada (regular, boa conectividade) e Zona de Crescimento Orgânico (irregular, conectividade variada, gargalos).</p>
+  <p><strong>Que problema resolve.</strong> Cria heterogeneidade estrutural. Num grafo perfeitamente regular, o desempenho da busca é uniforme e o experimento vira uma tabela de números sem história.</p>
+  <p><span class="tag tag--ded">DED</span> Também dá à Fase 2 dois regimes distintos de dados — o que permite a "análise honesta de onde o modelo erra mais" que o enunciado cobra. É razoável esperar que o modelo erre mais na zona orgânica.</p>
+  <p><strong>Por que a nossa pode ser melhor.</strong> Uma grade pura tem muitos caminhos empatados em custo, e empate é veneno para comparação experimental: o resultado passa a depender do critério de desempate, não do algoritmo. Uma cidade totalmente aleatória perde a interpretabilidade.</p>
+  <p><strong>Desvantagens.</strong> Mais parâmetros no gerador, portanto mais superfície para bug e mais coisa para justificar.</p>
+  <blockquote class="defense"><p>Duas regiões com regimes diferentes evitam que a cidade tenha caminhos todos empatados em custo. Empate faz o resultado depender do desempate, não do algoritmo — e aí o experimento não mede nada.</p></blockquote>
+
+  <h3>4 · Barreiras propositais: rio com duas pontes, e um parque</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> O Rio Aurora separa as duas regiões, ligadas por apenas duas travessias; o Parque Aurora bloqueia parte da zona sul.</p>
+  <p>Esta é a decisão mais bem justificada da proposta, e ela justifica a si mesma no texto: <em>"sem desvios obrigatórios os caminhos ficam com custos muito parecidos e fica difícil medir a diferença de esforço entre a busca de custo uniforme e o A* no experimento"</em> <span class="tag tag--pdf">PDF</span>.</p>
+  <p><span class="tag tag--ded">DED</span> <strong>Por que isso funciona, tecnicamente.</strong> A distância em linha reta é otimista justamente quando há obstáculo: ela "atravessa" o rio e o parque, subestimando o custo real. Quanto maior a folga entre <code>h(n)</code> e <code>h*(n)</code>, menos informada a heurística fica naquela região — e mais nós o A* expande ali. As barreiras produzem, portanto, um contraste mensurável entre as duas estratégias. Sem elas, <code>h</code> ficaria quase perfeita e o experimento mostraria pouca diferença.</p>
+  <div class="callout callout--high">
+    <p class="callout__head">Cuidado com a inversão</p>
+    <p>Um professor atento pode dizer: <em>"barreira piora a heurística — então vocês pioraram o A* de propósito?"</em> A resposta correta: sim, e é isso que torna o experimento honesto. Um cenário onde <code>h</code> é quase perfeita faria o A* parecer mágico e não mediria nada. <span class="tag tag--aula">AULA</span> No slide do professor, com heurística perfeita "o contorno vira uma linha reta e o A* não expande um único nó fora do caminho ótimo" — ou seja, um mapa sem obstáculo é o caso degenerado, não o caso interessante.</p>
+  </div>
+  <p><strong>Desvantagens.</strong> Risco de desconexão do grafo se o gerador errar. Com duas pontes apenas, um bug que apague ambas parte a cidade em duas componentes e a busca devolve "sem solução".</p>
+  <p><span class="tag tag--eu">EU</span> <strong>Providência recomendada:</strong> o gerador deve verificar conectividade antes de devolver o mapa e falhar alto se o grafo estiver desconexo. Se perguntarem "como vocês sabem que sempre existe rota?", essa é a resposta.</p>
+  <blockquote class="defense"><p>As barreiras estão lá para o experimento existir. Elas fazem a linha reta subestimar mais o custo real em algumas regiões, e é essa folga que separa o comportamento do A* do comportamento da busca de custo uniforme. Num mapa sem obstáculo os dois quase empatam e a comparação não mede nada.</p></blockquote>
+
+  <h3>5 · Invariante: comprimento da via ≥ distância em linha reta</h3>
+  <div class="callout callout--river">
+    <p class="callout__head">Decisão tecnicamente mais importante da proposta</p>
+    <p>Se você só tiver tempo de dominar uma decisão a fundo, que seja esta. Ela é a origem da admissibilidade <em>e</em> da consistência da heurística.</p>
+  </div>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> O gerador garante que o comprimento de cada via seja maior ou igual à distância em linha reta entre suas duas pontas. A proposta afirma que <em>é essa condição que faz a heurística da Fase 1 ser admissível</em>.</p>
+  <p><strong>Que problema resolve.</strong> Garante a admissibilidade <strong>por construção</strong>, e não por sorte. Numa cidade real, ruas são mais longas que a linha reta por geometria física. Numa cidade sintética, nada impede o gerador de produzir uma aresta com comprimento menor que a distância euclidiana entre suas pontas — o que quebraria a admissibilidade e, com ela, a garantia de otimalidade do A*.</p>
+  <p><span class="tag tag--ded">DED</span> <strong>A prova, que você precisa saber fazer no quadro.</strong> Seja <code>h(n)</code> a distância euclidiana de <code>n</code> até o objetivo <code>G</code>. Tome qualquer caminho de <code>n</code> até <code>G</code>: <code>n = v₀, v₁, …, v_k = G</code>.</p>
+  <ol>
+    <li>Custo real do caminho = <code>Σ comprimento(vᵢ, vᵢ₊₁)</code></li>
+    <li>Pelo invariante: <code>comprimento(vᵢ, vᵢ₊₁) ≥ d(vᵢ, vᵢ₊₁)</code>, onde <code>d</code> é a distância euclidiana. Logo o custo real <code>≥ Σ d(vᵢ, vᵢ₊₁)</code>.</li>
+    <li>Pela desigualdade triangular no plano: <code>Σ d(vᵢ, vᵢ₊₁) ≥ d(n, G)</code> — a soma dos lados de uma poligonal nunca é menor que o segmento que liga suas pontas.</li>
+    <li>Portanto <code>custo real ≥ d(n, G) = h(n)</code>, para <strong>qualquer</strong> caminho, inclusive o mais barato. Ou seja, <code>h(n) ≤ h*(n)</code>. ∎</li>
+  </ol>
+  <p><span class="tag tag--aula">AULA</span> É exatamente o argumento do slide: <em>"hSLD é admissível porque nenhuma estrada é mais curta que a linha reta"</em>. A diferença é que na Romênia isso é um fato do mundo; na Vila Aurora vocês tiveram que <strong>impor</strong> como invariante do gerador. Essa distinção é ouro na arguição.</p>
+  <p><strong>Alternativas.</strong> Não impor nada e torcer; medir empiricamente depois de gerar; usar heurística nula (<code>h = 0</code>), que é trivialmente admissível mas degeneraria o A* em UCS <span class="tag tag--aula">AULA</span> — o experimento perderia o objeto.</p>
+  <div class="callout callout--low">
+    <p class="callout__head">Implementação sugerida</p>
+    <p><span class="tag tag--eu">EU</span> Gere a posição dos nós e defina <code>comprimento = d(u,v) × fator_sinuosidade</code>, com <code>fator_sinuosidade ≥ 1.0</code> sorteado por região — perto de 1.0 na Zona Planejada, maior na Orgânica. O invariante fica satisfeito por construção e ainda produz a heterogeneidade da Decisão 3. Dois coelhos.</p>
+  </div>
+  <blockquote class="defense"><p>Na Romênia a admissibilidade da linha reta é um fato do mundo físico. Como a nossa cidade é sintética, ela não vem de graça: tivemos que impor no gerador que nenhuma via seja mais curta que a linha reta entre suas pontas. É um invariante do gerador, verificável por teste, e é dele que sai a prova de admissibilidade.</p></blockquote>
+
+  <h3>6 · Atuador é entregar o plano de rota, não dirigir</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> Atuadores: a entrega do plano de rota, isto é, a sequência de cruzamentos a percorrer; na Fase 3, também a chamada da ferramenta de busca e a resposta em português.</p>
+  <p><span class="tag tag--aula">AULA</span> O professor destaca isso explicitamente: <em>"recomendar uma rota e executar uma rota são atuadores diferentes, com implicações técnicas e éticas completamente distintas"</em>. E há um erro típico listado por ele: <em>"listar como atuador algo que o agente não faz"</em>. A proposta acerta.</p>
+  <p><span class="tag tag--ded">DED</span> <strong>Consequência que quase ninguém percebe.</strong> Como o agente entrega o plano inteiro antes de executar, ele opera em <strong>plano de circuito aberto</strong> <span class="tag tag--aula">AULA</span> — ele não replaneja durante o percurso. É isso que sustenta a classificação "estático" da Fase 1.</p>
+  <blockquote class="defense"><p>O agente recomenda, não executa. Ele devolve a sequência de cruzamentos e o motorista decide se segue. Isso muda a medida de desempenho e muda a responsabilidade — e é a diferença entre um planejador de rota e um veículo autônomo.</p></blockquote>
+
+  <h3>7 · Classificação do ambiente na Fase 1</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> Totalmente observável, determinístico, sequencial, estático, discreto, agente único — cada uma com justificativa de uma frase. Cada dimensão é uma pergunta separada que o professor pode fazer.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Dimensão</th><th>Valor</th><th>Justificativa da proposta</th><th>Solidez</th></tr></thead>
+    <tbody>
+      <tr><td>Observabilidade</td><td>Totalmente observável</td><td>O agente conhece o mapa inteiro e todas as distâncias antes de decidir</td><td>Sólido</td></tr>
+      <tr><td>Determinismo</td><td>Determinístico</td><td>Percorrer uma via sempre leva ao mesmo cruzamento com o mesmo custo</td><td>Sólido</td></tr>
+      <tr><td>Episódico / sequencial</td><td>Sequencial</td><td>Cada via escolhida limita as opções seguintes</td><td>Sólido — roteirização é o exemplo canônico dele</td></tr>
+      <tr><td>Estático / dinâmico</td><td>Estático</td><td>O mapa não muda enquanto o agente planeja</td><td>Sólido, mas ver Decisão 11</td></tr>
+      <tr><td>Discreto / contínuo</td><td>Discreto</td><td>Número de cruzamentos e ações é finito</td><td>Atacável — ver abaixo</td></tr>
+      <tr><td>Agentes</td><td>Agente único</td><td>Não há outro veículo disputando as vias</td><td>Atacável — ver 5.6</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout callout--mid">
+    <p class="callout__head">Sobre "discreto"</p>
+    <p><span class="tag tag--aula">AULA</span> O professor é específico: <em>"a distinção se aplica separadamente ao estado, ao tempo, às percepções e às ações"</em> e <em>"a cidade vira um grafo de esquinas — discretizar é uma decisão de modelagem com custo"</em>. Se ele perguntar "o espaço é discreto mesmo? as distâncias são números reais", a resposta é: <strong>o espaço de estados é discreto — conjunto finito de cruzamentos — mas o espaço de custos é contínuo.</strong> A discretização é escolha nossa e tem custo: o agente só pode parar em cruzamentos, nunca no meio de uma quadra. Reconhecer isso vale mais que negar.</p>
+  </div>
+  <div class="callout callout--low">
+    <p class="callout__head">Dimensão faltando — acréscimo que vale ponto</p>
+    <p><span class="tag tag--eu">EU</span> A proposta cobre as seis dimensões, mas não a <strong>dimensão extra conhecido × desconhecido</strong> <span class="tag tag--aula">AULA</span>. Vale acrescentar de viva voz, porque ela explica o arco do projeto inteiro numa frase:</p>
+    <p><em>"Na Fase 1 o ambiente é <strong>conhecido</strong>: sabemos exatamente o custo de cada ação. Na Fase 2 ele passa a ser <strong>desconhecido</strong> nesse sentido — o agente precisa aprender, a partir de dados, quanto custa atravessar cada via. É essa mudança que exige aprendizado de máquina, e não busca."</em></p>
+  </div>
+
+  <h3>8 · Nas Fases 2 e 3 o ambiente vira parcialmente observável</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> <em>"nas Fases 2 e 3 o ambiente passa a ser parcialmente observável, já que o tempo real de travessia não é acessível ao agente no momento da decisão"</em>. Esta é a afirmação mais atacável da proposta — e também a mais defensável, se você souber o argumento certo.</p>
+  <p><strong>O ataque previsível.</strong> <em>"Erro de previsão não é observabilidade parcial. Isso não deveria ser um ambiente estocástico?"</em></p>
+  <p><strong>A defesa, e ela é forte</strong> <span class="tag tag--aula">AULA</span> O próprio slide do professor traz a resposta:</p>
+  <blockquote><p>Armadilha frequente: se o ambiente é parcialmente observável, ele parece estocástico mesmo quando não é. O táxi é fisicamente determinístico; a imprevisibilidade vem do que ele não percebe. <strong>Incerteza costuma ser ignorância, não acaso.</strong></p></blockquote>
+  <p>Ou seja: o tempo de travessia é uma variável de estado real do mundo, que existe e tem valor definido, mas que o agente <strong>não consegue perceber no momento de decidir</strong>. Ele só percebe os proxies — lombadas, semáforos, pavimento, horário. Isso é ignorância, não acaso. É a definição literal de parcialmente observável.</p>
+  <div class="callout callout--high">
+    <p class="callout__head">Mas o professor tem um slide mais completo</p>
+    <p><span class="tag tag--aula">AULA</span> <em>"Modelagem B: novos pedidos chegam durante o dia e o trânsito muda em tempo real. Ambiente <strong>dinâmico, estocástico e parcialmente observável</strong>. Exige replanejamento e previsão — Marco 2."</em></p>
+    <p>Na cabeça dele o Marco 2 é <strong>as três coisas</strong>. A proposta menciona uma. <span class="tag tag--eu">EU</span> Na apresentação, diga as três e delimite a sua:</p>
+    <p><em>"Na literatura, um cenário de roteirização com trânsito variável costuma ser classificado como dinâmico, estocástico e parcialmente observável ao mesmo tempo. No nosso caso, o que muda de fato é a observabilidade: o tempo de travessia existe e é determinado pelos atributos da via e pelo horário, mas o agente não o percebe — ele estima. Não incluímos o componente dinâmico porque, na nossa modelagem, o pedido é planejado de uma vez e o mapa não muda durante o planejamento. Se admitíssemos que o trânsito muda enquanto o veículo roda, aí sim seria dinâmico, e exigiria replanejamento."</em></p>
+  </div>
+  <p><span class="tag tag--ded">DED</span> <strong>Consequência de projeto que vale ouro.</strong> <span class="tag tag--aula">AULA</span> O professor tem uma tabela: <em>"ambiente parcialmente observável ⇒ o agente precisa de estado interno: memória do que já percebeu"</em>. Se ele perguntar "então o agente de vocês vai ter estado interno na Fase 2?", a resposta honesta é: <strong>o modelo treinado É o estado interno</strong> — ele é a representação aprendida da parte do mundo que o agente não observa diretamente. Isso encaixa o agente da Fase 2 como <strong>agente baseado em modelo</strong> na taxonomia dele.</p>
+
+  <h3>9 · Formular como busca (os cinco componentes)</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> Estado = cruzamento atual; estado inicial = depósito; ações = as vias que saem do cruzamento; transição leva ao cruzamento vizinho; teste de objetivo = chegar ao nó de destino; custo de passo = comprimento da via.</p>
+  <p>E conclui <span class="tag tag--pdf">PDF</span>: <em>"Como o espaço de estados é finito e todo custo de passo é positivo e vai se somando ao anterior, a busca de custo uniforme e o A* com heurística admissível são completos e ótimos nesse caso."</em></p>
+  <div class="callout callout--crit">
+    <p class="callout__head">Atenção</p>
+    <p>Há um erro técnico nessa frase. Está em <a href="#risco-1">5.1</a>. É o ponto mais grave do documento.</p>
+  </div>
+  <p><strong>Por que essa formulação é a certa.</strong> A frase final da seção é a melhor da proposta inteira: <em>"É essa garantia que justifica a escolha do método, e não só o fato de existir um mapa"</em> <span class="tag tag--pdf">PDF</span>. Não escolhemos busca porque "tem grafo, então usa busca". Escolhemos porque as propriedades do problema — espaço finito, custos positivos, ambiente conhecido e estático — são <strong>exatamente as pré-condições sob as quais a busca tem garantia de otimalidade</strong>. Isso é raciocínio de engenharia, não de repetição.</p>
+  <blockquote class="defense"><p>A escolha da busca não veio do grafo, veio das garantias. Espaço de estados finito e custo de passo positivo são as pré-condições de completude e otimalidade. Se qualquer uma delas caísse — custo negativo, espaço infinito — a garantia caía junto e o método teria que mudar.</p></blockquote>
+
+  <h3>10 · Custo uniforme como busca não informada</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> A proposta cita "a busca de custo uniforme e o A*". O enunciado permitia largura, profundidade <em>ou</em> custo uniforme.</p>
+  <div class="callout callout--high">
+    <p class="callout__head">Lacuna</p>
+    <p><span class="tag tag--gap">LACUNA</span> A proposta usa a UCS mas <strong>nunca justifica por que não BFS ou DFS</strong>. Isso é uma pergunta quase certa.</p>
+  </div>
+  <p><strong>A justificativa correta.</strong> <span class="tag tag--aula">AULA</span> A tabela do professor é explícita: DFS não é ótima; BFS é ótima só com custo uniforme; UCS é ótima; A* é ótimo se <code>h</code> é admissível. Na Vila Aurora as vias têm comprimentos diferentes. Portanto:</p>
+  <ul>
+    <li><strong>BFS é inadequada:</strong> ela minimiza o número de ações, não a soma dos custos. Na Romênia devolveu 450 km quando o ótimo era 418 — <em>"achou o mais curto em estradas, não em quilômetros"</em>.</li>
+    <li><strong>DFS é pior ainda:</strong> não é completa nem ótima.</li>
+    <li><strong>UCS é a única cega que é ótima com custos desiguais.</strong></li>
+  </ul>
+  <p><strong>Mas o argumento decisivo é experimental, não só de correção.</strong> Se comparássemos A* com BFS, a diferença de custo da rota seria contaminada por duas causas ao mesmo tempo: a BFS erra o ótimo <em>e</em> expande diferente. Com a UCS, <strong>ambos devolvem o mesmo custo ótimo</strong> — então qualquer diferença medida na tabela é atribuível <strong>exclusivamente ao efeito da heurística</strong>. É um experimento controlado: uma variável isolada.</p>
+  <div class="callout callout--river">
+    <p class="callout__head">Reforço poderoso</p>
+    <p><span class="tag tag--aula">AULA</span> <em>"Faça h(n) = 0 para todo n: a heurística continua admissível, e o A* vira exatamente a busca de custo uniforme."</em> Ou seja, <strong>UCS é literalmente o A* com h = 0</strong>. A comparação UCS × A* é o mesmo algoritmo com e sem informação. Não dá para ter controle experimental mais limpo. <a href="#top" onclick="document.getElementById('btnUcs').click();return false;">É exatamente o que o mapa no topo desta página demonstra.</a></p>
+  </div>
+  <blockquote class="defense"><p>Escolhemos custo uniforme porque ela também é ótima. Como os dois algoritmos devolvem o mesmo custo de rota, toda diferença na coluna de nós expandidos vem da heurística e de mais nada. A UCS é o A* com h igual a zero — estamos comparando o mesmo algoritmo com e sem informação.</p></blockquote>
+
+  <h3>11 · Atributos extras existem mas ficam parados na Fase 1</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> Cada via guarda lombadas, semáforos, tipo e condição do pavimento, bloqueio e região. <em>"Na Fase 1 a busca lê apenas o comprimento. Os outros atributos ficam guardados e sem uso até a Fase 2."</em></p>
+  <p><strong>Que problema resolve.</strong> Duas coisas de uma vez:</p>
+  <ol>
+    <li><strong>Preserva a classificação do ambiente.</strong> A proposta observa <span class="tag tag--pdf">PDF</span>: os atributos <em>"são definidos na hora de gerar o mapa e não mudam durante o planejamento, o que mantém o ambiente estático da Fase 1"</em>. Se acidentes aparecessem e sumissem durante o planejamento — como o enunciado até permite — o ambiente seria dinâmico e a busca clássica não bastaria.</li>
+    <li><strong>Gera o dataset da Fase 2 sem retrabalho.</strong> O mapa já nasce com as features. O Arthur não precisa reconstruir a cidade.</li>
+  </ol>
+  <p><span class="tag tag--aula">AULA</span> O enunciado endossa: <em>"Nesta fase o agente é deliberadamente ingênuo: ele conhece o mapa e as distâncias, e nada mais. Não sabe que existe lombada, farol ou horário de pico."</em> A proposta está em cima do texto oficial.</p>
+  <div class="callout callout--high">
+    <p class="callout__head">Cuidado com o atributo bloqueio</p>
+    <p><span class="tag tag--eu">EU</span> Ele é o único atributo extra que a Fase 1 <strong>não pode ignorar em segurança</strong>. Se uma aresta está bloqueada, ela não é atravessável — e uma busca que a ignore devolve rota impossível. Decidam e documentem: ou a aresta bloqueada <strong>não entra no grafo</strong>, ou entra e a função sucessores a filtra. <span class="tag tag--ded">DED</span> Em ambos os casos a admissibilidade se mantém, porque remover arestas só pode aumentar o custo real de qualquer caminho, e <code>h</code> continua sendo um limite inferior.</p>
+  </div>
+  <blockquote class="defense"><p>Os atributos já nascem no mapa mas ficam inertes na Fase 1, por duas razões: o enunciado quer o agente deliberadamente ingênuo nesta fase, e como os atributos não mudam durante o planejamento, o ambiente continua estático. Na Fase 2 eles viram features sem precisarmos gerar a cidade de novo.</p></blockquote>
+
+  <h3>12 · Horário é parâmetro do pedido, não atributo da via</h3>
+  <p>Esta é a decisão mais sofisticada da proposta e é onde você ganha ponto de graça se souber explicar.</p>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> <em>"O horário não é atributo da via, e sim um parâmetro do pedido. Se ele fosse propriedade do trecho, o estado teria que ser o par (cruzamento, horário), o que aumentaria o espaço de estados sem necessidade."</em></p>
+  <p><strong>Que problema resolve.</strong> Explosão do espaço de estados. Se o estado fosse <code>(cruzamento, horário)</code>, com |V| cruzamentos e T instantes discretizados, o espaço saltaria de |V| para |V| × T. Com 1.500 nós e o dia dividido em intervalos de 15 minutos (96 fatias), seriam 144.000 estados em vez de 1.500 — <strong>cem vezes maior</strong>, para modelar um efeito que, na formulação atual, cabe num único parâmetro.</p>
+  <p><span class="tag tag--ded">DED</span> O nome disso na literatura é <strong>grafo expandido no tempo</strong> (<em>time-expanded graph</em>), e é a formulação correta quando o custo muda <em>enquanto</em> o veículo roda.</p>
+  <p><strong>A limitação honesta, e você precisa admiti-la antes que perguntem.</strong> Com horário fixo no pedido, o modelo assume que o trânsito das 18h vale para a rota inteira, mesmo que ela leve 40 minutos e termine às 18h40. É uma aproximação. Ela é aceitável quando a duração da rota é pequena comparada à escala em que o trânsito muda; deixa de ser aceitável em rotas longas atravessando o pico.</p>
+  <p><span class="tag tag--eu">EU</span> Para blindar completamente, digam qual seria o gatilho para mudar: <em>"se em algum teste a rota prevista durar mais que o intervalo em que o trânsito é aproximadamente constante, a modelagem por horário fixo deixa de valer e passaríamos ao estado expandido no tempo."</em> Dar o critério de falha da própria decisão é o que separa resposta boa de resposta excelente.</p>
+  <blockquote class="defense"><p>Horário é propriedade do pedido, não da rua. Se fosse da rua, o estado teria que virar o par cruzamento-mais-horário e o espaço de estados seria multiplicado pelo número de fatias de tempo — cem vezes maior no nosso mapa grande. Assumimos horário fixo durante o planejamento, que é uma aproximação válida enquanto a rota for curta em relação à escala em que o trânsito muda.</p></blockquote>
+
+  <h3>13 · Dados sintéticos</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> Dados gerados pelo próprio grupo, com três justificativas explícitas: mapas de tamanhos controlados para o experimento da Fase 1; conhecimento da função geradora do tempo, que permite avaliar onde o modelo da Fase 2 erra mais contra uma referência controlada; e ausência de dados pessoais e de dependência externa.</p>
+  <p><span class="tag tag--aula">AULA</span> O enunciado endossa diretamente: <em>"Não é necessário usar mapas reais: uma cidade simulada, bem documentada, é suficiente e muitas vezes preferível."</em> Vocês estão do lado seguro.</p>
+  <p><strong>Alternativas.</strong> OpenStreetMap via OSMnx; dados abertos de mobilidade urbana; datasets de táxi.</p>
+  <p><strong>Vantagens.</strong></p>
+  <ul>
+    <li><strong>Controle de escala.</strong> Com OSM você recorta um bairro e ganha o número de nós que der. Precisamos de ~25, ~200 e ~1.500 — três pontos escolhidos.</li>
+    <li><strong>Verdade fundamental conhecida.</strong> O argumento mais forte para a Fase 2: sabemos qual é a função geradora do tempo, então conseguimos dizer se o erro do modelo é ruído irredutível ou falha de aprendizado. Com dados reais, você nunca sabe.</li>
+    <li><strong>LGPD.</strong> Sem dado pessoal, sem base legal a discutir. Alimenta direto a seção obrigatória de IA responsável.</li>
+    <li><strong>Reprodutibilidade.</strong> Semente documentada ⇒ qualquer pessoa regenera a cidade idêntica. Com API externa, o resultado depende de o serviço estar no ar.</li>
+  </ul>
+  <p><strong>Desvantagens — e você tem que admitir estas.</strong> <strong>Validade externa zero:</strong> um modelo que aprende bem em Vila Aurora não diz nada sobre Brasília; a conclusão da Fase 2 é sobre o método, não sobre o mundo. E <strong>risco de circularidade na Fase 2</strong> — ver <a href="#risco-3">5.3</a>, o furo mais sério da proposta.</p>
+  <blockquote class="defense"><p>Escolhemos dados sintéticos por três motivos, e o principal é da Fase 2: como conhecemos a função que gera o tempo de travessia, conseguimos separar o erro que o modelo poderia ter evitado do ruído que ninguém evitaria. Com dado real essa distinção é impossível. Somamos a isso o controle exato da escala dos mapas e a ausência total de dado pessoal.</p></blockquote>
+
+  <h3>14 · Três escalas: ~25, ~200, ~1.500 nós</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> Três malhas nesses tamanhos.</p>
+  <p><strong>Que problema resolve.</strong> Atende o requisito do enunciado e permite observar <strong>tendência</strong>, não só um ponto isolado. É a diferença entre dizer "o A* expandiu menos nós" e "a vantagem do A* cresce com o tamanho do mapa".</p>
+  <p><span class="tag tag--ded">DED</span> <strong>Por que essas escalas.</strong> Não está justificado no PDF, mas o espaçamento é aproximadamente geométrico — cada uma cerca de 8× a anterior. É o correto para observar crescimento: em escala linear os três pontos ficariam empilhados no canto do gráfico.</p>
+  <p><span class="tag tag--eu">EU</span> Preparem esta resposta, porque "por que 25, 200 e 1.500?" é óbvia:</p>
+  <blockquote><p>Escolhemos escalas aproximadamente geométricas, cada uma cerca de oito vezes a anterior, porque queremos observar como a diferença de esforço <strong>cresce</strong> com o tamanho — e crescimento só é visível com espaçamento multiplicativo. A menor serve de mapa de depuração, onde dá para conferir o resultado na mão. A maior serve para o regime em que a busca cega começa a doer.</p></blockquote>
+  <p><strong>Limitação.</strong> 1.500 nós é pequeno para roteirização real. <span class="tag tag--aula">AULA</span> O professor mostra que o A* quebra por memória, não por tempo — <em>"o limite do A* não é o tempo: é a memória"</em>. Com 1.500 nós nenhum dos dois chega perto de esgotar a memória do Colab. Admita: <em>"não estamos no regime em que o A* quebra; estamos no regime em que a diferença de esforço já é mensurável, que é o que o experimento pede."</em></p>
+
+  <h3>15 · Semente aleatória e velocidade máxima documentadas</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> <em>"O gerador e os seus parâmetros, incluindo a semente aleatória e a velocidade máxima admitida em qualquer via da cidade, vão ficar documentados no notebook, para que o mesmo ambiente seja usado nas três fases."</em></p>
+  <p><strong>Semente aleatória — por que importa.</strong> Reprodutibilidade. Sem semente fixa, cada execução gera outra cidade, e a tabela do relatório vira impossível de auditar. <span class="tag tag--aula">AULA</span> Também protege contra o requisito duro da disciplina: o notebook precisa executar do início ao fim numa sessão nova e produzir os mesmos números do PDF entregue.</p>
+  <div class="callout callout--crit">
+    <p class="callout__head">Velocidade máxima está no lugar errado — e isso é grave</p>
+    <p>A proposta trata a velocidade máxima como um parâmetro que será <em>documentado</em>. Ela é muito mais que isso: <strong>é a condição de admissibilidade da heurística na Fase 2</strong>, e o texto atual não deixa isso claro.</p>
+  </div>
+  <p><span class="tag tag--ded">DED</span> <strong>O raciocínio completo.</strong> Na Fase 2 o custo da aresta deixa de ser metros e passa a ser segundos. Mas a heurística continua sendo uma distância geométrica, em metros. <strong>Somar <code>g</code> em segundos com <code>h</code> em metros não tem significado.</strong> É preciso converter:</p>
+<pre><code>h_tempo(n) = distância_euclidiana(n, objetivo) / v_max</code></pre>
+  <p>E para que essa heurística seja admissível, <code>v_max</code> precisa ser um <strong>limite superior real</strong> para a velocidade em qualquer via. A lógica: se nenhuma via pode ser percorrida mais rápido que <code>v_max</code>, então nenhum caminho de <code>n</code> até o objetivo pode levar menos que <code>distância_em_linha_reta / v_max</code>. É o mesmo argumento da Fase 1, transportado para a unidade tempo.</p>
+  <p><strong>Se <code>v_max</code> for subestimado</strong> — isto é, se alguma via na prática permitir velocidade maior — a heurística <strong>superestima</strong> o tempo restante, perde a admissibilidade, e o A* pode devolver rota subótima sem avisar ninguém. Por isso <code>v_max</code> precisa ser um parâmetro que o gerador <em>respeita</em>, e não um número anotado depois. É uma dependência arquitetural que atravessa as Fases 1 e 2 — e ela é sua, Henrique, porque quem constrói o gerador é você.</p>
+  <blockquote class="defense"><p>A velocidade máxima não está lá por organização — ela é a condição de admissibilidade da Fase 2. Quando o custo vira tempo, a heurística tem que virar distância dividida por velocidade máxima, senão estaríamos somando segundos com metros. E ela só é admissível se nenhuma via da cidade puder ser percorrida mais rápido que esse teto. Por isso o teto é imposto pelo gerador, não anotado depois.</p></blockquote>
+
+  <h3>16 · As três métricas do experimento</h3>
+  <p><strong>O que foi decidido</strong> <span class="tag tag--pdf">PDF</span> A medida de desempenho é o custo total da rota. Para avaliação experimental, também são medidos o esforço de planejamento, pelo número de nós expandidos, e o tempo de execução.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Métrica</th><th>O que mede</th><th>Por que sozinha não basta</th></tr></thead>
+    <tbody>
+      <tr><td>Custo da rota</td><td>Qualidade da resposta</td><td>Os dois algoritmos empatam por construção — confirma a corretude mas não diferencia</td></tr>
+      <tr><td>Nós expandidos</td><td>Esforço algorítmico</td><td>É a métrica honesta: independe de máquina, linguagem e carga do Colab</td></tr>
+      <tr><td>Tempo de execução</td><td>Custo real na prática</td><td>Depende de hardware e implementação — mas é o que o usuário sente</td></tr>
+    </tbody>
+  </table></div>
+  <p><span class="tag tag--aula">AULA</span> O professor usa exatamente esse par (custo do caminho + nós expandidos) na tabela-placar da Romênia, e um dos objetivos declarados da Aula 3 é <em>"comparar experimentalmente busca cega e busca informada usando custo do caminho e número de nós expandidos como evidência"</em>. Vocês estão no formato dele.</p>
+  <div class="callout callout--high">
+    <p class="callout__head">Três detalhes que decidem a credibilidade da tabela</p>
+    <p><span class="tag tag--eu">EU</span> <strong>Defina "nó expandido".</strong> Existem duas definições e elas dão números diferentes: <em>gerado</em> (criado e colocado na fronteira) e <em>expandido</em> (retirado da fronteira e teve sucessores gerados). A padrão da disciplina é a segunda. O que importa é usar a mesma nos dois algoritmos e declarar qual é.</p>
+    <p><strong>Desempate na fila de prioridade.</strong> <span class="tag tag--aula">AULA</span> O código do laboratório usa <code>heapq.heappush(fronteira, (prioridade, contador, no))</code>. Esse contador não é decoração: sem ele, o heap tenta comparar os objetos-nó quando as prioridades empatam, e o resultado passa a depender de ordem de inserção. Com barreiras e regiões regulares, empates em <code>f</code> vão acontecer.</p>
+    <p><strong>Cronometragem.</strong> <code>time.perf_counter()</code>, não <code>time.time()</code>, e repitam a medição tirando a mediana. O Colab é máquina compartilhada; medição única é ruído.</p>
+  </div>
+</section>
+
+<!-- ══════════ PARTE 3 ══════════ -->
+<section class="part" id="p3">
+  <p class="part__label">Parte 03</p>
+  <h2 class="part__title">Os conceitos por trás</h2>
+  <p class="part__sub">Explicação simples, explicação técnica, uso no projeto, e comparação com alternativas.</p>
+
+  <h3>3.1 Espaço de estados</h3>
+  <p><strong>Simples.</strong> É a lista de todas as situações em que o agente pode estar, mais as regras de como sair de uma para outra. Na Vila Aurora, cada situação é "estou no cruzamento X".</p>
+  <p><strong>Técnico.</strong> Uma quíntupla: estado inicial, conjunto de ações aplicáveis, função de transição, teste de objetivo, função de custo de passo. O grafo de estados é implícito — não é construído na memória, é descoberto pela expansão. <span class="tag tag--aula">AULA</span> <em>"O espaço de estados que eles geram é quase sempre grande demais para ser desenhado."</em></p>
+  <p><strong>No nosso projeto.</strong> Espaço de estados = conjunto de cruzamentos. Ele é pequeno (≤1.500) porque o horário ficou de fora do estado. É essa decisão que o mantém tratável.</p>
+  <p><strong>Exemplo.</strong> No mapa de 25 nós, o espaço tem 25 elementos. Se o horário virasse parte do estado, com 96 fatias de 15 minutos, viraria 2.400.</p>
+
+  <h3>3.2 Estado × nó</h3>
+  <div class="callout callout--river">
+    <p class="callout__head">O professor avisou que ia cobrar</p>
+    <p><span class="tag tag--aula">AULA</span> Objetivo declarado da Aula 3: <em>"distinguir estado de nó, e explicar o papel da fronteira e do conjunto de explorados"</em>.</p>
+  </div>
+  <p><strong>Estado</strong> é uma configuração do mundo: "o cruzamento 47". <strong>Nó</strong> é uma estrutura de dados da busca: guarda o estado, o <strong>ponteiro para o pai</strong>, o custo <code>g</code> acumulado e a ação que levou até ali.</p>
+  <p><strong>Dois nós diferentes podem conter o mesmo estado.</strong> Chegar ao cruzamento 47 por dois caminhos gera dois nós distintos com o mesmo estado, mas com <code>g</code> e pai diferentes. É por isso que existe conjunto de explorados: para não expandir o mesmo estado duas vezes.</p>
+  <p>E é o campo pai que permite a <strong>reconstrução do caminho</strong>: quando o objetivo é atingido, você sobe pelos ponteiros até a raiz e inverte a lista. Sem esse campo, a busca sabe <em>quanto custa</em> mas não sabe <em>por onde vai</em>.</p>
+
+  <h3>3.3 Fronteira e conjunto de explorados</h3>
+  <div class="callout callout--river">
+    <p class="callout__head">Se você souber só uma frase da Aula 3, que seja esta</p>
+    <p><span class="tag tag--aula">AULA</span> <em>"A escolha da estrutura da fronteira é o algoritmo inteiro. Fila dá largura, pilha dá profundidade, fila de prioridade por g dá custo uniforme, e fila de prioridade por g + h dá A*."</em></p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Estrutura da fronteira</th><th>Algoritmo resultante</th></tr></thead>
+    <tbody>
+      <tr><td>Fila (FIFO)</td><td>Largura</td></tr>
+      <tr><td>Pilha (LIFO)</td><td>Profundidade</td></tr>
+      <tr><td>Fila de prioridade por <code>g(n)</code></td><td>Custo uniforme</td></tr>
+      <tr><td>Fila de prioridade por <code>h(n)</code></td><td>Gulosa</td></tr>
+      <tr><td>Fila de prioridade por <code>g(n) + h(n)</code></td><td>A*</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>O conjunto de explorados</strong> guarda os estados já expandidos, para evitar laço infinito em grafo com ciclos e evitar retrabalho. <span class="tag tag--aula">AULA</span> Busca com conjunto de explorados = <strong>busca em grafo</strong>, que é o que a disciplina usa — e isso tem uma consequência séria, em <a href="#risco-1">5.1</a>.</p>
+
+  <h3>3.4 Fila de prioridade — por que heap e não lista ordenada</h3>
+  <p><strong>Técnico.</strong> Heap binário: inserção e remoção do mínimo em O(log n); leitura do mínimo em O(1). Manter uma lista ordenada custa O(n) por inserção; varrer uma lista desordenada procurando o mínimo custa O(n) por remoção.</p>
+  <p><strong>Impacto no nosso caso.</strong> No mapa de 1.500 nós a fronteira chega a algumas centenas de elementos. Cada inserção com lista custaria centenas de comparações; com heap, cerca de 8 a 10. Multiplicado por milhares de operações, é a diferença entre segundos e milissegundos.</p>
+  <p><strong>Complexidade total.</strong> Tanto UCS quanto A* com heap rodam em <strong>O(E log V)</strong>, com E arestas e V nós.</p>
+
+  <h3>3.5 Lista de adjacência — por que não matriz</h3>
+  <p><span class="tag tag--gap">LACUNA</span> A proposta não diz qual representação usa. Prepare, porque "por que essa estrutura de dados?" é uma das perguntas que o professor sinalizou.</p>
+  <p><strong>A resposta.</strong> O grafo é <strong>esparso</strong>: uma malha viária tem grau médio na casa de 3 ou 4, não de 1.500. Numa matriz de adjacência com 1.500 nós seriam 2.250.000 células, das quais mais de 99% valeriam zero. A lista guarda só as arestas que existem — cerca de 2.500 a 3.000 entradas — e a operação que a busca mais faz, <em>listar os vizinhos de um nó</em>, custa O(grau) na lista contra O(V) na matriz.</p>
+  <p><strong>Quando a matriz seria melhor.</strong> Grafo denso, ou quando a pergunta dominante é "existe aresta entre u e v?" — O(1) na matriz. Não é o nosso caso: a busca nunca pergunta isso, ela sempre pede a lista de vizinhos.</p>
+
+  <h3>3.6 Heurística, admissibilidade e consistência</h3>
+  <p><strong>Simples.</strong> Heurística é um palpite barato sobre quanto ainda falta. <span class="tag tag--aula">AULA</span> <em>"g é fato — o que já custou chegar até aqui; h é palpite educado — o que falta."</em></p>
+  <ul>
+    <li><strong>Admissível:</strong> <code>h(n) ≤ h*(n)</code> para todo <code>n</code>. Nunca superestima; é otimista. Garante otimalidade do A* na busca em <strong>árvore</strong>.</li>
+    <li><strong>Consistente (monotônica):</strong> <code>h(n) ≤ c(n, a, n′) + h(n′)</code> para todo sucessor. É a desigualdade triangular aplicada à heurística. Garante otimalidade do A* na busca em <strong>grafo — que é a que usamos</strong>.</li>
+    <li>Toda heurística consistente é admissível; a recíproca não vale.</li>
+  </ul>
+  <p><strong>Por que a consistência importa mecanicamente.</strong> Se <code>h</code> é consistente, <code>f</code> nunca decresce ao longo de um caminho. E se <code>f</code> nunca decresce, quando o A* expande um nó ele já encontrou o melhor caminho até ali — <strong>não há razão para reabri-lo</strong>. É isso que torna seguro fechar um nó no conjunto de explorados.</p>
+  <p><strong>Se <code>h</code> for admissível mas não consistente</strong>, <code>f</code> pode cair de pai para filho, e um nó pode ser fechado por um caminho pior antes que o melhor caminho até ele seja descoberto. Aí o A* com conjunto de explorados <strong>perde a otimalidade</strong>, a não ser que você reabra nós fechados ou aplique a correção <code>f(n′) = max(f(n), g(n′) + h(n′))</code>.</p>
+  <p><span class="tag tag--ded">DED</span> <strong>No nosso projeto, a heurística de linha reta é consistente</strong>, e a prova é curta:</p>
+<pre><code>h(n) = d(n, G)                                    (distância euclidiana)
+d(n, G) ≤ d(n, n′) + d(n′, G)                     (desigualdade triangular)
+d(n, n′) ≤ comprimento(n, n′) = c(n, a, n′)       (nosso invariante do gerador)
+────────────────────────────────────────────────
+h(n) ≤ c(n, a, n′) + h(n′)                        ∎</code></pre>
+  <p>Repare que o passo 3 é o mesmo invariante da Decisão 5. <strong>O mesmo invariante do gerador dá admissibilidade e consistência.</strong> Isso é bonito e vale ser dito.</p>
+
+  <h3>3.7 Otimalidade do A* — a prova em três passos</h3>
+  <p><span class="tag tag--aula">AULA</span> Você precisa saber reproduzir isso. Seja <code>C*</code> o custo da solução ótima e <code>G₂</code> um objetivo subótimo.</p>
+  <ol>
+    <li><strong><code>G₂</code> tem f alto.</strong> Como <code>G₂</code> é objetivo, <code>h(G₂) = 0</code>, logo <code>f(G₂) = g(G₂)</code>. E por ser subótimo, <code>g(G₂) &gt; C*</code>.</li>
+    <li><strong>Existe na fronteira um nó do caminho ótimo com f baixo.</strong> Seja <code>n</code> esse nó. Como <code>h</code> é admissível, ela não superestima o que falta: <code>f(n) = g(n) + h(n) ≤ C*</code>.</li>
+    <li><strong>Junte.</strong> <code>f(n) ≤ C* &lt; f(G₂)</code> ⇒ o A* retira <code>n</code> da fronteira <strong>antes</strong> de <code>G₂</code>.</li>
+  </ol>
+  <p>Conclusão: o A* nunca aceita a solução ruim, porque sempre existe na fronteira um nó do caminho ótimo com <code>f</code> menor.</p>
+
+  <h3>3.8 Dominância entre heurísticas</h3>
+  <p><span class="tag tag--aula">AULA</span> <em>"Se h₂(n) ≥ h₁(n) para todo n e ambas são admissíveis, dizemos que h₂ domina h₁ — e o A* com h₂ nunca expande mais nós que o A* com h₁. Regra prática: entre duas heurísticas admissíveis, use sempre a maior. Maior é mais informada."</em> É o gancho para a pergunta <em>"por que não uma heurística melhor?"</em> — ver <a href="#risco-4">5.4</a>.</p>
+
+  <h3>3.9 Modelo aprendido como função de custo (ponte para a Fase 2)</h3>
+  <p><strong>Simples.</strong> Em vez de o custo da aresta ser um número que está no mapa, ele passa a ser um número que um modelo calcula a partir das características da via.</p>
+  <p><strong>Técnico.</strong> Regressão supervisionada: <code>tempo_previsto = f(lombadas, semáforos, tipo_pavimento, condição, horário, comprimento)</code>. Treino com validação cruzada, avaliação por métrica de regressão (MAE, RMSE ou R²).</p>
+  <p><strong>Como se conecta.</strong> O A* da Fase 1 chama uma função <code>custo(u, v)</code>. Na Fase 1 ela devolve <code>comprimento</code>. Na Fase 2 devolve <code>modelo.predict(features(u,v), horário)</code>. <strong>O algoritmo não muda uma linha.</strong> É a razão de ser da arquitetura.</p>
+  <p><span class="tag tag--eu">EU</span> Se você disser na apresentação — "a Fase 2 não modifica a busca, ela troca a função de custo que a busca consulta" — demonstra que entendeu o projeto como sistema, não como três trabalhos grampeados.</p>
+
+  <h3>3.10 LLM com chamada de ferramenta (ponte para a Fase 3)</h3>
+  <p><strong>Simples.</strong> O modelo de linguagem é o atendente, não o calculista. Ele entende o pedido em português, decide qual função chamar e com quais argumentos, e depois explica o resultado de volta em português.</p>
+  <p><strong>Técnico.</strong> Saída estruturada / <em>function calling</em>: o LLM emite um objeto com nome da ferramenta e argumentos tipados, o sistema valida e executa, e o retorno volta ao LLM para verbalização.</p>
+  <p><strong>Por que o LLM não calcula a rota.</strong> Porque ele <strong>não tem garantia nenhuma</strong>. O A* tem prova de otimalidade e completude. Um LLM pedido para "achar o caminho mais curto" produz algo plausível, sem garantia de ser válido nem ótimo, de forma não determinística, e pode alucinar cruzamentos que não existem. Trocar um algoritmo com prova por um gerador de texto plausível seria um retrocesso.</p>
+  <p><strong>A divisão de responsabilidade.</strong> O LLM cuida do que é ambíguo — linguagem natural. O algoritmo cuida do que é exato — otimização em grafo. Cada um no que é bom.</p>
+</section>
+
+<!-- ══════════ PARTE 4 ══════════ -->
+<section class="part" id="p4">
+  <p class="part__label">Parte 04</p>
+  <h2 class="part__title">Por que fizemos isso?</h2>
+  <p class="part__sub">Rajada rápida, para treinar em voz alta. Resposta curta primeiro.</p>
+
+  <div class="tablewrap"><table class="qa">
+    <thead><tr><th style="width:38%">Pergunta</th><th>Resposta</th></tr></thead>
+    <tbody>
+      <tr><td>Por que grafo e não grade?</td><td>Porque grade força traçado regular e a Zona de Crescimento Orgânico precisa ser irregular. O grafo com coordenadas modela qualquer traçado.</td></tr>
+      <tr><td>Por que não dirigido?</td><td>Distância é simétrica. Dobrar arestas custaria memória sem informação.</td></tr>
+      <tr><td>O que perderíamos com grafo dirigido?</td><td>Nada na Fase 1. Ganharíamos capacidade de modelar mão única e tempo assimétrico na Fase 2, ao custo do dobro de arestas.</td></tr>
+      <tr><td>Por que coordenadas em metros?</td><td>Para que <code>g</code> e <code>h</code> fiquem na mesma unidade e a soma <code>g + h</code> faça sentido.</td></tr>
+      <tr><td>Por que duas regiões diferentes?</td><td>Para evitar caminhos empatados em custo, que fariam o resultado depender do desempate em vez do algoritmo.</td></tr>
+      <tr><td>Por que barreiras, se elas pioram a heurística?</td><td>Porque é essa piora que torna o experimento mensurável. Sem obstáculo, <code>h</code> fica quase perfeita e os dois algoritmos quase empatam em esforço.</td></tr>
+      <tr><td>Por que só duas pontes?</td><td>Para forçar desvio obrigatório. Com muitas travessias, a barreira deixa de ser barreira.</td></tr>
+      <tr><td>Por que garantir comprimento ≥ linha reta?</td><td>Porque é o que faz a heurística ser admissível. Numa cidade real isso é fato físico; na nossa, sintética, precisa ser imposto.</td></tr>
+      <tr><td>O que aconteceria se não garantíssemos?</td><td>Uma aresta mais curta que a linha reta faria <code>h</code> superestimar naquele trecho. A heurística deixaria de ser admissível e o A* poderia devolver rota subótima — <strong>sem avisar</strong>. Nada quebra; só a resposta fica errada.</td></tr>
+      <tr><td>Por que custo uniforme e não largura?</td><td>Porque as vias têm comprimentos diferentes, e a largura minimiza número de ações, não soma de custos. Na Romênia ela devolve 450 km quando o ótimo é 418.</td></tr>
+      <tr><td>Por que não profundidade?</td><td>Não é completa nem ótima. Não serve de referência para nada.</td></tr>
+      <tr><td>Por que uma busca cega que também é ótima?</td><td>Para isolar a variável. Se as duas devolvem o mesmo custo, toda diferença medida vem da heurística.</td></tr>
+      <tr><td>Por que os atributos extras já existem na Fase 1?</td><td>Para não gerar a cidade duas vezes e garantir que as três fases rodem sobre exatamente o mesmo mapa.</td></tr>
+      <tr><td>Isso não quebra o "ambiente estático"?</td><td>Não. Os atributos são fixados na geração e não mudam durante o planejamento. Estático é sobre mudar <em>durante a deliberação</em>, não sobre existir.</td></tr>
+      <tr><td>Por que horário é do pedido e não da via?</td><td>Porque horário não é propriedade de uma rua. E porque colocá-lo no estado multiplicaria o espaço de estados pelo número de fatias de tempo.</td></tr>
+      <tr><td>O que perderíamos com horário fixo?</td><td>Precisão em rotas longas que atravessam mudança de trânsito. É uma aproximação declarada.</td></tr>
+      <tr><td>Por que dados sintéticos?</td><td>Controle de escala, verdade fundamental conhecida para avaliar o erro da Fase 2, e ausência de dado pessoal.</td></tr>
+      <tr><td>Por que não OpenStreetMap?</td><td>Porque não controlaríamos o número de nós, não saberíamos a função geradora do tempo, e dependeríamos de serviço externo estar no ar num notebook que precisa rodar do zero na hora da entrega.</td></tr>
+      <tr><td>O que perderíamos com dados reais?</td><td>A capacidade de dizer, na Fase 2, se o erro do modelo era evitável ou irredutível. Ganharíamos validade externa, que não é o que este projeto avalia.</td></tr>
+      <tr><td>Por que semente aleatória fixa?</td><td>Porque o notebook precisa rodar do zero e reproduzir os números do relatório.</td></tr>
+      <tr><td>Por que velocidade máxima é parâmetro?</td><td>Porque é a condição de admissibilidade quando o custo vira tempo, na Fase 2.</td></tr>
+      <tr><td>Por que três métricas?</td><td>Custo verifica corretude, nós expandidos medem esforço de forma independente de máquina, tempo mede o custo prático.</td></tr>
+      <tr><td>Por que nós expandidos é a mais confiável?</td><td>Porque não depende de hardware, de linguagem, nem da carga do Colab naquele minuto.</td></tr>
+      <tr><td>Por que o LLM não calcula a rota?</td><td>Porque não tem garantia de otimalidade nem de validade, é não determinístico e pode alucinar cruzamentos. O A* tem prova.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ══════════ PARTE 5 ══════════ -->
+<section class="part" id="p5">
+  <p class="part__label">Parte 05</p>
+  <h2 class="part__title">Onde o professor vai bater</h2>
+  <p class="part__sub">Esta é a parte que importa. Ordenada por gravidade.</p>
+
+  <h3 id="risco-1"><span class="difficulty difficulty--3">Crítico</span> &nbsp;5.1 · "Admissível" não basta: vocês usam busca em GRAFO</h3>
+  <div class="callout callout--crit">
+    <p class="callout__head">O slide do professor contradiz uma frase da proposta</p>
+    <p><strong>A frase da proposta</strong> <span class="tag tag--pdf">PDF</span>: <em>"a busca de custo uniforme e o A* com heurística admissível são completos e ótimos nesse caso."</em></p>
+    <p><strong>O slide dele</strong> <span class="tag tag--aula">AULA</span>: admissibilidade <em>"garante que o A* é ótimo na busca em ÁRVORE"</em>; consistência <em>"garante que o A* é ótimo também na busca em GRAFO — que é a que usamos"</em>. E a tabela de propriedades: <em>"É ótima? Sim — com heurística admissível em busca em árvore; consistente em busca em grafo."</em></p>
+  </div>
+  <p><strong>O problema.</strong> Vocês vão implementar busca em grafo, com conjunto de explorados — obrigatório, senão a cidade com ciclos gera laço infinito. Em busca em grafo, admissibilidade <strong>sozinha não garante otimalidade</strong>. A proposta afirma que garante. É tecnicamente incorreto pelo material da própria disciplina.</p>
+  <p><strong>A boa notícia: a heurística de vocês é consistente.</strong> Então a conclusão está certa; o que falta é o argumento. Vocês acertaram no destino e erraram na estrada.</p>
+  <blockquote><p><strong>Como responder se ele apertar:</strong> "O senhor tem razão, e a distinção é importante. A proposta menciona apenas admissibilidade, mas como implementamos busca em grafo, com conjunto de explorados, a condição que realmente precisamos é a consistência. E a nossa heurística é consistente: pelo mesmo invariante do gerador — comprimento maior ou igual à linha reta — mais a desigualdade triangular, temos que h(n) é menor ou igual ao custo do passo mais h(n′). Como toda heurística consistente é admissível, as duas propriedades valem. Vamos corrigir o texto do relatório para citar consistência explicitamente."</p></blockquote>
+  <p>Isso vira <strong>ponto ganho</strong>, não perdido: você mostrou que sabe a diferença e que ela é a diferença que importa no algoritmo que vocês vão escrever.</p>
+  <p><span class="tag tag--eu">EU</span> <strong>Ação antes de 26/08:</strong> acrescente uma frase à proposta. Custa uma linha e fecha a maior brecha do documento.</p>
+
+  <h3 id="risco-2"><span class="difficulty difficulty--3">Crítico</span> &nbsp;5.2 · Erro de previsão da Fase 2 × otimalidade do A*</h3>
+  <p>Esta é a pergunta cruzada de maior probabilidade para você, porque é onde a sua fase encosta na do Arthur.</p>
+  <p><strong>A pergunta:</strong> <em>"Se o custo da aresta na Fase 2 é uma previsão com erro, o A* continua sendo ótimo?"</em></p>
+  <p><strong>A resposta errada:</strong> "Sim, o A* é ótimo." Verdadeiro, mas responde a pergunta errada — e o professor vai perceber.</p>
+  <h4>Camada 1 — a distinção</h4>
+  <p>O A* continua ótimo <strong>em relação ao grafo de custos que ele recebe</strong>. A garantia de otimalidade é sobre o modelo, não sobre o mundo. Ele devolve, com prova, o caminho mais barato segundo os custos previstos. Se os custos previstos diferem dos reais, o caminho ótimo no grafo previsto pode não ser o ótimo no grafo real. <strong>A otimalidade do algoritmo é preservada; a otimalidade da decisão, não.</strong></p>
+  <h4>Camada 2 — quanto pode custar</h4>
+  <p><span class="tag tag--ded">DED</span> Dá para limitar o prejuízo. Se o erro por aresta é limitado por <code>ε</code> e o caminho tem <code>L</code> arestas, o custo real da rota escolhida excede o ótimo real em no máximo cerca de <code>2εL</code>. Intuição: o caminho escolhido pode estar subestimado em até <code>εL</code> e o verdadeiro ótimo superestimado em até <code>εL</code>; o pior caso soma os dois. Ou seja, <strong>o prejuízo é limitado pelo erro do modelo</strong>, não arbitrário. Se o MAE do modelo for pequeno em relação ao tempo típico de travessia, a rota escolhida é quase ótima na prática. É por isso que a métrica de erro da Fase 2 importa para a Fase 1 — as fases não são independentes.</p>
+  <h4>Camada 3 — a condição de admissibilidade sobrevive</h4>
+  <p>A heurística <code>h_tempo(n) = d(n, G) / v_max</code> continua admissível <strong>em relação ao grafo previsto</strong>, desde que nenhuma velocidade prevista ultrapasse <code>v_max</code>.</p>
+  <div class="callout callout--high">
+    <p class="callout__head">Cuidado real, com mitigação de uma linha</p>
+    <p><span class="tag tag--eu">EU</span> Um modelo de regressão pode prever um tempo absurdamente baixo para uma aresta (extrapolação, ruído), implicando velocidade acima de <code>v_max</code> — e aí a heurística superestima e a admissibilidade cai. <strong>Providência: aplicar um piso na saída do modelo</strong>, <code>tempo_previsto ≥ comprimento / v_max</code>. Uma linha de código, e ela salva a garantia.</p>
+  </div>
+
+  <h3 id="risco-3"><span class="difficulty difficulty--3">Crítico</span> &nbsp;5.3 · Circularidade: a Fase 2 aprende a função que vocês escreveram</h3>
+  <p><strong>A pergunta:</strong> <em>"Se vocês geram o tempo com uma fórmula que vocês mesmos escreveram, o modelo da Fase 2 não está só redescobrindo a fórmula de vocês? Que mérito tem isso?"</em></p>
+  <p>Este é o furo mais sério da escolha por dados sintéticos, e a proposta o expõe sem defender — ela apresenta o conhecimento da função geradora só como <strong>vantagem</strong> <span class="tag tag--pdf">PDF</span>, sem reconhecer que ele é também o risco.</p>
+  <ol>
+    <li><strong>O modelo não vê a fórmula, vê amostras ruidosas.</strong> A função geradora inclui um termo de ruído aleatório. O modelo é treinado sobre as observações, não sobre a equação. Prever bem sob ruído é aprendizado de verdade, não cópia.</li>
+    <li><strong>A fórmula deve ter estrutura que o modelo não recebe de graça.</strong> <span class="tag tag--eu">EU</span> Interações entre variáveis — o efeito do horário depende da região, o efeito da lombada depende do tipo de pavimento — e não linearidades. Aí a comparação entre dois modelos exigida pelo enunciado passa a significar alguma coisa: uma regressão linear vai errar exatamente onde há interação, e um modelo de árvore vai capturar. <strong>Essa diferença vira a análise crítica que o enunciado cobra.</strong></li>
+    <li><strong>Validação honesta.</strong> Divisão treino/teste e validação cruzada. Se o modelo decorasse a fórmula, isso apareceria como desempenho perfeito e suspeito no teste — o que é, em si, um resultado a reportar.</li>
+    <li><strong>É o que faz a análise de erro ser possível.</strong> Como sabemos a verdade fundamental, conseguimos decompor o erro em <em>viés do modelo</em> e <em>ruído irredutível</em>. Com dado real isso é literalmente impossível. Este é o argumento decisivo.</li>
+  </ol>
+  <blockquote><p><strong>Resposta pronta:</strong> "Sim, conhecemos a função geradora, e isso é intencional — mas o modelo não a recebe. Ele vê amostras com ruído. A vantagem é que, sabendo a verdade, conseguimos separar o erro que o modelo poderia ter evitado do ruído que ninguém evitaria. Com dado real essa separação não existe, e a análise de onde o modelo erra mais, que o enunciado cobra, viraria especulação."</p></blockquote>
+  <div class="callout callout--crit">
+    <p class="callout__head">Combine com o Arthur antes de 26/08</p>
+    <p>Se a fórmula geradora for linear e sem ruído, essa defesa desmorona e a Fase 2 fica sem conteúdo. Não linearidade, interação e ruído são requisito de projeto, não detalhe.</p>
+  </div>
+
+  <h3 id="risco-4"><span class="difficulty difficulty--2">Alto</span> &nbsp;5.4 · A heurística nunca é nomeada</h3>
+  <p><span class="tag tag--gap">LACUNA</span> A proposta fala em <em>"a heurística usada na Fase 1"</em> <span class="tag tag--pdf">PDF</span> e nunca diz qual é. O leitor deduz que é a distância em linha reta — a menção ao invariante geométrico só faz sentido assim, e o enunciado sugere exatamente essa <span class="tag tag--aula">AULA</span> — mas <strong>deduzir não é ler</strong>.</p>
+  <p><span class="tag tag--eu">EU</span> <strong>Correção de uma linha:</strong> <em>"A heurística da Fase 1 é h(n) = distância euclidiana entre as coordenadas de n e as do nó de destino."</em></p>
+  <h4>Pergunta de segundo nível, quase certa: "por que não uma heurística melhor?"</h4>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Alternativa</th><th>Por que não</th></tr></thead>
+    <tbody>
+      <tr><td>Manhattan <code>|Δx| + |Δy|</code></td><td>Seria maior e mais informada <em>se</em> o movimento fosse restrito aos eixos. Na Zona de Crescimento Orgânico as vias vão em qualquer direção, então Manhattan pode <strong>superestimar</strong> — perderia admissibilidade. É admissível em grade, não em traçado livre.</td></tr>
+      <tr><td>Landmarks / ALT</td><td>Significativamente mais informada, admissível e consistente. Mas exige pré-processamento e sai do escopo da Aula 3.</td></tr>
+      <tr><td>Euclidiana inflada (A* ponderado)</td><td>Expande muito menos nós, mas <strong>abandona a admissibilidade</strong> e a garantia de otimalidade. Trocaria a garantia por velocidade.</td></tr>
+    </tbody>
+  </table></div>
+  <blockquote><p><strong>Resposta:</strong> "Escolhemos a euclidiana porque é a maior estimativa que ainda é garantidamente admissível no nosso traçado. Manhattan seria maior, mas só é admissível quando o movimento é restrito aos eixos — na nossa zona orgânica as vias vão em qualquer direção, e ela poderia superestimar. Existem heurísticas mais informadas, como landmarks, mas elas exigem pré-processamento e sairiam do escopo do Marco 1."</p></blockquote>
+
+  <h3 id="risco-5"><span class="difficulty difficulty--2">Alto</span> &nbsp;5.5 · Uma entrega ou várias?</h3>
+  <p><span class="tag tag--aula">AULA</span> O enunciado oficial diz: <em>"um veículo de entregas que precisa visitar <strong>um conjunto de endereços</strong>"</em> e <em>"encontrar o melhor caminho entre a origem e os <strong>pontos de entrega</strong>"</em>. <span class="tag tag--pdf">PDF</span> A proposta modela teste de objetivo como <em>"chegar ao nó de destino"</em> — <strong>singular</strong>. É um possível descolamento entre a proposta e o enunciado.</p>
+  <blockquote><p><strong>A defesa:</strong> "Na Fase 1 modelamos o problema de origem única para destino único, porque é a unidade sobre a qual o A* tem garantia de otimalidade. Uma rota com várias paradas se decompõe em uma sequência dessas buscas. Determinar a <strong>ordem</strong> ótima das paradas é um problema diferente — é o caixeiro viajante, que é NP-difícil e não se resolve com A* sobre o grafo de ruas. Se incluíssemos a ordem no estado, o estado teria que virar o par cruzamento-mais-conjunto-de-entregas-já-feitas, e o espaço de estados seria multiplicado por 2 elevado ao número de entregas. Optamos por manter a Fase 1 na formulação em que as garantias valem."</p></blockquote>
+  <div class="callout callout--crit">
+    <p class="callout__head">Alinhem os três antes da apresentação</p>
+    <p>Se o Matheus disser na Fase 3 que o usuário pode pedir "passa na farmácia e depois no mercado", e você disser que só existe um destino, o trio se contradiz na frente do professor. Escolham: ou múltiplas paradas em ordem dada pelo usuário — sequência de buscas, defensável e barato — ou destino único declarado como escopo.</p>
+  </div>
+
+  <h3 id="risco-6"><span class="difficulty difficulty--2">Médio</span> &nbsp;5.6 · "Agente único" com acidentes no cenário</h3>
+  <p><span class="tag tag--pdf">PDF</span> A proposta justifica agente único: <em>"não há outro veículo disputando as vias"</em>. Mas os atributos incluem bloqueio, e o enunciado fala em acidentes. <strong>A objeção:</strong> acidentes e trânsito são causados por outros veículos. Isso não é multiagente?</p>
+  <p><strong>A defesa, e ela é sólida</strong> <span class="tag tag--aula">AULA</span> O critério do professor é explícito: <em>"A pergunta não é se há outras entidades no ambiente, e sim se o comportamento delas depende do meu de modo a afetar meu desempenho."</em></p>
+  <blockquote><p>"Modelamos os acidentes e a condição das vias como propriedades do ambiente, não como agentes. Eles não reagem à nossa rota: se escolhermos outro caminho, o acidente continua onde estava. Pelo critério da aula, agente único é a classificação correta — o exemplo do aspirador na sala é o mesmo caso: a poeira existe, mas não reage às ações dele. Se modelássemos uma frota em que os veículos competem pela mesma via e se congestionam mutuamente, aí sim seria multiagente."</p></blockquote>
+
+  <h3 id="risco-7"><span class="difficulty difficulty--2">Médio</span> &nbsp;5.7 · Medida de desempenho com uma parte vaga</h3>
+  <p><span class="tag tag--pdf">PDF</span> <em>"o custo total da rota que o agente devolve (…) junto com a <strong>capacidade de satisfazer as restrições do pedido</strong>"</em>. <span class="tag tag--gap">LACUNA</span> Quais restrições? Não estão definidas em lugar nenhum da proposta.</p>
+  <p><span class="tag tag--aula">AULA</span> O professor lista como erro típico de PEAS <em>"escrever medida que o agente pode trapacear"</em>, e dá o critério de avaliação: <em>"Dá para maximizar a medida de desempenho sem resolver o problema de verdade?"</em></p>
+  <div class="callout callout--crit">
+    <p class="callout__head">E dá</p>
+    <p>Custo total da rota, isolado, é trapaceável: <strong>a rota mais barata é não sair do lugar</strong>. Se o agente devolver rota vazia ou falhar em achar caminho, o custo é zero ou indefinido — e o número parece ótimo.</p>
+  </div>
+  <blockquote><p><strong>Correção sugerida:</strong> "A medida de desempenho é o custo total de uma rota <strong>válida</strong> — ou seja, uma sequência de cruzamentos ligados por vias existentes e não bloqueadas, começando no depósito e terminando no destino. Sem a exigência de validade, a medida seria trapaceável: a rota mais barata seria não sair do lugar."</p></blockquote>
+  <p>E sobre as restrições: ou defina agora — por exemplo, evitar vias bloqueadas na Fase 1, janela de horário na Fase 3 — ou tire a frase. Deixar vaga é convite.</p>
+
+  <h3 id="risco-8"><span class="difficulty difficulty--2">Médio</span> &nbsp;5.8 · 1.500 nós é pequeno</h3>
+  <blockquote><p>"O objetivo do experimento não é demonstrar escalabilidade industrial, é medir a diferença de esforço entre busca cega e informada com controle. Escolhemos escalas geométricas para observar a <strong>tendência</strong> de crescimento da diferença, que é o que permite extrapolar. Reconhecemos que em 1.500 nós nenhum dos dois algoritmos chega perto do limite de memória, que é onde o A* de fato quebra. Se quiséssemos o regime de quebra, precisaríamos de ordens de magnitude a mais e o notebook não rodaria no Colab dentro do tempo da aula."</p></blockquote>
+
+  <h3 id="risco-9"><span class="difficulty difficulty--2">Médio</span> &nbsp;5.9 · "Estático" é frágil se lido com a Fase 2 junto</h3>
+  <p><strong>A objeção:</strong> o enunciado fala em <em>"acidentes e bloqueios pontuais, que aparecem e desaparecem"</em>. Se aparecem e desaparecem, o ambiente é dinâmico.</p>
+  <blockquote><p>"É dinâmico se o agente replaneja durante o percurso. Não é o nosso caso: o agente planeja uma vez, antes de sair, com a fotografia do mapa naquele instante. É plano de circuito aberto. A classificação estático é sobre o ambiente não mudar <strong>durante a deliberação</strong>, e na nossa modelagem ele não muda. Se admitíssemos replanejamento em tempo real, aí sim seria dinâmico — e a exigência de engenharia mudaria: o algoritmo passaria a ter prazo para responder."</p></blockquote>
+  <p><span class="tag tag--aula">AULA</span> Esta defesa é literalmente o slide dele sobre as duas modelagens: <em>"O problema do mundo é o mesmo. O que mudou foi a decisão de modelagem."</em> Cite isso.</p>
+
+  <h3 id="risco-10"><span class="difficulty difficulty--1">Menor</span> &nbsp;5.10 · Pontos de revisão</h3>
+  <ul>
+    <li><strong>Renderização do PDF.</strong> Nos parágrafos "É essa condição que faz a heurística…" e "É essa garantia que justifica a escolha do método…" o "É" aparece deslocado na extração de texto. Pode ser artefato do extrator ou problema real do LaTeX. <strong>Abra o PDF final e confira visualmente antes de entregar</strong> — uma frase quebrada na primeira leitura custa credibilidade barata.</li>
+    <li><strong>Nada diz quantas arestas</strong> nem qual o grau médio. Tenham o número na ponta da língua; é a primeira coisa que se pergunta sobre um grafo depois do número de nós.</li>
+    <li><strong>Nada diz se o depósito é fixo</strong> ou sorteado por experimento. Se for sorteado, digam quantos pares origem-destino serão testados por mapa — uma única rota por mapa é amostra fraca para uma tabela comparativa.</li>
+    <li><strong>A palavra "completos"</strong> aparece na proposta. Completude do A* exige fator de ramificação finito e custo de passo positivo <span class="tag tag--aula">AULA</span>. Vocês têm os dois. Só saibam dizer por quê.</li>
+  </ul>
+</section>
+
+<!-- ══════════ PARTE 6 ══════════ -->
+<section class="part" id="p6">
+  <p class="part__label">Parte 06</p>
+  <h2 class="part__title">Problema → decisão → implementação → resultado</h2>
+  <p class="part__sub">Quatro cadeias completas. Treine narrar uma delas inteira, sem parar.</p>
+
+  <div class="chain">
+    <p class="chain__title">Cadeia 1 — Da cidade ao algoritmo</p>
+    <ol>
+      <li data-step="Problema">Precisamos achar a melhor rota numa cidade, mas "cidade" não é objeto matemático.</li>
+      <li data-step="Decisão">Representar como grafo não dirigido, nós = cruzamentos com coordenadas, arestas = vias com comprimento.</li>
+      <li data-step="Implementação">Lista de adjacência; cada nó guarda (x,&nbsp;y); cada aresta guarda comprimento e atributos.</li>
+      <li data-step="Resultado">O problema ganha os cinco componentes de um problema de busca, e com espaço finito e custos positivos passam a valer as garantias de completude e otimalidade da UCS e do A*.</li>
+    </ol>
+  </div>
+
+  <div class="chain">
+    <p class="chain__title">Cadeia 2 — Da geometria à garantia</p>
+    <ol>
+      <li data-step="Problema">O A* só devolve o ótimo se a heurística for admissível. Numa cidade sintética, nada garante isso automaticamente.</li>
+      <li data-step="Decisão">Impor no gerador que o comprimento de cada via seja maior ou igual à linha reta entre suas pontas.</li>
+      <li data-step="Implementação"><code>comprimento = distância_euclidiana(u,v) × fator_sinuosidade</code>, com fator ≥ 1.0, maior na zona orgânica.</li>
+      <li data-step="Resultado">Por desigualdade triangular, <code>h(n) = d(n, objetivo) ≤ h*(n)</code> — heurística admissível. E, pelo mesmo invariante, também consistente, o que é o que a busca em grafo exige. A otimalidade do A* deixa de ser esperança e vira consequência de um invariante testável.</li>
+    </ol>
+  </div>
+
+  <div class="chain">
+    <p class="chain__title">Cadeia 3 — Da barreira ao experimento</p>
+    <ol>
+      <li data-step="Problema">Num mapa sem obstáculo, a linha reta é quase perfeita, os dois algoritmos quase empatam, e a tabela não mostra nada.</li>
+      <li data-step="Decisão">Rio com duas travessias e um parque bloqueando parte da zona sul.</li>
+      <li data-step="Implementação">O gerador remove arestas na região do parque e só permite duas arestas cruzando o rio; verifica conectividade antes de devolver o mapa.</li>
+      <li data-step="Resultado">A folga entre <code>h</code> e <code>h*</code> cresce perto das barreiras, o A* precisa expandir mais ali, e a comparação de nós expandidos passa a ter contraste mensurável. Como UCS e A* devolvem o mesmo custo ótimo, a diferença medida é atribuível só à heurística.</li>
+    </ol>
+  </div>
+
+  <div class="chain">
+    <p class="chain__title">Cadeia 4 — Da Fase 1 à Fase 2 sem reescrever nada</p>
+    <ol>
+      <li data-step="Problema">A Fase 2 troca o significado de "melhor" de distância para tempo. Reescrever a busca seria retrabalho e quebraria a comparabilidade entre as fases.</li>
+      <li data-step="Decisão">A busca consulta uma função de custo; o mapa já nasce com os atributos que a Fase 2 vai usar; a velocidade máxima é parâmetro do gerador.</li>
+      <li data-step="Implementação"><code>custo(u,v)</code> devolve comprimento na Fase 1 e <code>modelo.predict(...)</code> na Fase 2, com piso <code>comprimento / v_max</code>. A heurística vira <code>d(n, G) / v_max</code>.</li>
+      <li data-step="Resultado">O A* roda idêntico nas duas fases; <code>g</code> e <code>h</code> continuam na mesma unidade; a admissibilidade sobrevive à troca de unidade; e a comparação entre a rota mais curta e a rota mais rápida fica sobre exatamente o mesmo mapa.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════ PARTE 7 ══════════ -->
+<section class="part" id="p7">
+  <p class="part__label">Parte 07</p>
+  <h2 class="part__title">Simulação de banca</h2>
+  <p class="part__sub">Ordem crescente de dificuldade. Responda em voz alta antes de revelar.</p>
+
+  <div class="toolbar">
+    <button type="button" class="btn-ghost" data-open-all="#p7">Revelar todas</button>
+    <button type="button" class="btn-ghost" data-close-all="#p7">Ocultar todas</button>
+  </div>
+
+  <details class="qcard"><summary data-n="P1">O que são os nós e as arestas no modelo de vocês?</summary><div class="qcard__body"><p>Nós são os cruzamentos, cada um com coordenadas (x,&nbsp;y) em metros. Arestas são as vias, cada uma com o comprimento real da via.</p></div></details>
+
+  <details class="qcard"><summary data-n="P2">O que é um estado no problema de vocês?</summary><div class="qcard__body"><p>O cruzamento em que o veículo está. O estado inicial é o depósito e o teste de objetivo é ter chegado ao cruzamento de destino.</p></div></details>
+
+  <details class="qcard"><summary data-n="P3">Qual é a função de custo de passo?</summary><div class="qcard__body"><p>Na Fase 1, o comprimento da via. Na Fase 2 ela passa a ser o tempo previsto de travessia.</p></div></details>
+
+  <details class="qcard"><summary data-n="P4">Por que esse problema pode ser tratado como busca?</summary><div class="qcard__body"><p>Porque tem os cinco componentes: estado, estado inicial, ações, transição e teste de objetivo, mais custo de passo. E porque as propriedades — espaço de estados finito e custo de passo positivo — são exatamente as pré-condições sob as quais busca de custo uniforme e A* são completos e ótimos. A justificativa vem das garantias, não do fato de existir um mapa.</p></div></details>
+
+  <details class="qcard"><summary data-n="P5">Qual busca não informada vocês usam, e por que essa?</summary><div class="qcard__body"><p>Custo uniforme. As vias têm comprimentos diferentes, então a largura minimizaria o número de vias percorridas e não a distância — ela acharia o caminho com menos quadras, não o mais curto. E a profundidade não é completa nem ótima. Além disso, a UCS é ótima como o A*, então os dois devolvem o mesmo custo e toda diferença medida vem da heurística.</p></div></details>
+
+  <details class="qcard"><summary data-n="P6">Qual é a heurística e por que ela é admissível?</summary><div class="qcard__body"><p>Distância euclidiana entre as coordenadas do nó atual e as do destino. É admissível porque o gerador garante que nenhuma via seja mais curta que a linha reta entre suas pontas; somando isso à desigualdade triangular, a linha reta até o destino nunca supera o custo real de nenhum caminho até lá.</p></div></details>
+
+  <details class="qcard"><summary data-n="P7">Vocês usam busca em árvore ou em grafo?</summary><div class="qcard__body"><p>Em grafo, com conjunto de explorados. É necessário porque a malha viária tem ciclos, e sem o conjunto de explorados a busca reexpandiria estados indefinidamente.</p></div></details>
+
+  <details class="qcard qcard--crit"><summary data-n="P8">Então admissibilidade basta?</summary><div class="qcard__body"><p><span class="answer-lead">O golpe — ver 5.1</span>Não. Em busca em grafo a condição que garante otimalidade é a consistência. A nossa heurística é consistente: pelo invariante do gerador, a distância euclidiana entre dois nós vizinhos nunca supera o comprimento da via que os liga, e junto com a desigualdade triangular isso dá <code>h(n) ≤ c(n,n′) + h(n′)</code>. Como toda consistente é admissível, temos as duas. Reconheço que a proposta menciona só admissibilidade — vamos corrigir para citar consistência.</p></div></details>
+
+  <details class="qcard"><summary data-n="P9">Por que colocar rio e parque, se o obstáculo piora a estimativa da heurística?</summary><div class="qcard__body"><p>É intencional. A folga entre a estimativa e o custo real é o que faz o A* precisar expandir mais nós numa região. Num mapa sem obstáculo a linha reta fica quase perfeita, os dois algoritmos quase empatam em esforço e a comparação não mede nada. As barreiras existem para o experimento ter contraste.</p></div></details>
+
+  <details class="qcard"><summary data-n="P10">Como vocês sabem que sempre existe rota entre dois pontos?</summary><div class="qcard__body"><p>O gerador verifica conectividade do grafo antes de devolver o mapa. Com apenas duas pontes, um erro que removesse ambas partiria a cidade em duas componentes, e a busca devolveria "sem solução" corretamente — mas o experimento perderia o sentido. Por isso a verificação é parte da geração.</p></div></details>
+
+  <details class="qcard"><summary data-n="P11">Por que o horário não é atributo da via?</summary><div class="qcard__body"><p>Porque horário não é propriedade de uma rua, é do momento do pedido. E porque, se fosse, o estado teria que virar o par cruzamento-mais-horário: com 1.500 nós e o dia em fatias de 15 minutos seriam 144 mil estados, cem vezes maior, para modelar um efeito que cabe num parâmetro.</p></div></details>
+
+  <details class="qcard"><summary data-n="P12">Mas a rota leva tempo. Se sai às 17h50 e chega às 18h30, o trânsito mudou no meio.</summary><div class="qcard__body"><p><span class="answer-lead">Contra-ataque</span>Correto, e é uma aproximação declarada. Ela vale enquanto a duração da rota for pequena em relação à escala em que o trânsito muda. Se não for, a formulação correta é o grafo expandido no tempo, com o estado sendo o par cruzamento-mais-instante. Optamos pela aproximação porque o ganho de precisão não compensaria multiplicar o espaço de estados por duas ordens de grandeza no escopo deste marco.</p></div></details>
+
+  <details class="qcard"><summary data-n="P13">Por que dados sintéticos e não OpenStreetMap?</summary><div class="qcard__body"><p>Três razões. Precisamos de escalas controladas — 25, 200 e 1.500 nós —, e um recorte de mapa real dá o número de nós que der. Conhecemos a função geradora do tempo, o que permite avaliar na Fase 2 se o erro do modelo era evitável ou irredutível — com dado real isso é impossível. E não lidamos com dado pessoal nem dependemos de serviço externo, num notebook que precisa rodar do zero na hora da entrega.</p></div></details>
+
+  <details class="qcard qcard--crit"><summary data-n="P14">Se vocês escreveram a fórmula do tempo, o modelo da Fase 2 não está só decorando a fórmula de vocês?</summary><div class="qcard__body"><p><span class="answer-lead">Ver 5.3</span>O modelo não recebe a fórmula, recebe amostras com ruído. A fórmula tem interações entre variáveis e não linearidades, o que faz a comparação entre dois modelos significar alguma coisa: um modelo linear vai errar exatamente onde há interação, e é isso que vira a análise crítica. Validamos com divisão treino-teste e validação cruzada. E o fato de conhecermos a verdade é o que permite decompor o erro em viés do modelo e ruído irredutível, que é justamente a análise de onde o modelo erra mais que o projeto exige.</p></div></details>
+
+  <details class="qcard qcard--crit"><summary data-n="P15">Na Fase 2 o custo é uma previsão com erro. O A* continua ótimo?</summary><div class="qcard__body"><p><span class="answer-lead">A mais provável na arguição cruzada</span>O A* continua ótimo em relação ao grafo de custos que recebe. A garantia é sobre o modelo, não sobre o mundo: ele devolve, com prova, o caminho mais barato segundo os custos previstos. Se a previsão erra, a rota pode não ser ótima no mundo real. O prejuízo é limitado, não arbitrário: com erro por aresta limitado por épsilon e caminho de L arestas, a diferença para o ótimo real fica na ordem de duas vezes épsilon vezes L. Por isso a métrica de erro da Fase 2 importa para a qualidade da decisão da Fase 1 — as fases não são independentes.</p></div></details>
+
+  <details class="qcard qcard--crit"><summary data-n="P16">E a heurística, continua admissível quando o custo vira tempo?</summary><div class="qcard__body"><p>Só depois de convertida. <code>g</code> estaria em segundos e a heurística em metros; somar os dois não significa nada. A heurística vira distância em linha reta dividida pela velocidade máxima admitida em qualquer via, e ela é admissível porque nenhum caminho pode ser percorrido mais rápido que essa velocidade. Por isso a velocidade máxima é parâmetro do gerador, não um número anotado depois. E aplicamos um piso na saída do modelo, para que nenhuma previsão implique velocidade acima do teto — senão a heurística superestimaria e perderíamos a garantia.</p></div></details>
+
+  <details class="qcard"><summary data-n="P17">Por que o LLM não calcula a rota na Fase 3?</summary><div class="qcard__body"><p>Porque ele não tem garantia nenhuma. O A* tem prova de otimalidade e completude; um LLM produz texto plausível, de forma não determinística, e pode alucinar cruzamentos que não existem no mapa. A divisão é por competência: o LLM cuida da ambiguidade da linguagem natural, que é onde ele é bom, e o algoritmo cuida da otimização exata, que é onde ele tem prova.</p></div></details>
+
+  <details class="qcard"><summary data-n="P18">E se eu pedir para vocês usarem <code>nx.astar_path</code> do networkx?</summary><div class="qcard__body"><p><span class="answer-lead">E se…</span>Ficaria mais rápido de escrever e provavelmente mais rápido de rodar, mas o marco pede a formulação, não o resultado. Implementar explicitamente a fila de prioridade, o conjunto de explorados e a reconstrução por ponteiro de pai é o que permite instrumentar o contador de nós expandidos, que é a métrica central do experimento — uma biblioteca não expõe isso. Usamos o networkx como referência de conferência: se o custo da nossa rota difere do dele, temos bug.</p></div></details>
+
+  <details class="qcard"><summary data-n="P19">E se uma via tivesse custo negativo?</summary><div class="qcard__body"><p><span class="answer-lead">E se…</span>A garantia de otimalidade cai. Tanto a busca de custo uniforme quanto o A* assumem custos não negativos: com custo negativo, fechar um nó deixa de ser seguro, porque um caminho mais longo poderia ficar mais barato depois. Precisaríamos de algo como Bellman-Ford. No nosso domínio isso não acontece: distância e tempo de travessia são positivos por natureza física.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="P20">Se vocês tivessem que escolher entre uma rota 5% mais longa e uma rota que passa por uma escola em horário de saída, o que o agente deveria fazer?</summary><div class="qcard__body">
+    <p><span class="answer-lead">Sem resposta única — como argumentar</span>Não tente uma resposta certa. Estruture.</p>
+    <ol>
+      <li>Isso não é questão de algoritmo, é de <strong>medida de desempenho</strong> — o professor foi explícito de que escolher mal a medida é a principal fonte de comportamento indesejado.</li>
+      <li>Tecnicamente, dá para modelar como penalidade no custo da aresta, e aí o A* otimiza o critério composto sem mudar uma linha.</li>
+      <li>Mas escolher o peso da penalidade é decisão <strong>normativa</strong>, não técnica — e quem decide não deveria ser o grupo de desenvolvimento sozinho.</li>
+      <li>A postura honesta é tornar o trade-off explícito e parametrizável, em vez de escondê-lo numa constante. <span class="tag tag--aula">AULA</span> Cite: <em>"a engenharia consiste em declarar o trade-off e escolher um ponto de operação, com justificativa"</em>.</li>
+    </ol>
+  </div></details>
+</section>
+
+<!-- ══════════ PARTE 8 ══════════ -->
+<section class="part" id="p8">
+  <p class="part__label">Parte 08</p>
+  <h2 class="part__title">Banco de perguntas para o trio</h2>
+  <p class="part__sub">Compartilhe com o Arthur e o Matheus. Cada um responde tudo, não só a própria fase — a arguição é cruzada.</p>
+
+  <div class="toolbar">
+    <button type="button" class="btn-ghost" data-open-all="#p8">Revelar todas</button>
+    <button type="button" class="btn-ghost" data-close-all="#p8">Ocultar todas</button>
+  </div>
+
+  <div class="qbank__head">
+    <span class="difficulty difficulty--1">Básicas</span>
+    <h3>Qualquer um dos três responde sem pensar</h3>
+    <span class="qbank__count">18 perguntas</span>
+  </div>
+  <div class="tablewrap"><table class="num qa">
+    <thead><tr><th>#</th><th style="width:44%">Pergunta</th><th>Resposta</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>O que é um nó no grafo de vocês?</td><td>Um cruzamento, com coordenadas (x,&nbsp;y) em metros</td></tr>
+      <tr><td>2</td><td>O que é uma aresta?</td><td>Uma via, com comprimento e atributos</td></tr>
+      <tr><td>3</td><td>O grafo é dirigido?</td><td>Não. Distância é simétrica na Fase 1</td></tr>
+      <tr><td>4</td><td>Quantos mapas e de que tamanhos?</td><td>Três: ~25, ~200 e ~1.500 cruzamentos</td></tr>
+      <tr><td>5</td><td>Dados sintéticos ou reais?</td><td>Sintéticos, gerados pelo grupo</td></tr>
+      <tr><td>6</td><td>Qual o estado inicial?</td><td>O depósito</td></tr>
+      <tr><td>7</td><td>Qual o teste de objetivo?</td><td>Chegar ao cruzamento de destino</td></tr>
+      <tr><td>8</td><td>Qual o custo de passo na Fase 1?</td><td>O comprimento da via</td></tr>
+      <tr><td>9</td><td>E na Fase 2?</td><td>O tempo previsto de travessia</td></tr>
+      <tr><td>10</td><td>Que algoritmos a Fase 1 implementa?</td><td>Custo uniforme e A*</td></tr>
+      <tr><td>11</td><td>Qual a heurística do A*?</td><td>Distância em linha reta até o destino</td></tr>
+      <tr><td>12</td><td>Que métricas o experimento registra?</td><td>Custo da rota, nós expandidos e tempo de execução</td></tr>
+      <tr><td>13</td><td>O agente dirige o veículo?</td><td>Não. Ele devolve o plano de rota; é um recomendador</td></tr>
+      <tr><td>14</td><td>Quais barreiras a cidade tem?</td><td>O Rio Aurora com duas travessias e o Parque Aurora</td></tr>
+      <tr><td>15</td><td>Quais as duas regiões?</td><td>Zona Planejada e Zona de Crescimento Orgânico</td></tr>
+      <tr><td>16</td><td>O LLM calcula a rota?</td><td>Não. Ele interpreta o pedido e chama a ferramenta</td></tr>
+      <tr><td>17</td><td>Qual tipo de agente é o da Fase 1?</td><td>Baseado em objetivos</td></tr>
+      <tr><td>18</td><td>O que garante que a cidade é reproduzível?</td><td>Semente aleatória fixa, documentada no notebook</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="qbank__head">
+    <span class="difficulty difficulty--2">Intermediárias</span>
+    <h3>Exigem entender as decisões</h3>
+    <span class="qbank__count">12 perguntas</span>
+  </div>
+
+  <details class="qcard"><summary data-n="19">Por que custo uniforme e não largura?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Porque as vias têm comprimentos diferentes.</p><p><span class="answer-lead">Completa</span>A largura minimiza o número de ações, não a soma dos custos — acharia a rota com menos quadras, não a mais curta. E, como a UCS também é ótima, os dois algoritmos devolvem o mesmo custo, o que faz a diferença de nós expandidos ser atribuível só à heurística.</p></div></details>
+
+  <details class="qcard"><summary data-n="20">Qual é a relação entre a UCS e o A*?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>UCS é o A* com <code>h = 0</code>.</p><p><span class="answer-lead">Completa</span>Os dois rodam o mesmo laço; muda o número que ordena a fronteira. UCS ordena por <code>g</code>, A* por <code>g + h</code>. Com <code>h = 0</code> a heurística continua admissível e o A* degenera exatamente em UCS. Por isso a comparação é o mesmo algoritmo com e sem informação.</p></div></details>
+
+  <details class="qcard"><summary data-n="21">Por que as barreiras existem?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Para o experimento ter contraste.</p><p><span class="answer-lead">Completa</span>Sem desvio obrigatório os caminhos ficam com custos parecidos e a heurística fica quase perfeita — os dois algoritmos quase empatam em esforço. As barreiras aumentam a folga entre <code>h</code> e <code>h*</code>, e é essa folga que separa o comportamento dos dois.</p></div></details>
+
+  <details class="qcard"><summary data-n="22">Por que o horário não é atributo da via?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Porque explodiria o espaço de estados.</p><p><span class="answer-lead">Completa</span>O estado teria que virar <code>(cruzamento, horário)</code>. Com 1.500 nós e 96 fatias de tempo seriam 144 mil estados. E, conceitualmente, horário é propriedade do pedido, não da rua.</p></div></details>
+
+  <details class="qcard"><summary data-n="23">Por que os atributos extras já existem na Fase 1?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Para não gerar a cidade duas vezes.</p><p><span class="answer-lead">Completa</span>Garante que as três fases rodem sobre exatamente o mesmo mapa. E como são fixados na geração e não mudam durante o planejamento, o ambiente continua estático na Fase 1.</p></div></details>
+
+  <details class="qcard"><summary data-n="24">Por que "totalmente observável" na Fase 1 e "parcialmente" na Fase 2?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Na Fase 1 o agente conhece todos os custos; na Fase 2 ele só estima.</p><p><span class="answer-lead">Completa</span>O tempo real de travessia existe e é determinado, mas não é acessível ao agente no momento de decidir — ele só percebe proxies. Isso é ignorância, não acaso, que é a definição de observabilidade parcial.</p></div></details>
+
+  <details class="qcard"><summary data-n="25">Por que nós expandidos é a métrica principal?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Porque não depende de hardware.</p><p><span class="answer-lead">Completa</span>Tempo de execução varia com máquina, linguagem e carga do Colab. Nós expandidos mede o esforço algorítmico puro e é comparável entre execuções e entre grupos.</p></div></details>
+
+  <details class="qcard"><summary data-n="26">Por que três escalas e não duas?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Para ver tendência, não um ponto.</p><p><span class="answer-lead">Completa</span>Escalas aproximadamente geométricas, cada uma ~8× a anterior, permitem observar como a diferença cresce com o tamanho. Com espaçamento linear os pontos se empilham.</p></div></details>
+
+  <details class="qcard"><summary data-n="27">Como a Fase 2 se conecta à Fase 1 sem reescrever a busca?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Trocando a função de custo que a busca consulta.</p><p><span class="answer-lead">Completa</span>O A* chama <code>custo(u,v)</code>. Na Fase 1 devolve comprimento; na Fase 2 devolve o tempo previsto pelo modelo. O algoritmo é idêntico.</p></div></details>
+
+  <details class="qcard"><summary data-n="28">Por que dados sintéticos ajudam a Fase 2 especificamente?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Porque conhecemos a verdade fundamental.</p><p><span class="answer-lead">Completa</span>Dá para separar o erro que o modelo poderia ter evitado do ruído irredutível. Com dado real essa decomposição não existe.</p></div></details>
+
+  <details class="qcard"><summary data-n="29">Como a escolha de dados sintéticos ajuda na LGPD?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Não há dado pessoal.</p><p><span class="answer-lead">Completa</span>Nenhum dado de pessoa real é coletado, armazenado ou tratado, então não há titular, base legal ou finalidade a discutir. Isso alimenta direto a seção obrigatória de IA responsável.</p></div></details>
+
+  <details class="qcard"><summary data-n="30">Qual estrutura de dados guarda o grafo, e por quê?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Lista de adjacência, porque o grafo é esparso.</p><p><span class="answer-lead">Completa</span>Com grau médio ~3 e 1.500 nós, uma matriz teria 2,25 milhões de células, 99% delas zero. E a operação dominante da busca — listar vizinhos — custa O(grau) na lista contra O(V) na matriz.</p></div></details>
+
+  <div class="qbank__head">
+    <span class="difficulty difficulty--3">Difíceis</span>
+    <h3>Exigem raciocínio e comparação entre alternativas</h3>
+    <span class="qbank__count">12 perguntas</span>
+  </div>
+
+  <details class="qcard qcard--crit"><summary data-n="31">Vocês usam busca em árvore ou em grafo, e que consequência isso tem para a garantia de otimalidade?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Em grafo, e por isso a condição relevante é consistência, não só admissibilidade.</p><p><span class="answer-lead">Completa</span>Com conjunto de explorados, fechar um nó só é seguro se <code>f</code> nunca decrescer ao longo de um caminho — o que é garantido pela consistência. Com heurística admissível mas não consistente, um nó pode ser fechado por um caminho pior e a otimalidade cai, a menos que se reabram nós ou se aplique <code>f(n′) = max(f(n), g(n′)+h(n′))</code>. A nossa heurística é consistente, pelo mesmo invariante que dá a admissibilidade.</p></div></details>
+
+  <details class="qcard"><summary data-n="32">Prove que a heurística de vocês é admissível.</summary><div class="qcard__body"><p><code>h(n) = d(n,G)</code>. Para qualquer caminho <code>n = v₀,…,v_k = G</code>: custo = <code>Σ comprimento(vᵢ,vᵢ₊₁) ≥ Σ d(vᵢ,vᵢ₊₁) ≥ d(n,G)</code>. O primeiro <code>≥</code> é o invariante do gerador; o segundo é desigualdade triangular. Vale para qualquer caminho, logo para o mais barato: <code>h(n) ≤ h*(n)</code>.</p></div></details>
+
+  <details class="qcard"><summary data-n="33">Existe heurística melhor que a linha reta aqui? Por que não usaram?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Existem, mas cada uma tem um custo que não compensa neste marco.</p><p><span class="answer-lead">Completa</span>Manhattan é maior e mais informada, mas só é admissível com movimento restrito aos eixos — na zona orgânica ela poderia superestimar. Landmarks/ALT seriam admissíveis, consistentes e bem mais informadas, mas exigem pré-processamento fora do escopo da Aula 3. Euclidiana inflada expandiria menos nós, mas abandonaria a admissibilidade e a garantia de otimalidade.</p></div></details>
+
+  <details class="qcard qcard--crit"><summary data-n="34">Se o modelo da Fase 2 erra, o A* ainda é ótimo?</summary><div class="qcard__body"><p>Ver <a href="#risco-2">5.2</a> e P15. É a resposta mais importante do documento.</p></div></details>
+
+  <details class="qcard"><summary data-n="35">O que aconteceria se uma aresta fosse mais curta que a linha reta entre suas pontas?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>A heurística deixaria de ser admissível.</p><p><span class="answer-lead">Completa</span><code>h</code> poderia superestimar o custo restante naquele trecho, o A* poderia fechar antes um nó do caminho ótimo e devolver rota subótima. E o mais perigoso: nada quebra, nenhum erro é lançado — só a resposta fica errada. Por isso o invariante é imposto no gerador e não deixado ao acaso.</p></div></details>
+
+  <details class="qcard"><summary data-n="36">Como vocês contam "nó expandido"? A definição muda o resultado?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Expandido = retirado da fronteira e teve sucessores gerados. E sim, muda.</p><p><span class="answer-lead">Completa</span>A definição alternativa — gerado, ou seja, colocado na fronteira — dá números maiores e diferentes. O que garante validade da comparação é usar a mesma definição nos dois algoritmos e declará-la no relatório.</p></div></details>
+
+  <details class="qcard"><summary data-n="37">Como vocês desempatam quando dois nós têm o mesmo f?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Com um contador de inserção na tupla do heap, o que dá FIFO determinístico.</p><p><span class="answer-lead">Completa</span>Sem o contador, o heap tenta comparar os objetos-nó e o resultado passa a depender de detalhes de implementação. Com barreiras e regiões regulares, empates em <code>f</code> vão acontecer, então o critério precisa ser explícito para que o experimento seja reprodutível.</p></div></details>
+
+  <details class="qcard"><summary data-n="38">Por que não usar a biblioteca pronta?</summary><div class="qcard__body"><p>Ver P18. O marco pede a formulação, não o resultado — e o contador de nós expandidos, que é a métrica central, exige implementação própria. A biblioteca serve como referência de conferência.</p></div></details>
+
+  <details class="qcard"><summary data-n="39">Como vocês validariam que a implementação está correta?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Três checagens.</p><p>(a) Num mapa pequeno o suficiente, conferir a rota na mão. (b) Comparar o custo devolvido com o de uma biblioteca de referência — se diferem, há bug. (c) Verificar a invariante mais forte da comparação: <strong>UCS e A* têm que devolver exatamente o mesmo custo em todos os mapas</strong>, porque os dois são ótimos. Se divergirem, há erro num dos dois ou a heurística não é admissível. Este último teste é o mais valioso, porque é gratuito e roda a cada execução.</p></div></details>
+
+  <details class="qcard"><summary data-n="40">O que muda se o professor exigir múltiplas entregas com ordem otimizada?</summary><div class="qcard__body"><p>Ver <a href="#risco-5">5.5</a>. Vira caixeiro viajante; o A* sobre o grafo de ruas continua sendo a camada de baixo, mas a ordem exige outra técnica.</p></div></details>
+
+  <details class="qcard"><summary data-n="41">Se o ambiente da Fase 2 é parcialmente observável, que consequência de projeto isso tem?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>O agente precisa de estado interno.</p><p><span class="answer-lead">Completa</span>Pelo material da disciplina, ambiente parcialmente observável exige memória do que já foi percebido. No nosso caso, o modelo treinado <strong>é</strong> esse estado interno: ele é a representação aprendida da parte do mundo que o agente não observa diretamente. Isso reclassifica o agente da Fase 2 de baseado em objetivos para baseado em modelo.</p></div></details>
+
+  <details class="qcard"><summary data-n="42">Qual é o pior caso do A* no mapa de vocês?</summary><div class="qcard__body"><p><span class="answer-lead">Curta</span>Quando a heurística é menos informada — perto das barreiras.</p><p><span class="answer-lead">Completa</span>Onde a linha reta atravessa o rio ou o parque, a folga entre <code>h</code> e <code>h*</code> é máxima e o contorno de <code>f</code> engorda; o A* expande muito mais nós ali. No limite, se <code>h</code> fosse zero em todo lugar, ele expandiria o mesmo que a UCS. Este é o pior caso teórico e ele é o piso da nossa comparação, não o teto.</p></div></details>
+
+  <div class="qbank__head">
+    <span class="difficulty difficulty--4">Pegadinhas</span>
+    <h3>Testam se entenderam ou decoraram</h3>
+    <span class="qbank__count">10 perguntas</span>
+  </div>
+
+  <details class="qcard qcard--trap"><summary data-n="43">Vocês disseram que o ambiente é estático, mas o enunciado fala em acidentes que aparecem e desaparecem. Estático ou dinâmico?</summary><div class="qcard__body"><p>Estático <strong>na nossa modelagem</strong>, porque o agente planeja uma vez, antes de sair, e o mapa não muda durante a deliberação. É plano de circuito aberto. Se admitíssemos replanejamento durante o percurso, seria dinâmico — e aí o algoritmo passaria a ter prazo de resposta. O problema do mundo é o mesmo; o que muda é a decisão de modelagem.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="44">Se o A* é ótimo e a busca de custo uniforme também, por que implementar as duas? Não é redundante?</summary><div class="qcard__body"><p>É exatamente por serem as duas ótimas que a comparação funciona. Com o custo da rota controlado — os dois devolvem o mesmo —, a única variável livre é o esforço. Se comparássemos com um algoritmo não ótimo, a diferença misturaria qualidade e esforço e não isolaria nada.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="45">Barreira piora a heurística. Então vocês sabotaram o próprio A*?</summary><div class="qcard__body"><p>Sabotamos o caso fácil, que é diferente. Um mapa sem obstáculo faria o A* parecer perfeito e não mediria nada — no limite de heurística perfeita ele não expande um único nó fora do caminho ótimo. Escolhemos o cenário em que a diferença entre os algoritmos é observável.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="46">Vocês disseram "agente único", mas tem acidente e trânsito. Isso não é multiagente?</summary><div class="qcard__body"><p>O critério não é se existem outras entidades, é se o comportamento delas depende do nosso de modo a afetar nosso desempenho. Acidentes não reagem à nossa rota. É o caso do aspirador na sala: a poeira existe e não reage. Se modelássemos uma frota que se congestiona mutuamente, aí seria multiagente.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="47">A medida de desempenho é o custo da rota. Então o agente ótimo é o que não sai do lugar, já que custo zero é o mínimo?</summary><div class="qcard__body"><p>É o furo clássico, e por isso a medida é o custo de uma rota <strong>válida</strong>: sequência de cruzamentos ligados por vias existentes e não bloqueadas, do depósito ao destino. Sem a exigência de validade, a medida seria trapaceável.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="48">Vocês conhecem a fórmula que gera o tempo. Então a Fase 2 é uma farsa?</summary><div class="qcard__body"><p>Ver <a href="#risco-3">5.3</a> e P14. O modelo não recebe a fórmula, recebe amostras com ruído — e conhecer a verdade é o que permite separar viés de ruído irredutível.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="49">Se vocês vão usar A* nas três fases, o projeto é o mesmo trabalho três vezes?</summary><div class="qcard__body"><p>O algoritmo de busca é o mesmo; o que muda é a fonte do conhecimento que ele consome. Na Fase 1 o custo é dado por nós, a mão. Na Fase 2 é aprendido de dados. Na Fase 3 é acionado a partir de linguagem natural. A frase da aula é literal: nós escrevemos o mapa e a heurística, o conhecimento veio de um humano — e a partir da Unidade II ele passa a ser extraído de dados. O A* estável é o que torna essa progressão comparável, e não uma sequência de trabalhos desconexos.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="50">Por que 1.500 nós? Roteirização real tem centenas de milhares.</summary><div class="qcard__body"><p>Ver <a href="#risco-8">5.8</a>. O objetivo não é escalabilidade industrial, é medir a diferença de esforço com controle. Reconhecemos que não estamos no regime em que o A* quebra por memória.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="51">Qual é a heurística de vocês?</summary><div class="qcard__body"><p><span class="answer-lead">Pegadinha porque a proposta não a nomeia</span>Distância euclidiana entre as coordenadas do nó atual e as do destino. Reconhecemos que a proposta se refere a ela sem nomeá-la — vamos explicitar no relatório.</p></div></details>
+
+  <details class="qcard qcard--trap"><summary data-n="52">O A* é sempre melhor que a busca de custo uniforme?</summary><div class="qcard__body"><p>Não. Ele nunca expande mais nós com a mesma heurística, e é otimamente eficiente nesse sentido — mas cada expansão custa a avaliação de <code>h</code>, e a memória cresce com todos os nós gerados. Num mapa onde a heurística é pouco informada, o ganho de nós expandidos pode não compensar o custo por nó. Com <code>h = 0</code> os dois são o mesmo algoritmo. "Melhor" depende da métrica.</p></div></details>
+</section>
+
+<!-- ══════════ PARTE 9 ══════════ -->
+<section class="part" id="p9">
+  <p class="part__label">Parte 09</p>
+  <h2 class="part__title">O que a proposta não define</h2>
+  <p class="part__sub">Seja honesto sobre isso. O professor valoriza reconhecer limite: "a resposta honesta é metade da seção de limites".</p>
+
+  <div class="tablewrap"><table>
+    <thead><tr><th style="width:46%">Item</th><th>Situação</th></tr></thead>
+    <tbody>
+      <tr><td>Nome da heurística</td><td><strong>Não está definido na proposta.</strong> Dedutível, mas não escrito</td></tr>
+      <tr><td>Consistência da heurística</td><td><strong>Não está na proposta.</strong> É o que a busca em grafo exige</td></tr>
+      <tr><td>Por que UCS e não BFS/DFS</td><td><strong>Não está justificado na proposta</strong></td></tr>
+      <tr><td>Número de arestas / grau médio</td><td>Não definido</td></tr>
+      <tr><td>Como o comprimento das vias é gerado</td><td>Não definido</td></tr>
+      <tr><td>Valor da semente e da velocidade máxima</td><td>Só se diz que serão documentados</td></tr>
+      <tr><td>Se o depósito é fixo ou sorteado</td><td>Não definido</td></tr>
+      <tr><td>Quantos pares origem-destino por mapa</td><td>Não definido</td></tr>
+      <tr><td>Quais são as "restrições do pedido"</td><td><strong>Mencionadas no PEAS, nunca definidas</strong></td></tr>
+      <tr><td>Se aresta bloqueada sai do grafo ou é filtrada</td><td>Não definido</td></tr>
+      <tr><td>Uma ou várias entregas</td><td>Ambíguo — o enunciado sugere várias, a proposta modela uma</td></tr>
+      <tr><td>Estrutura de dados do grafo</td><td>Não definida</td></tr>
+      <tr><td>Dimensão conhecido × desconhecido</td><td>Não classificada</td></tr>
+      <tr><td>Qual LLM da Fase 3</td><td>Não definido</td></tr>
+      <tr><td>Quais dois modelos na Fase 2</td><td>Não definido</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout callout--river">
+    <p class="callout__head">Como responder quando ele apontar um destes</p>
+    <p>Não invente. <em>"Isso ainda não está definido na proposta. A nossa direção é X, pelo motivo Y, mas ainda não fechamos."</em> Essa resposta vale mais que uma invenção — e muito mais que um silêncio.</p>
+  </div>
+</section>
+
+<!-- ══════════ PARTE 10 ══════════ -->
+<section class="part" id="p10">
+  <p class="part__label">Parte 10</p>
+  <h2 class="part__title">Resumo da véspera</h2>
+  <p class="part__sub">Leia isto na noite do dia 25. É o mínimo irredutível.</p>
+
+  <h3>Os cinco números</h3>
+  <p>25, 200, 1.500 cruzamentos &nbsp;·&nbsp; 2 travessias do Rio Aurora &nbsp;·&nbsp; 3 métricas: custo, nós expandidos, tempo.</p>
+
+  <h3>As cinco frases que você tem que dizer sem hesitar</h3>
+  <div class="keyline">
+    <ol>
+      <li>O invariante do gerador é que nenhuma via seja mais curta que a linha reta entre suas pontas — e é dele que sai a admissibilidade <em>e</em> a consistência da heurística.</li>
+      <li>A busca de custo uniforme é o A* com <code>h = 0</code>. Comparar as duas é comparar o mesmo algoritmo com e sem informação.</li>
+      <li>As barreiras estão lá para o experimento ter contraste; sem obstáculo a heurística fica quase perfeita e os dois algoritmos quase empatam.</li>
+      <li>O horário é parâmetro do pedido, não atributo da via — se fosse, o estado teria que virar o par cruzamento-mais-horário e o espaço de estados seria multiplicado por cem.</li>
+      <li>O A* é ótimo em relação ao grafo de custos que recebe. Se o custo é uma previsão com erro, a otimalidade do algoritmo é preservada, mas a otimalidade da decisão não é.</li>
+    </ol>
+  </div>
+
+  <h3>Os três riscos com resposta pronta</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Risco</th><th>Onde ler</th><th>Frase-chave</th></tr></thead>
+    <tbody>
+      <tr><td>Admissibilidade não basta em busca em grafo</td><td><a href="#risco-1">5.1</a></td><td>"A condição que precisamos é consistência, e a nossa heurística é consistente pelo mesmo invariante"</td></tr>
+      <tr><td>Circularidade dos dados sintéticos</td><td><a href="#risco-3">5.3</a></td><td>"O modelo não recebe a fórmula, recebe amostras com ruído — e conhecer a verdade é o que permite separar viés de ruído irredutível"</td></tr>
+      <tr><td>Erro de previsão × otimalidade</td><td><a href="#risco-2">5.2</a></td><td>"Ótimo em relação ao modelo, não ao mundo — e o prejuízo é limitado pelo erro do modelo, na ordem de 2εL"</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Três correções que valem fazer antes de 26/08</h3>
+  <div class="keyline">
+    <ol>
+      <li>Acrescentar uma frase sobre <strong>consistência</strong>. Uma linha, fecha a maior brecha.</li>
+      <li><strong>Nomear a heurística</strong> explicitamente.</li>
+      <li>Trocar "custo total da rota" por <strong>"custo total de uma rota válida"</strong> na medida de desempenho.</li>
+    </ol>
+  </div>
+
+  <h3>A cadeia lógica que amarra tudo</h3>
+  <p class="thread">
+    Cidade <b>→</b> grafo com coordenadas <b>→</b> coordenadas dão a linha reta <b>→</b> invariante do gerador torna a linha reta admissível e consistente <b>→</b> A* devolve o ótimo com prova <b>→</b> UCS também é ótima, então a comparação isola a heurística <b>→</b> barreiras criam a folga que torna a diferença mensurável <b>→</b> atributos já no mapa alimentam a Fase 2 sem regenerar a cidade <b>→</b> velocidade máxima como parâmetro mantém a heurística admissível quando o custo vira tempo <b>→</b> o A* roda idêntico nas três fases, e o que evolui é a fonte do conhecimento que ele consome.
+  </p>
+  <p>Se você conseguir contar essa história de trás para frente, respondendo "por quê?" em cada seta, a arguição está ganha.</p>
+</section>
+
+</main>
+</div>
+
+<footer class="colophon">
+  <div class="inner">
+    Defesa da Proposta de Domínio — Vila Aurora · Henrique Lopes Dionizio Muniz, Arthur Coupê Gonçalves, Matheus de Araújo Barreto<br>
+    Inteligência Artificial (MDC050) · Centro Universitário IESB · Campus Asa Sul · Turma ENGCNM2B · 2026/2<br>
+    Apresentação em 26 de agosto de 2026. Material de estudo interno do trio.
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ═══════ Índice: destacar a seção em vista ═══════ */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a[href^="#p"]'));
+  var sections = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  if ('IntersectionObserver' in window && sections.length){
+    var obs = new IntersectionObserver(function(){
+      // marca a última seção cujo topo já passou da linha de leitura
+      var current = sections[0];
+      sections.forEach(function(s){ if (s.getBoundingClientRect().top <= 160) current = s; });
+      links.forEach(function(a){
+        a.classList.toggle('is-active', a.getAttribute('href') === '#' + current.id);
+      });
+    }, { rootMargin: '-140px 0px -60% 0px', threshold: [0, .01, .5, 1] });
+    sections.forEach(function(s){ obs.observe(s); });
+  }
+
+  /* ═══════ Revelar / ocultar respostas em bloco ═══════ */
+  document.addEventListener('click', function(ev){
+    var openBtn = ev.target.closest('[data-open-all]');
+    var closeBtn = ev.target.closest('[data-close-all]');
+    if (!openBtn && !closeBtn) return;
+    var scope = document.querySelector((openBtn || closeBtn).getAttribute(openBtn ? 'data-open-all' : 'data-close-all'));
+    if (!scope) return;
+    scope.querySelectorAll('details.qcard').forEach(function(d){ d.open = !!openBtn; });
+  });
+
+  /* ═══════════════════════════════════════════════════
+     VILA AURORA — gerador de cidade + busca ao vivo
+     Reproduz, em pequena escala, o gerador da Fase 1:
+     duas zonas, rio com duas pontes, parque bloqueando
+     a zona sul, e comprimento de via = distância
+     euclidiana × fator de sinuosidade ≥ 1 — que é o
+     invariante que torna a heurística admissível.
+     ═══════════════════════════════════════════════════ */
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var svg = document.getElementById('cityMap');
+  var statExp = document.getElementById('statExp');
+  var statCost = document.getElementById('statCost');
+  var btnA = document.getElementById('btnAstar');
+  var btnU = document.getElementById('btnUcs');
+  var btnR = document.getElementById('btnReplay');
+  if (!svg) return;
+
+  var W = 880, H = 340;
+  var RIVER_X0 = 372, RIVER_X1 = 428;
+  var PARK = { x: 690, y: 258, r: 74 };
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function mulberry32(a){
+    return function(){
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function dist(a, b){ return Math.hypot(a.x - b.x, a.y - b.y); }
+
+  function buildCity(seed){
+    var rnd = mulberry32(seed);
+    var nodes = [], edges = [], grid = [];
+
+    // Zona Planejada — malha regular com leve jitter
+    var cols = 7, rows = 6;
+    for (var r = 0; r < rows; r++){
+      grid[r] = [];
+      for (var c = 0; c < cols; c++){
+        var id = nodes.length;
+        nodes.push({
+          id: id, zone: 'planejada',
+          x: 44 + c * 52 + (rnd() - .5) * 9,
+          y: 42 + r * 52 + (rnd() - .5) * 9
+        });
+        grid[r][c] = id;
+      }
+    }
+    function link(a, b, maxSinuosity){
+      var d = dist(nodes[a], nodes[b]);
+      // INVARIANTE: comprimento ≥ distância em linha reta
+      edges.push({ a: a, b: b, len: d * (1 + rnd() * maxSinuosity) });
+    }
+    for (var r2 = 0; r2 < rows; r2++)
+      for (var c2 = 0; c2 < cols; c2++){
+        if (c2 + 1 < cols) link(grid[r2][c2], grid[r2][c2 + 1], .06);
+        if (r2 + 1 < rows) link(grid[r2][c2], grid[r2 + 1][c2], .06);
+      }
+
+    // Zona de Crescimento Orgânico — pontos irregulares, rejeitando os que caem no parque
+    var organic = [];
+    var guard = 0;
+    while (organic.length < 44 && guard++ < 4000){
+      var p = { x: RIVER_X1 + 18 + rnd() * (W - RIVER_X1 - 42), y: 30 + rnd() * (H - 62) };
+      if (Math.hypot(p.x - PARK.x, p.y - PARK.y) < PARK.r) continue;   // Parque Aurora bloqueia
+      var tooClose = organic.some(function(q){ return dist(p, q) < 40; });
+      if (tooClose) continue;
+      p.id = nodes.length; p.zone = 'organica';
+      nodes.push(p); organic.push(p);
+    }
+    // liga cada cruzamento orgânico aos 3 mais próximos
+    organic.forEach(function(p){
+      var near = organic.filter(function(q){ return q !== p; })
+        .sort(function(m, n){ return dist(p, m) - dist(p, n); }).slice(0, 3);
+      near.forEach(function(q){
+        if (!edges.some(function(e){ return (e.a === p.id && e.b === q.id) || (e.a === q.id && e.b === p.id); }))
+          link(p.id, q.id, .34);
+      });
+    });
+
+    // As duas travessias do Rio Aurora
+    var bridges = [];
+    [1, 4].forEach(function(row){
+      var left = grid[row][cols - 1];
+      var right = organic.slice().sort(function(m, n){ return dist(nodes[left], m) - dist(nodes[left], n); })[0];
+      if (right){ link(left, right.id, .04); bridges.push([left, right.id]); }
+    });
+
+    // lista de adjacência
+    var adj = nodes.map(function(){ return []; });
+    edges.forEach(function(e){
+      adj[e.a].push({ to: e.b, len: e.len });
+      adj[e.b].push({ to: e.a, len: e.len });
+    });
+
+    // depósito no canto noroeste, destino no extremo leste
+    var start = grid[rows - 1][0];
+    var goal = organic.slice().sort(function(m, n){ return n.x - m.x; })[0];
+    return { nodes: nodes, edges: edges, adj: adj, bridges: bridges, start: start, goal: goal ? goal.id : null };
+  }
+
+  /* Busca em grafo com fila de prioridade.
+     informed = true  → ordena por f = g + h  (A*)
+     informed = false → ordena por g          (custo uniforme, ou seja, A* com h = 0) */
+  function search(city, informed){
+    var nodes = city.nodes, goal = nodes[city.goal];
+    function h(i){ return informed ? dist(nodes[i], goal) : 0; }
+    var g = {}, parent = {}, closed = {}, order = [];
+    var frontier = [{ id: city.start, f: h(city.start) }];
+    g[city.start] = 0;
+    var counter = 0;
+    while (frontier.length){
+      // remove o menor f (fila de prioridade simplificada — o notebook usa heapq)
+      var bi = 0;
+      for (var i = 1; i < frontier.length; i++) if (frontier[i].f < frontier[bi].f) bi = i;
+      var cur = frontier.splice(bi, 1)[0];
+      if (closed[cur.id]) continue;
+      closed[cur.id] = true;
+      order.push(cur.id);                       // "expandido" = retirado da fronteira
+      if (cur.id === city.goal) break;
+      city.adj[cur.id].forEach(function(e){
+        var ng = g[cur.id] + e.len;
+        if (g[e.to] === undefined || ng < g[e.to]){
+          g[e.to] = ng; parent[e.to] = cur.id;
+          frontier.push({ id: e.to, f: ng + h(e.to), seq: counter++ });
+        }
+      });
+    }
+    if (g[city.goal] === undefined) return null;
+    var path = [], n = city.goal;
+    while (n !== undefined){ path.unshift(n); n = parent[n]; }   // reconstrução pelo campo pai
+    return { order: order, path: path, cost: g[city.goal] };
+  }
+
+  var city = null;
+  for (var s = 7; s < 60; s++){
+    var candidate = buildCity(s);
+    if (candidate.goal !== null && search(candidate, true)) { city = candidate; break; }
+  }
+  if (!city) return;
+
+  function el(tag, attrs){
+    var n = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+
+  var nodeEls = {}, timers = [];
+  function draw(result){
+    timers.forEach(clearTimeout); timers = [];
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    nodeEls = {};
+
+    // Rio Aurora
+    svg.appendChild(el('rect', { x: RIVER_X0, y: 0, width: RIVER_X1 - RIVER_X0, height: H,
+      fill: 'var(--river)', opacity: .16 }));
+    // Parque Aurora
+    svg.appendChild(el('circle', { cx: PARK.x, cy: PARK.y, r: PARK.r,
+      fill: 'var(--park)', opacity: .13 }));
+
+    var rotulo = { 'font-family': 'IBM Plex Mono, monospace', 'font-size': 9.5,
+      'letter-spacing': '.14em', fill: 'var(--muted)' };
+    var t1 = el('text', Object.assign({ x: 44, y: 22 }, rotulo)); t1.textContent = 'ZONA PLANEJADA'; svg.appendChild(t1);
+    var t2 = el('text', Object.assign({ x: RIVER_X1 + 18, y: 22 }, rotulo)); t2.textContent = 'CRESCIMENTO ORGÂNICO'; svg.appendChild(t2);
+    var t3 = el('text', Object.assign({ x: PARK.x - 30, y: PARK.y + 4 }, rotulo, { fill: 'var(--park)' }));
+    t3.textContent = 'PARQUE'; svg.appendChild(t3);
+    var t4 = el('text', Object.assign({ x: RIVER_X0 + 4, y: H - 10 }, rotulo, { fill: 'var(--river)' }));
+    t4.textContent = 'RIO'; svg.appendChild(t4);
+
+    // vias
+    var gEdges = el('g', { stroke: 'var(--line)', 'stroke-width': 1, fill: 'none' });
+    city.edges.forEach(function(e){
+      var isBridge = city.bridges.some(function(b){
+        return (b[0] === e.a && b[1] === e.b) || (b[0] === e.b && b[1] === e.a); });
+      gEdges.appendChild(el('line', {
+        x1: city.nodes[e.a].x, y1: city.nodes[e.a].y,
+        x2: city.nodes[e.b].x, y2: city.nodes[e.b].y,
+        stroke: isBridge ? 'var(--river)' : 'var(--line)',
+        'stroke-width': isBridge ? 2.2 : 1
+      }));
+    });
+    svg.appendChild(gEdges);
+
+    // cruzamentos
+    var gNodes = el('g', {});
+    city.nodes.forEach(function(n){
+      var c = el('circle', { cx: n.x, cy: n.y, r: 2.6, fill: 'var(--line)' });
+      c.style.transition = reduceMotion ? 'none' : 'fill .25s, r .25s';
+      gNodes.appendChild(c); nodeEls[n.id] = c;
+    });
+    svg.appendChild(gNodes);
+
+    // rota
+    var d = result.path.map(function(id, i){
+      return (i ? 'L' : 'M') + city.nodes[id].x.toFixed(1) + ' ' + city.nodes[id].y.toFixed(1); }).join(' ');
+    var route = el('path', { d: d, fill: 'none', stroke: 'var(--clay)',
+      'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+    svg.appendChild(route);
+
+    // depósito e destino
+    [[city.start, 'var(--ink)', 'DEPÓSITO'], [city.goal, 'var(--clay)', 'DESTINO']].forEach(function(p){
+      var n = city.nodes[p[0]];
+      svg.appendChild(el('circle', { cx: n.x, cy: n.y, r: 5.5, fill: p[1] }));
+      var lab = el('text', Object.assign({ x: n.x + 9, y: n.y + 3.5 }, rotulo, { fill: p[1], 'font-size': 9 }));
+      lab.textContent = p[2]; svg.appendChild(lab);
+    });
+
+    statCost.textContent = Math.round(result.cost).toLocaleString('pt-BR');
+
+    // animação: cruzamentos acendem na ordem de expansão, depois a rota é desenhada
+    var total = result.order.length;
+    if (reduceMotion){
+      result.order.forEach(function(id){ nodeEls[id].setAttribute('fill', 'var(--river-soft)'); });
+      statExp.textContent = total;
+      return;
+    }
+    var len = route.getTotalLength();
+    route.style.strokeDasharray = len; route.style.strokeDashoffset = len;
+    statExp.textContent = '0';
+    var step = Math.max(9, Math.min(26, 1600 / total));
+    result.order.forEach(function(id, i){
+      timers.push(setTimeout(function(){
+        var c = nodeEls[id];
+        c.setAttribute('fill', 'var(--river-soft)'); c.setAttribute('r', 3.4);
+        statExp.textContent = i + 1;
+      }, i * step));
+    });
+    timers.push(setTimeout(function(){
+      route.style.transition = 'stroke-dashoffset .85s ease-out';
+      route.style.strokeDashoffset = 0;
+      result.path.forEach(function(id){
+        if (nodeEls[id]) nodeEls[id].setAttribute('fill', 'var(--clay)');
+      });
+    }, total * step + 120));
+  }
+
+  var informed = true;
+  function run(){
+    btnA.setAttribute('aria-pressed', String(informed));
+    btnU.setAttribute('aria-pressed', String(!informed));
+    draw(search(city, informed));
+  }
+  btnA.addEventListener('click', function(){ informed = true;  run(); });
+  btnU.addEventListener('click', function(){ informed = false; run(); });
+  btnR.addEventListener('click', run);
+
+  // só anima quando o mapa entra em vista
+  if ('IntersectionObserver' in window){
+    var started = false;
+    new IntersectionObserver(function(entries, o){
+      if (entries[0].isIntersecting && !started){ started = true; run(); o.disconnect(); }
+    }, { threshold: .25 }).observe(svg);
+  } else { run(); }
+})();
+</script>
+</body>
+</html>
