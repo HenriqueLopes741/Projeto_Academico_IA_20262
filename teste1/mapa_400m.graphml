@@ -1,0 +1,1857 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d22" for="edge" attr.name="access" attr.type="string" />
+  <key id="d21" for="edge" attr.name="est_width" attr.type="string" />
+  <key id="d20" for="edge" attr.name="ref" attr.type="string" />
+  <key id="d19" for="edge" attr.name="to" attr.type="string" />
+  <key id="d18" for="edge" attr.name="from" attr.type="string" />
+  <key id="d17" for="edge" attr.name="geometry" attr.type="string" />
+  <key id="d16" for="edge" attr.name="length" attr.type="string" />
+  <key id="d15" for="edge" attr.name="reversed" attr.type="string" />
+  <key id="d14" for="edge" attr.name="width" attr.type="string" />
+  <key id="d13" for="edge" attr.name="oneway" attr.type="string" />
+  <key id="d12" for="edge" attr.name="name" attr.type="string" />
+  <key id="d11" for="edge" attr.name="maxspeed" attr.type="string" />
+  <key id="d10" for="edge" attr.name="lanes" attr.type="string" />
+  <key id="d9" for="edge" attr.name="highway" attr.type="string" />
+  <key id="d8" for="edge" attr.name="osmid" attr.type="string" />
+  <key id="d7" for="node" attr.name="highway" attr.type="string" />
+  <key id="d6" for="node" attr.name="street_count" attr.type="string" />
+  <key id="d5" for="node" attr.name="x" attr.type="string" />
+  <key id="d4" for="node" attr.name="y" attr.type="string" />
+  <key id="d3" for="graph" attr.name="simplified" attr.type="string" />
+  <key id="d2" for="graph" attr.name="crs" attr.type="string" />
+  <key id="d1" for="graph" attr.name="created_with" attr.type="string" />
+  <key id="d0" for="graph" attr.name="created_date" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="26057304">
+      <data key="d4">4582004.031940521</data>
+      <data key="d5">430296.2545050281</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="3218700096">
+      <data key="d4">4581938.131015374</data>
+      <data key="d5">430160.76150540635</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="8201874133">
+      <data key="d4">4581931.446387898</data>
+      <data key="d5">430370.7872753051</data>
+      <data key="d6">3</data>
+      <data key="d7">crossing</data>
+    </node>
+    <node id="26057388">
+      <data key="d4">4581706.5622551665</data>
+      <data key="d5">429837.40927861445</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="26057389">
+      <data key="d4">4581800.16087365</data>
+      <data key="d5">429931.35918606754</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="559764757">
+      <data key="d4">4581722.109338062</data>
+      <data key="d5">429822.1903618816</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="559026424">
+      <data key="d4">4581786.002019177</data>
+      <data key="d5">429944.2669520628</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="3314271774">
+      <data key="d4">4581894.9556143675</data>
+      <data key="d5">430026.8902465382</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="30227192">
+      <data key="d4">4581693.5036554765</data>
+      <data key="d5">430140.94354245707</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="112409079">
+      <data key="d4">4581769.02484017</data>
+      <data key="d5">430162.8860266918</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="112409083">
+      <data key="d4">4581736.868589405</data>
+      <data key="d5">430107.8549813235</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="30227193">
+      <data key="d4">4581647.691026231</data>
+      <data key="d5">430178.0311003356</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="30237645">
+      <data key="d4">4582001.270524621</data>
+      <data key="d5">429923.00237322925</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="11053219722">
+      <data key="d4">4582084.412074804</data>
+      <data key="d5">429842.3725558219</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="30237703">
+      <data key="d4">4581908.778540745</data>
+      <data key="d5">429827.15073418344</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="2501701155">
+      <data key="d4">4581861.978979015</data>
+      <data key="d5">429779.1099266483</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="559764759">
+      <data key="d4">4581815.680323339</data>
+      <data key="d5">429917.8291227373</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="30237705">
+      <data key="d4">4581695.300978133</data>
+      <data key="d5">430032.9144591974</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="30237706">
+      <data key="d4">4581654.234657159</data>
+      <data key="d5">430077.4392672836</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="112399403">
+      <data key="d4">4581739.272930103</data>
+      <data key="d5">430086.5048320933</data>
+      <data key="d6">4</data>
+      <data key="d7">traffic_signals</data>
+    </node>
+    <node id="30243053">
+      <data key="d4">4582432.461217571</data>
+      <data key="d5">430364.10563320224</data>
+      <data key="d6">4</data>
+      <data key="d7">traffic_signals</data>
+    </node>
+    <node id="442540254">
+      <data key="d4">4582420.9485707395</data>
+      <data key="d5">430352.448107078</data>
+      <data key="d6">4</data>
+      <data key="d7">traffic_signals</data>
+    </node>
+    <node id="1311770050">
+      <data key="d4">4582357.536553137</data>
+      <data key="d5">430432.54175423493</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="30243322">
+      <data key="d4">4582381.480474936</data>
+      <data key="d5">429741.6193817225</data>
+      <data key="d6">4</data>
+      <data key="d7">traffic_signals</data>
+    </node>
+    <node id="555187275">
+      <data key="d4">4582331.731814359</data>
+      <data key="d5">429788.2196987166</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="30247434">
+      <data key="d4">4582381.644624915</data>
+      <data key="d5">429928.721684605</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="3314294600">
+      <data key="d4">4582297.680654332</data>
+      <data key="d5">430009.5250516665</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="11370726443">
+      <data key="d4">4582329.246513412</data>
+      <data key="d5">429877.453088224</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="30884265">
+      <data key="d4">4581813.158370689</data>
+      <data key="d5">430439.94091244636</data>
+      <data key="d6">1</data>
+    </node>
+    <node id="112382699">
+      <data key="d4">4581908.962966427</data>
+      <data key="d5">430413.55932627624</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="71643529">
+      <data key="d4">4582080.8057178</data>
+      <data key="d5">430219.24671353016</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="1400448338">
+      <data key="d4">4582197.149283406</data>
+      <data key="d5">430333.8243756378</data>
+      <data key="d6">3</data>
+      <data key="d7">crossing</data>
+    </node>
+    <node id="559765972">
+      <data key="d4">4582067.541306622</data>
+      <data key="d5">430232.71499005565</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="71643550">
+      <data key="d4">4581913.159448764</data>
+      <data key="d5">430392.7954336646</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="112398908">
+      <data key="d4">4581775.2713485565</data>
+      <data key="d5">430289.0198168236</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="14135185983">
+      <data key="d4">4581773.959479905</data>
+      <data key="d5">430281.1218481545</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="112426103">
+      <data key="d4">4581824.622881326</data>
+      <data key="d5">430095.48960325966</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="1282870796">
+      <data key="d4">4581854.1691366695</data>
+      <data key="d5">430067.7205023467</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="2495575748">
+      <data key="d4">4581862.959206131</data>
+      <data key="d5">430100.2912642056</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="194589435">
+      <data key="d4">4581926.395590287</data>
+      <data key="d5">430254.0915807714</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="3868361514">
+      <data key="d4">4581839.568921373</data>
+      <data key="d5">430242.78666879877</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="269369082">
+      <data key="d4">4582347.814625712</data>
+      <data key="d5">430462.1728603836</data>
+      <data key="d6">5</data>
+    </node>
+    <node id="1382922538">
+      <data key="d4">4582328.499159326</data>
+      <data key="d5">430443.2998737121</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="301572132">
+      <data key="d4">4582232.545041701</data>
+      <data key="d5">430355.787450486</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="2495598155">
+      <data key="d4">4582322.296267897</data>
+      <data key="d5">430446.3925435796</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="2521199755">
+      <data key="d4">4582237.289590505</data>
+      <data key="d5">430350.7911101941</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="301572243">
+      <data key="d4">4582327.712378688</data>
+      <data key="d5">430258.36458746553</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="11053280241">
+      <data key="d4">4582411.845590686</data>
+      <data key="d5">430174.6841333242</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="301573106">
+      <data key="d4">4582315.045877753</data>
+      <data key="d5">430245.4832181416</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="4719409243">
+      <data key="d4">4582188.807960936</data>
+      <data key="d5">430115.10756488086</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="301573130">
+      <data key="d4">4582216.834300706</data>
+      <data key="d5">430344.2564651921</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="1400448339">
+      <data key="d4">4582204.499689691</data>
+      <data key="d5">430356.88913085964</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="365549375">
+      <data key="d4">4581694.283898814</data>
+      <data key="d5">429849.87532961403</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="9788435899">
+      <data key="d4">4582324.285120195</data>
+      <data key="d5">430439.30449976044</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="4022831609">
+      <data key="d4">4582242.657349352</data>
+      <data key="d5">429787.799575029</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="555187278">
+      <data key="d4">4582240.552352544</data>
+      <data key="d5">429876.7450923206</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="559026426">
+      <data key="d4">4581880.491084571</data>
+      <data key="d5">430041.5761450293</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="559765962">
+      <data key="d4">4581963.665918722</data>
+      <data key="d5">430127.5438510365</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="30238009">
+      <data key="d4">4581814.059492209</data>
+      <data key="d5">429732.09451945795</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="2501701062">
+      <data key="d4">4581769.467770346</data>
+      <data key="d5">429871.02321756777</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="559764760">
+      <data key="d4">4581908.050889349</data>
+      <data key="d5">430013.7297579672</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="559765964">
+      <data key="d4">4582215.67449273</data>
+      <data key="d5">430371.3531929316</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="11466476299">
+      <data key="d4">4582198.159605383</data>
+      <data key="d5">430368.4757371175</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="1282870801">
+      <data key="d4">4581879.423097297</data>
+      <data key="d5">430106.21978263377</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="2501773162">
+      <data key="d4">4581955.466750205</data>
+      <data key="d5">429686.23012970807</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="13228605046">
+      <data key="d4">4581990.412992622</data>
+      <data key="d5">429747.4762690123</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="3207831035">
+      <data key="d4">4582399.633385943</data>
+      <data key="d5">430160.76197964285</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="10181609591">
+      <data key="d4">4582272.191152439</data>
+      <data key="d5">430034.5302687385</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="30237643">
+      <data key="d4">4582192.964451575</data>
+      <data key="d5">429737.0318196772</data>
+      <data key="d6">4</data>
+    </node>
+    <node id="11061736176">
+      <data key="d4">4582207.007458872</data>
+      <data key="d5">429910.33462701674</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="11053219723">
+      <data key="d4">4582108.788808071</data>
+      <data key="d5">429817.6910095377</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="11466476297">
+      <data key="d4">4582195.417021192</data>
+      <data key="d5">430380.0467649838</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="13228605049">
+      <data key="d4">4582016.498279383</data>
+      <data key="d5">429721.8162292391</data>
+      <data key="d6">3</data>
+    </node>
+    <edge source="26057304" target="3218700096" id="0">
+      <data key="d8">[295215809, 68506253]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">['50', '30']</data>
+      <data key="d12">Ronda de la Universitat</data>
+      <data key="d13">True</data>
+      <data key="d14">['14', '11']</data>
+      <data key="d15">False</data>
+      <data key="d16">150.49194718350174</data>
+      <data key="d17">LINESTRING (430296.2545050281 4582004.031940521, 430279.8944269404 4581996.606090005, 430231.05508893245 4581973.316074742, 430215.9403385253 4581965.845065545, 430192.5530743024 4581954.623294163, 430185.43664833077 4581951.094530856, 430180.699218232 4581948.875194273, 430170.39061723254 4581943.822804498, 430160.76150540635 4581938.131015374)</data>
+      <data key="d18">26057304</data>
+      <data key="d19">3218700096</data>
+    </edge>
+    <edge source="26057304" target="8201874133" id="0">
+      <data key="d8">68506265</data>
+      <data key="d9">secondary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Balmes</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">104.01341100050632</data>
+      <data key="d17">LINESTRING (430296.2545050281 4582004.031940521, 430310.2400575333 4581990.618367436, 430342.2229913503 4581958.367842192, 430355.35340327356 4581945.57324032, 430367.4282682489 4581934.309901121, 430370.7872753051 4581931.446387898)</data>
+      <data key="d18">26057304</data>
+      <data key="d19">8201874133</data>
+    </edge>
+    <edge source="26057304" target="559765972" id="0">
+      <data key="d8">[237522641, 890191183]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Balmes</data>
+      <data key="d13">True</data>
+      <data key="d14">11</data>
+      <data key="d15">False</data>
+      <data key="d16">89.80618017843896</data>
+      <data key="d17">LINESTRING (430232.71499005565 4582067.541306622, 430237.27134918707 4582063.122898556, 430253.1084622558 4582047.504114138, 430261.0497228096 4582039.444702368, 430280.5015601196 4582019.727535624, 430283.4405238808 4582016.668170184, 430296.2545050281 4582004.031940521)</data>
+      <data key="d18">559765972</data>
+      <data key="d19">26057304</data>
+    </edge>
+    <edge source="3218700096" target="559765962" id="0">
+      <data key="d8">44027589</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Plaça de la Universitat</data>
+      <data key="d13">False</data>
+      <data key="d14">9</data>
+      <data key="d15">False</data>
+      <data key="d16">42.41341727368791</data>
+      <data key="d17">LINESTRING (430127.5438510365 4581963.665918722, 430130.41084499116 4581960.951373886, 430144.8458702093 4581946.47836981, 430148.19063253695 4581943.881357719, 430152.76842636045 4581941.683266881, 430160.76150540635 4581938.131015374)</data>
+      <data key="d18">559765962</data>
+      <data key="d19">3218700096</data>
+    </edge>
+    <edge source="3218700096" target="1282870801" id="0">
+      <data key="d8">[922450172, 545932590]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">5</data>
+      <data key="d11">50</data>
+      <data key="d12">Plaça de la Universitat</data>
+      <data key="d13">False</data>
+      <data key="d14">15</data>
+      <data key="d15">True</data>
+      <data key="d16">80.13078306603717</data>
+      <data key="d17">LINESTRING (430106.21978263377 4581879.423097297, 430115.5845307109 4581888.903447343, 430133.5193215556 4581908.704561532, 430139.99882987945 4581915.548073737, 430144.8559882574 4581920.641875335, 430160.76150540635 4581938.131015374)</data>
+      <data key="d18">1282870801</data>
+      <data key="d19">3218700096</data>
+    </edge>
+    <edge source="3218700096" target="194589435" id="0">
+      <data key="d8">[1214207624, 1214315730, 37758422, 295215799]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Pelai</data>
+      <data key="d13">True</data>
+      <data key="d14">8</data>
+      <data key="d15">False</data>
+      <data key="d16">93.86693318117857</data>
+      <data key="d17">LINESTRING (430160.76150540635 4581938.131015374, 430176.14827185235 4581936.50603399, 430194.8376662322 4581933.983241418, 430200.65845421806 4581933.216579786, 430207.5485989278 4581932.350799023, 430210.8637551556 4581931.885853862, 430239.7210597817 4581928.48804423, 430254.0915807714 4581926.395590287)</data>
+      <data key="d18">3218700096</data>
+      <data key="d19">194589435</data>
+    </edge>
+    <edge source="8201874133" target="71643550" id="0">
+      <data key="d8">1408687442</data>
+      <data key="d9">secondary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Balmes</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">28.599129574013467</data>
+      <data key="d17">LINESTRING (430370.7872753051 4581931.446387898, 430381.95783484535 4581921.790577961, 430392.7954336646 4581913.159448764)</data>
+      <data key="d18">8201874133</data>
+      <data key="d19">71643550</data>
+    </edge>
+    <edge source="26057388" target="26057389" id="0">
+      <data key="d8">[532696001, 545718433]</data>
+      <data key="d9">primary</data>
+      <data key="d10">5</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes</data>
+      <data key="d13">True</data>
+      <data key="d14">12</data>
+      <data key="d15">False</data>
+      <data key="d16">132.5823867088689</data>
+      <data key="d17">LINESTRING (429837.40927861445 4581706.5622551665, 429850.8922017877 4581719.855098583, 429900.78809312877 4581769.934745137, 429903.37958132155 4581772.452234506, 429916.16602763464 4581785.518772707, 429918.7250265853 4581788.136507582, 429931.35918606754 4581800.16087365)</data>
+      <data key="d20">C-31</data>
+      <data key="d18">26057388</data>
+      <data key="d19">26057389</data>
+    </edge>
+    <edge source="26057388" target="559764757" id="0">
+      <data key="d8">550280513</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Casanova</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">21.749155046869262</data>
+      <data key="d17">LINESTRING (429837.40927861445 4581706.5622551665, 429827.24214108364 4581717.0419083955, 429823.7226819582 4581720.595607926, 429822.1903618816 4581722.109338062)</data>
+      <data key="d18">26057388</data>
+      <data key="d19">559764757</data>
+    </edge>
+    <edge source="26057388" target="365549375" id="0">
+      <data key="d8">1227367188</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de Casanova</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">17.496657031703805</data>
+      <data key="d17">LINESTRING (429849.87532961403 4581694.283898814, 429848.4342204112 4581695.7190198675, 429845.1347986556 4581698.682125286, 429843.07304339553 4581700.789429595, 429837.40927861445 4581706.5622551665)</data>
+      <data key="d18">365549375</data>
+      <data key="d19">26057388</data>
+    </edge>
+    <edge source="26057389" target="559026424" id="0">
+      <data key="d8">328020785</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Muntaner</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">19.15786796529751</data>
+      <data key="d17">LINESTRING (429931.35918606754 4581800.16087365, 429936.8772657758 4581794.023134259, 429939.30872576055 4581791.235005737, 429942.58669631544 4581787.783623261, 429944.2669520628 4581786.002019177)</data>
+      <data key="d18">26057389</data>
+      <data key="d19">559026424</data>
+    </edge>
+    <edge source="26057389" target="3314271774" id="0">
+      <data key="d8">532696011</data>
+      <data key="d9">primary</data>
+      <data key="d10">5</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes</data>
+      <data key="d13">True</data>
+      <data key="d14">12</data>
+      <data key="d15">False</data>
+      <data key="d16">134.5409305704046</data>
+      <data key="d17">LINESTRING (429931.35918606754 4581800.16087365, 429936.73828965216 4581805.593681738, 429945.64734557964 4581814.61190342, 430014.1957371802 4581882.70961239, 430017.75821381406 4581886.205918887, 430026.8902465382 4581894.9556143675)</data>
+      <data key="d20">C-31</data>
+      <data key="d18">26057389</data>
+      <data key="d19">3314271774</data>
+    </edge>
+    <edge source="26057389" target="559764759" id="0">
+      <data key="d8">1409652525</data>
+      <data key="d9">secondary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Muntaner</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">20.59383909434569</data>
+      <data key="d17">LINESTRING (429917.8291227373 4581815.680323339, 429919.1690277593 4581814.157371373, 429920.6227684088 4581812.300232163, 429922.19259982125 4581810.342044526, 429931.35918606754 4581800.16087365)</data>
+      <data key="d18">559764759</data>
+      <data key="d19">26057389</data>
+    </edge>
+    <edge source="559764757" target="30238009" id="0">
+      <data key="d8">237506925</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Casanova</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">128.68822418208032</data>
+      <data key="d17">LINESTRING (429822.1903618816 4581722.109338062, 429814.6138892792 4581729.832609685, 429750.38512473245 4581795.395824496, 429732.09451945795 4581814.059492209)</data>
+      <data key="d18">559764757</data>
+      <data key="d19">30238009</data>
+    </edge>
+    <edge source="559764757" target="2501701062" id="0">
+      <data key="d8">[545747635, 545747639]</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral muntanya)</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">68.00165428858803</data>
+      <data key="d17">LINESTRING (429871.02321756777 4581769.467770346, 429852.4192599965 4581751.483535145, 429838.53097152174 4581737.772705093, 429834.96919583605 4581734.365300293, 429822.1903618816 4581722.109338062)</data>
+      <data key="d18">2501701062</data>
+      <data key="d19">559764757</data>
+    </edge>
+    <edge source="559026424" target="559026426" id="0">
+      <data key="d8">237914536</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral mar)</data>
+      <data key="d13">True</data>
+      <data key="d14">4</data>
+      <data key="d15">False</data>
+      <data key="d16">135.61019155320759</data>
+      <data key="d17">LINESTRING (429944.2669520628 4581786.002019177, 429949.9592838733 4581791.831512263, 429959.0626855083 4581801.058826106, 430029.5484902661 4581869.759711929, 430031.73459882307 4581871.870354015, 430041.5761450293 4581880.491084571)</data>
+      <data key="d18">559026424</data>
+      <data key="d19">559026426</data>
+    </edge>
+    <edge source="559026424" target="30237705" id="0">
+      <data key="d8">553772888</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Muntaner</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">126.78438509963578</data>
+      <data key="d17">LINESTRING (429944.2669520628 4581786.002019177, 429950.782495075 4581779.2439885605, 430025.9754464529 4581702.385003555, 430028.86587832234 4581699.492548741, 430032.9144591974 4581695.300978133)</data>
+      <data key="d18">559026424</data>
+      <data key="d19">30237705</data>
+    </edge>
+    <edge source="559026424" target="365549375" id="0">
+      <data key="d8">1227367187</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral mar)</data>
+      <data key="d13">True</data>
+      <data key="d14">4</data>
+      <data key="d15">False</data>
+      <data key="d16">131.56739000392346</data>
+      <data key="d17">LINESTRING (429849.87532961403 4581694.283898814, 429863.9799957528 4581707.881627776, 429929.8857010876 4581772.306887721, 429932.27328837593 4581774.493272547, 429944.2669520628 4581786.002019177)</data>
+      <data key="d18">365549375</data>
+      <data key="d19">559026424</data>
+    </edge>
+    <edge source="3314271774" target="71643529" id="0">
+      <data key="d8">[545718432, 545030298, 328020781, 237525159]</data>
+      <data key="d9">primary</data>
+      <data key="d10">5</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes</data>
+      <data key="d13">True</data>
+      <data key="d14">12</data>
+      <data key="d15">False</data>
+      <data key="d16">267.3934057829646</data>
+      <data key="d17">LINESTRING (430026.8902465382 4581894.9556143675, 430037.0877573086 4581904.938555231, 430091.9866324685 4581959.023719321, 430098.33825904696 4581965.613062358, 430101.22599237465 4581968.516362885, 430112.55501975416 4581979.665395646, 430122.9549917798 4581989.857455246, 430196.99773663975 4582060.113322515, 430202.702310065 4582065.520980131, 430219.24671353016 4582080.8057178)</data>
+      <data key="d20">C-31</data>
+      <data key="d18">3314271774</data>
+      <data key="d19">71643529</data>
+    </edge>
+    <edge source="3314271774" target="559764760" id="0">
+      <data key="d8">526210689</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer d'Aribau</data>
+      <data key="d13">True</data>
+      <data key="d14">7</data>
+      <data key="d15">False</data>
+      <data key="d16">18.562282823804566</data>
+      <data key="d17">LINESTRING (430026.8902465382 4581894.9556143675, 430019.56843648327 4581902.209892625, 430016.4527720142 4581905.14894098, 430013.7297579672 4581908.050889349)</data>
+      <data key="d18">3314271774</data>
+      <data key="d19">559764760</data>
+    </edge>
+    <edge source="3314271774" target="559026426" id="0">
+      <data key="d8">449991649</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Plaça de la Universitat</data>
+      <data key="d13">True</data>
+      <data key="d14">7</data>
+      <data key="d15">False</data>
+      <data key="d16">20.608233573354106</data>
+      <data key="d17">LINESTRING (430041.5761450293 4581880.491084571, 430039.6707823984 4581882.34145716, 430035.80046048627 4581885.931750594, 430033.7467454617 4581888.005614962, 430026.8902465382 4581894.9556143675)</data>
+      <data key="d18">559026426</data>
+      <data key="d19">3314271774</data>
+    </edge>
+    <edge source="30227192" target="112409079" id="0">
+      <data key="d8">12373447</data>
+      <data key="d9">living_street</data>
+      <data key="d11">20</data>
+      <data key="d12">Passatge de Sant Bernat</data>
+      <data key="d13">False</data>
+      <data key="d15">True</data>
+      <data key="d16">103.3898594927141</data>
+      <data key="d17">LINESTRING (430162.8860266918 4581769.02484017, 430165.9564723991 4581765.719898962, 430183.7122321244 4581746.096558358, 430185.26414167316 4581738.7981204875, 430184.8203175811 4581735.260580298, 430182.0395828844 4581728.714472882, 430177.30722781393 4581722.6979045775, 430148.406986004 4581699.171888996, 430140.94354245707 4581693.5036554765)</data>
+      <data key="d18">112409079</data>
+      <data key="d19">30227192</data>
+    </edge>
+    <edge source="30227192" target="112409083" id="0">
+      <data key="d8">1028683570</data>
+      <data key="d9">residential</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de Joaquín Costa</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">54.55485500051041</data>
+      <data key="d17">LINESTRING (430140.94354245707 4581693.5036554765, 430111.0075388593 4581732.541368255, 430107.8549813235 4581736.868589405)</data>
+      <data key="d21">4</data>
+      <data key="d18">30227192</data>
+      <data key="d19">112409083</data>
+    </edge>
+    <edge source="30227192" target="30227193" id="0">
+      <data key="d8">1028683570</data>
+      <data key="d9">residential</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de Joaquín Costa</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">58.943770971729386</data>
+      <data key="d17">LINESTRING (430178.0311003356 4581647.691026231, 430176.92373024795 4581649.056247141, 430140.94354245707 4581693.5036554765)</data>
+      <data key="d21">4</data>
+      <data key="d18">30227193</data>
+      <data key="d19">30227192</data>
+    </edge>
+    <edge source="112409079" target="112409083" id="0">
+      <data key="d8">[1446575233, 1393577226]</data>
+      <data key="d9">residential</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer de Torres i Amat</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">63.810870108603226</data>
+      <data key="d17">LINESTRING (430162.8860266918 4581769.02484017, 430161.05997970153 4581767.832227119, 430114.3343879653 4581739.348651594, 430110.67925507063 4581737.518622926, 430107.8549813235 4581736.868589405)</data>
+      <data key="d18">112409079</data>
+      <data key="d19">112409083</data>
+    </edge>
+    <edge source="112409079" target="14135185983" id="0">
+      <data key="d8">[1446575233, 246638756, 1522867686, 1433174504, 1335771615]</data>
+      <data key="d9">residential</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer de Torres i Amat</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">124.67592725864239</data>
+      <data key="d17">LINESTRING (430281.1218481545 4581773.959479905, 430279.02275810385 4581773.935266219, 430276.60946754727 4581774.280471307, 430271.30971717177 4581775.330729245, 430229.3974870774 4581782.939951988, 430228.5626502587 4581783.081225307, 430226.60923057573 4581783.422018943, 430214.80991575227 4581785.967180103, 430205.491656673 4581787.389277002, 430200.3910964273 4581788.282228332, 430198.0539201505 4581788.715549535, 430195.7342340083 4581788.360398972, 430194.14797942 4581787.753919957, 430190.80000957515 4581785.687732157, 430174.61131283356 4581776.150911433, 430162.8860266918 4581769.02484017)</data>
+      <data key="d18">14135185983</data>
+      <data key="d19">112409079</data>
+    </edge>
+    <edge source="112409083" target="112399403" id="0">
+      <data key="d8">4743395</data>
+      <data key="d9">residential</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer de Torres i Amat</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">21.437813796067466</data>
+      <data key="d17">LINESTRING (430107.8549813235 4581736.868589405, 430098.1655687237 4581737.96131706, 430086.5048320933 4581739.272930103)</data>
+      <data key="d18">112409083</data>
+      <data key="d19">112399403</data>
+    </edge>
+    <edge source="30227193" target="14135185983" id="0">
+      <data key="d8">12372966</data>
+      <data key="d9">living_street</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer de Valldonzella</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">164.96721392184313</data>
+      <data key="d17">LINESTRING (430281.1218481545 4581773.959479905, 430280.7522749532 4581772.91936613, 430280.52494901896 4581771.888986523, 430280.3979865444 4581769.99161732, 430280.4912219761 4581767.514780094, 430280.3774567242 4581765.250889195, 430279.74668456626 4581763.136310334, 430278.1217032966 4581760.242994336, 430276.2691230203 4581758.029143884, 430252.1005309301 4581730.8487615725, 430237.0581248574 4581714.439193064, 430216.82335382776 4581691.140364244, 430196.2162773827 4581667.40106163, 430178.0311003356 4581647.691026231)</data>
+      <data key="d18">14135185983</data>
+      <data key="d19">30227193</data>
+    </edge>
+    <edge source="30237645" target="11053219722" id="0">
+      <data key="d8">[1409649734, 491295302]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer d'Aribau</data>
+      <data key="d13">True</data>
+      <data key="d14">7</data>
+      <data key="d15">False</data>
+      <data key="d16">115.78163690693182</data>
+      <data key="d17">LINESTRING (429923.00237322925 4582001.270524621, 429920.0878830994 4582004.252082435, 429906.2606486636 4582018.397684101, 429861.15847568586 4582065.133214486, 429859.6849641893 4582066.668575426, 429848.74067301006 4582078.010661302, 429846.53036017204 4582080.308155836, 429842.3725558219 4582084.412074804)</data>
+      <data key="d18">30237645</data>
+      <data key="d19">11053219722</data>
+    </edge>
+    <edge source="30237645" target="30237703" id="0">
+      <data key="d8">[481121896, 1360091610, 489412375, 481121895]</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de la Diputació</data>
+      <data key="d13">True</data>
+      <data key="d14">5</data>
+      <data key="d15">False</data>
+      <data key="d16">133.15528303697513</data>
+      <data key="d17">LINESTRING (429923.00237322925 4582001.270524621, 429905.3474748343 4581984.509404, 429855.35770209704 4581936.673434391, 429848.7469558297 4581930.120116673, 429846.1877645602 4581927.480202546, 429827.15073418344 4581908.778540745)</data>
+      <data key="d18">30237645</data>
+      <data key="d19">30237703</data>
+    </edge>
+    <edge source="30237645" target="4719409243" id="0">
+      <data key="d8">[481121897, 481121898, 1353407054]</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de la Diputació</data>
+      <data key="d13">True</data>
+      <data key="d14">5</data>
+      <data key="d15">False</data>
+      <data key="d16">268.52764269237815</data>
+      <data key="d17">LINESTRING (430115.10756488086 4582188.807960936, 430097.6494075509 4582170.678834188, 430069.46228977945 4582140.317995854, 430039.68799147103 4582111.8711829195, 430039.1649036574 4582111.387707146, 430018.81672743487 4582091.021683448, 430001.5284241794 4582073.213123627, 429972.61541088135 4582045.690898559, 429941.407539321 4582018.668399436, 429923.00237322925 4582001.270524621)</data>
+      <data key="d18">4719409243</data>
+      <data key="d19">30237645</data>
+    </edge>
+    <edge source="30237645" target="559764760" id="0">
+      <data key="d8">[1360091609, 1409649733]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer d'Aribau</data>
+      <data key="d13">True</data>
+      <data key="d14">7</data>
+      <data key="d15">False</data>
+      <data key="d16">130.040576393842</data>
+      <data key="d17">LINESTRING (430013.7297579672 4581908.050889349, 430009.49200936325 4581912.555183006, 430005.9990382147 4581916.252876858, 429980.4976420525 4581942.435611674, 429958.091994195 4581965.335368261, 429941.6149700907 4581982.182310364, 429923.00237322925 4582001.270524621)</data>
+      <data key="d18">559764760</data>
+      <data key="d19">30237645</data>
+    </edge>
+    <edge source="11053219722" target="11061736176" id="0">
+      <data key="d8">[1190415832, 1191419562, 1191419374]</data>
+      <data key="d9">living_street</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer del Consell de Cent</data>
+      <data key="d13">True</data>
+      <data key="d14">['4.6', '6']</data>
+      <data key="d15">False</data>
+      <data key="d16">150.66276131504515</data>
+      <data key="d17">LINESTRING (429842.3725558219 4582084.412074804, 429845.9664220889 4582087.697038741, 429846.0597186476 4582093.01442004, 429846.18676179345 4582113.042805276, 429909.41111697315 4582175.5063903555, 429909.8197912479 4582190.091634459, 429910.33462701674 4582207.007458872)</data>
+      <data key="d18">11053219722</data>
+      <data key="d19">11061736176</data>
+    </edge>
+    <edge source="11053219722" target="11053219723" id="0">
+      <data key="d8">[295124094, 1409649735]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer d'Aribau</data>
+      <data key="d13">True</data>
+      <data key="d14">7</data>
+      <data key="d15">False</data>
+      <data key="d16">34.67887713648461</data>
+      <data key="d17">LINESTRING (429842.3725558219 4582084.412074804, 429831.9174968387 4582094.461514711, 429829.34297330154 4582097.140040476, 429822.3700338052 4582104.113577943, 429817.6910095377 4582108.788808071)</data>
+      <data key="d18">11053219722</data>
+      <data key="d19">11053219723</data>
+    </edge>
+    <edge source="30237703" target="2501701155" id="0">
+      <data key="d8">489412375</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de la Diputació</data>
+      <data key="d13">True</data>
+      <data key="d14">5</data>
+      <data key="d15">False</data>
+      <data key="d16">67.0462417529931</data>
+      <data key="d17">LINESTRING (429827.15073418344 4581908.778540745, 429809.54544936237 4581892.006062709, 429779.1099266483 4581861.978979015)</data>
+      <data key="d18">30237703</data>
+      <data key="d19">2501701155</data>
+    </edge>
+    <edge source="30237703" target="559764759" id="0">
+      <data key="d8">[1112801408, 1409652525]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Muntaner</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">129.91780822687252</data>
+      <data key="d17">LINESTRING (429827.15073418344 4581908.778540745, 429845.4077802521 4581890.104332268, 429892.84176623623 4581841.4142742315, 429893.53733413265 4581840.7080623405, 429908.2916777068 4581825.554219222, 429911.14813877677 4581822.617631858, 429917.8291227373 4581815.680323339)</data>
+      <data key="d18">30237703</data>
+      <data key="d19">559764759</data>
+    </edge>
+    <edge source="30237703" target="13228605046" id="0">
+      <data key="d8">1112801408</data>
+      <data key="d9">secondary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Muntaner</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">114.03490746686407</data>
+      <data key="d17">LINESTRING (429747.4762690123 4581990.412992622, 429752.0486804227 4581985.949707372, 429753.80409155163 4581984.167327834, 429768.5659933778 4581968.990904817, 429810.24458608986 4581926.1961873565, 429824.915936704 4581911.142894725, 429827.15073418344 4581908.778540745)</data>
+      <data key="d18">13228605046</data>
+      <data key="d19">30237703</data>
+    </edge>
+    <edge source="2501701155" target="2501773162" id="0">
+      <data key="d8">242715337</data>
+      <data key="d9">living_street</data>
+      <data key="d10">1</data>
+      <data key="d11">20</data>
+      <data key="d12">Passatge de Valeri Serra</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">131.73352231696083</data>
+      <data key="d17">LINESTRING (429779.1099266483 4581861.978979015, 429776.2529959526 4581864.860110229, 429774.67955710605 4581866.44086751, 429691.6458696942 4581950.018187947, 429686.23012970807 4581955.466750205)</data>
+      <data key="d18">2501701155</data>
+      <data key="d19">2501773162</data>
+    </edge>
+    <edge source="2501701155" target="30238009" id="0">
+      <data key="d8">[237519392, 489412374]</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de la Diputació</data>
+      <data key="d13">True</data>
+      <data key="d14">5</data>
+      <data key="d15">False</data>
+      <data key="d16">67.11473450597678</data>
+      <data key="d17">LINESTRING (429779.1099266483 4581861.978979015, 429765.8486783893 4581848.251107587, 429751.71950897446 4581833.843295143, 429732.09451945795 4581814.059492209)</data>
+      <data key="d18">2501701155</data>
+      <data key="d19">30238009</data>
+    </edge>
+    <edge source="2501701155" target="2501701062" id="0">
+      <data key="d8">1552481712</data>
+      <data key="d9">living_street</data>
+      <data key="d10">1</data>
+      <data key="d11">20</data>
+      <data key="d12">Passatge de Valeri Serra</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">130.36008864643185</data>
+      <data key="d17">LINESTRING (429871.02321756777 4581769.467770346, 429868.25721975614 4581772.248057193, 429788.8733305762 4581852.147129582, 429785.1468661297 4581855.902708402, 429779.1099266483 4581861.978979015)</data>
+      <data key="d18">2501701062</data>
+      <data key="d19">2501701155</data>
+    </edge>
+    <edge source="559764759" target="2501701062" id="0">
+      <data key="d8">[237914534, 545747639]</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral muntanya)</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">65.75463208027303</data>
+      <data key="d17">LINESTRING (429917.8291227373 4581815.680323339, 429904.6481445714 4581802.451056275, 429880.31680066214 4581778.459986533, 429871.02321756777 4581769.467770346)</data>
+      <data key="d18">559764759</data>
+      <data key="d19">2501701062</data>
+    </edge>
+    <edge source="559764759" target="559764760" id="0">
+      <data key="d8">237914534</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral muntanya)</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">133.1424591209297</data>
+      <data key="d17">LINESTRING (430013.7297579672 4581908.050889349, 430006.60042940045 4581902.335155849, 430004.3203127924 4581900.014474698, 429934.69318249426 4581831.905084372, 429931.7984701798 4581829.157356019, 429917.8291227373 4581815.680323339)</data>
+      <data key="d18">559764760</data>
+      <data key="d19">559764759</data>
+    </edge>
+    <edge source="30237705" target="30237706" id="0">
+      <data key="d8">553772888</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Muntaner</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">60.765660886946286</data>
+      <data key="d17">LINESTRING (430032.9144591974 4581695.300978133, 430039.1083639222 4581688.990252356, 430063.46516373724 4581664.528648812, 430064.3155590914 4581663.39905062, 430071.1225709012 4581658.226032472, 430077.4392672836 4581654.234657159)</data>
+      <data key="d18">30237705</data>
+      <data key="d19">30237706</data>
+    </edge>
+    <edge source="30237705" target="112399403" id="0">
+      <data key="d8">918410082</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Sepúlveda</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">70.5044279761337</data>
+      <data key="d17">LINESTRING (430086.5048320933 4581739.272930103, 430076.63246116566 4581737.00328036, 430042.3184479202 4581704.481081475, 430040.90871405014 4581703.106832594, 430037.3887184831 4581699.687823974, 430032.9144591974 4581695.300978133)</data>
+      <data key="d18">112399403</data>
+      <data key="d19">30237705</data>
+    </edge>
+    <edge source="30237706" target="112399403" id="0">
+      <data key="d8">525588035</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Ronda de Sant Antoni</data>
+      <data key="d13">True</data>
+      <data key="d14">12</data>
+      <data key="d15">False</data>
+      <data key="d16">85.64948208602495</data>
+      <data key="d17">LINESTRING (430077.4392672836 4581654.234657159, 430084.9705372605 4581724.121205228, 430086.5048320933 4581739.272930103)</data>
+      <data key="d18">30237706</data>
+      <data key="d19">112399403</data>
+    </edge>
+    <edge source="112399403" target="112426103" id="0">
+      <data key="d8">185957649</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">5</data>
+      <data key="d11">50</data>
+      <data key="d12">Ronda de Sant Antoni</data>
+      <data key="d13">False</data>
+      <data key="d14">12</data>
+      <data key="d15">True</data>
+      <data key="d16">85.95253403490199</data>
+      <data key="d17">LINESTRING (430095.48960325966 4581824.622881326, 430087.6768397743 4581748.943330055, 430086.5048320933 4581739.272930103)</data>
+      <data key="d18">112426103</data>
+      <data key="d19">112399403</data>
+    </edge>
+    <edge source="30243053" target="442540254" id="0">
+      <data key="d8">908375888</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de la Diputació</data>
+      <data key="d13">True</data>
+      <data key="d14">6</data>
+      <data key="d15">False</data>
+      <data key="d16">16.37867544115719</data>
+      <data key="d17">LINESTRING (430364.10563320224 4582432.461217571, 430356.8036209555 4582425.225717614, 430352.448107078 4582420.9485707395)</data>
+      <data key="d18">30243053</data>
+      <data key="d19">442540254</data>
+    </edge>
+    <edge source="30243053" target="1311770050" id="0">
+      <data key="d8">908375889</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">6</data>
+      <data key="d11">50</data>
+      <data key="d12">Passeig de Gràcia</data>
+      <data key="d13">False</data>
+      <data key="d15">True</data>
+      <data key="d16">101.45782116709258</data>
+      <data key="d17">LINESTRING (430432.54175423493 4582357.536553137, 430406.918843887 4582384.984701059, 430405.0732234986 4582386.95653767, 430373.59380287764 4582421.833385892, 430364.10563320224 4582432.461217571)</data>
+      <data key="d18">1311770050</data>
+      <data key="d19">30243053</data>
+    </edge>
+    <edge source="442540254" target="9788435899" id="0">
+      <data key="d8">908375890</data>
+      <data key="d9">living_street</data>
+      <data key="d10">1</data>
+      <data key="d11">10</data>
+      <data key="d12">Passeig de Gràcia (lateral Llobregat)</data>
+      <data key="d13">True</data>
+      <data key="d14">3</data>
+      <data key="d15">False</data>
+      <data key="d16">130.0165475999568</data>
+      <data key="d17">LINESTRING (430352.448107078 4582420.9485707395, 430360.47845877265 4582410.012754322, 430407.75576726795 4582358.08549344, 430414.7798513414 4582350.312625065, 430427.8435005668 4582335.8533436945, 430439.30449976044 4582324.285120195)</data>
+      <data key="d18">442540254</data>
+      <data key="d19">9788435899</data>
+    </edge>
+    <edge source="442540254" target="301572243" id="0">
+      <data key="d8">908375891</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de la Diputació</data>
+      <data key="d13">True</data>
+      <data key="d14">6</data>
+      <data key="d15">False</data>
+      <data key="d16">132.41304036023567</data>
+      <data key="d17">LINESTRING (430352.448107078 4582420.9485707395, 430344.6227056558 4582413.196279283, 430276.801541307 4582345.976797106, 430275.88137326395 4582345.064114086, 430274.6404054648 4582343.832535212, 430273.3826092923 4582342.590015635, 430258.36458746553 4582327.712378688)</data>
+      <data key="d18">442540254</data>
+      <data key="d19">301572243</data>
+    </edge>
+    <edge source="1311770050" target="1382922538" id="0">
+      <data key="d8">126301385</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Passeig de Gràcia</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">31.164715655157963</data>
+      <data key="d17">LINESTRING (430432.54175423493 4582357.536553137, 430436.0499609893 4582349.331148597, 430437.84909102524 4582345.12808884, 430441.9109650274 4582336.240095835, 430443.2998737121 4582328.499159326)</data>
+      <data key="d18">1311770050</data>
+      <data key="d19">1382922538</data>
+    </edge>
+    <edge source="1311770050" target="269369082" id="0">
+      <data key="d8">116343003</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Passeig de Gràcia</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">31.463422476456728</data>
+      <data key="d17">LINESTRING (430462.1728603836 4582347.814625712, 430453.42694062507 4582348.686885273, 430445.0336713189 4582351.454361244, 430432.54175423493 4582357.536553137)</data>
+      <data key="d18">269369082</data>
+      <data key="d19">1311770050</data>
+    </edge>
+    <edge source="30243322" target="555187275" id="0">
+      <data key="d8">86301093</data>
+      <data key="d9">residential</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer d'Enric Granados</data>
+      <data key="d13">True</data>
+      <data key="d14">2.6</data>
+      <data key="d15">False</data>
+      <data key="d16">68.15236947884765</data>
+      <data key="d17">LINESTRING (429741.6193817225 4582381.480474936, 429757.56359929586 4582365.015701696, 429788.2196987166 4582331.731814359)</data>
+      <data key="d18">30243322</data>
+      <data key="d19">555187275</data>
+    </edge>
+    <edge source="555187275" target="4022831609" id="0">
+      <data key="d8">[74387522, 1226864102]</data>
+      <data key="d9">residential</data>
+      <data key="d11">10</data>
+      <data key="d12">Plaça del Doctor Letamendi</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">89.23872232277739</data>
+      <data key="d17">LINESTRING (429788.2196987166 4582331.731814359, 429787.9088309515 4582328.126385688, 429787.7392000026 4582323.564739068, 429787.7894882 4582265.773675919, 429788.03598453 4582261.874170535, 429788.0422308549 4582253.891127964, 429787.799575029 4582242.657349352)</data>
+      <data key="d18">555187275</data>
+      <data key="d19">4022831609</data>
+    </edge>
+    <edge source="555187275" target="11370726443" id="0">
+      <data key="d8">43802775</data>
+      <data key="d9">residential</data>
+      <data key="d11">10</data>
+      <data key="d12">Plaça del Doctor Letamendi</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">89.10553471821625</data>
+      <data key="d17">LINESTRING (429877.453088224 4582329.246513412, 429861.0538627229 4582330.704305793, 429829.20148988714 4582331.1570985215, 429794.18903779594 4582331.6628605565, 429788.2196987166 4582331.731814359)</data>
+      <data key="d18">11370726443</data>
+      <data key="d19">555187275</data>
+    </edge>
+    <edge source="30247434" target="3314294600" id="0">
+      <data key="d8">[1112801401, 1408687439]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Balmes</data>
+      <data key="d13">True</data>
+      <data key="d14">10</data>
+      <data key="d15">False</data>
+      <data key="d16">116.49585220047373</data>
+      <data key="d17">LINESTRING (429928.721684605 4582381.644624915, 429933.6879537639 4582376.42264219, 429948.7689112245 4582360.566205143, 429967.9360565547 4582340.984139191, 429970.2543682714 4582338.619018489, 429978.66639354586 4582330.021790145, 430002.62127914804 4582304.886513478, 430005.6264643668 4582301.781977461, 430009.5250516665 4582297.680654332)</data>
+      <data key="d18">30247434</data>
+      <data key="d19">3314294600</data>
+    </edge>
+    <edge source="30247434" target="11370726443" id="0">
+      <data key="d8">1408525899</data>
+      <data key="d9">primary</data>
+      <data key="d10">5</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer d'Aragó</data>
+      <data key="d13">True</data>
+      <data key="d14">15</data>
+      <data key="d15">False</data>
+      <data key="d16">73.30126553528339</data>
+      <data key="d17">LINESTRING (429928.721684605 4582381.644624915, 429908.9596103737 4582362.183679011, 429902.32442272967 4582355.652759861, 429883.78027075867 4582335.913626314, 429880.56983817794 4582332.491699422, 429878.9312322093 4582330.786611124, 429877.453088224 4582329.246513412)</data>
+      <data key="d22">yes</data>
+      <data key="d18">30247434</data>
+      <data key="d19">11370726443</data>
+    </edge>
+    <edge source="3314294600" target="10181609591" id="0">
+      <data key="d8">1112801400</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Balmes</data>
+      <data key="d13">True</data>
+      <data key="d14">10</data>
+      <data key="d15">False</data>
+      <data key="d16">35.699626853817435</data>
+      <data key="d17">LINESTRING (430009.5250516665 4582297.680654332, 430021.77510756045 4582285.626710559, 430024.84622895386 4582282.421620068, 430034.5302687385 4582272.191152439)</data>
+      <data key="d18">3314294600</data>
+      <data key="d19">10181609591</data>
+    </edge>
+    <edge source="3314294600" target="3207831035" id="0">
+      <data key="d8">[1321517996, 1112801397, 1112801398, 1112801399, 1112801404]</data>
+      <data key="d9">living_street</data>
+      <data key="d11">10</data>
+      <data key="d12">['Rambla de Catalunya', 'Carrer del Consell de Cent', 'Carrer de Balmes']</data>
+      <data key="d13">True</data>
+      <data key="d14">['3.7', '6', '10']</data>
+      <data key="d15">False</data>
+      <data key="d16">191.68903441967535</data>
+      <data key="d17">LINESTRING (430009.5250516665 4582297.680654332, 430013.18282900064 4582299.810380414, 430015.41575820855 4582300.72145197, 430030.8172710407 4582299.839894474, 430037.6878639744 4582299.584791267, 430096.1575198132 4582357.488173447, 430138.3532298681 4582396.973805499, 430156.02192877146 4582397.980342619, 430158.3572876889 4582398.2465023855, 430160.76197964285 4582399.633385943)</data>
+      <data key="d18">3314294600</data>
+      <data key="d19">3207831035</data>
+    </edge>
+    <edge source="11370726443" target="555187278" id="0">
+      <data key="d8">43802774</data>
+      <data key="d9">residential</data>
+      <data key="d11">20</data>
+      <data key="d12">Plaça del Doctor Letamendi</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">88.92162756088754</data>
+      <data key="d17">LINESTRING (429877.453088224 4582329.246513412, 429878.266452116 4582321.710878506, 429878.6527600703 4582317.565759951, 429878.76241689234 4582313.345598956, 429876.7450923206 4582240.552352544)</data>
+      <data key="d18">11370726443</data>
+      <data key="d19">555187278</data>
+    </edge>
+    <edge source="11370726443" target="4022831609" id="0">
+      <data key="d8">[1408526882, 1408525900]</data>
+      <data key="d9">primary</data>
+      <data key="d10">5</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer d'Aragó</data>
+      <data key="d13">True</data>
+      <data key="d14">15</data>
+      <data key="d15">False</data>
+      <data key="d16">124.60558126370276</data>
+      <data key="d17">LINESTRING (429877.453088224 4582329.246513412, 429839.39683651325 4582293.463950239, 429833.44765871693 4582287.847988695, 429829.8514097795 4582284.307688481, 429803.9854339925 4582258.855065994, 429800.76947382814 4582255.733005022, 429787.799575029 4582242.657349352)</data>
+      <data key="d22">yes</data>
+      <data key="d18">11370726443</data>
+      <data key="d19">4022831609</data>
+    </edge>
+    <edge source="30884265" target="112382699" id="0">
+      <data key="d8">12372760</data>
+      <data key="d9">living_street</data>
+      <data key="d11">20</data>
+      <data key="d12">Carrer de Jovellanos</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">99.70826523568142</data>
+      <data key="d17">LINESTRING (430439.94091244636 4581813.158370689, 430414.66488773713 4581896.961250758, 430413.55932627624 4581908.962966427)</data>
+      <data key="d18">30884265</data>
+      <data key="d19">112382699</data>
+    </edge>
+    <edge source="112382699" target="71643550" id="0">
+      <data key="d8">[68506242, 1214315734]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">['1', '3']</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de Pelai</data>
+      <data key="d13">True</data>
+      <data key="d14">14</data>
+      <data key="d15">False</data>
+      <data key="d16">21.14924402373847</data>
+      <data key="d17">LINESTRING (430392.7954336646 4581913.159448764, 430403.4078606705 4581910.681488651, 430409.694025468 4581909.610748184, 430413.55932627624 4581908.962966427)</data>
+      <data key="d18">71643550</data>
+      <data key="d19">112382699</data>
+    </edge>
+    <edge source="71643529" target="1400448338" id="0">
+      <data key="d8">[483469233, 1303878700, 545718431]</data>
+      <data key="d9">primary</data>
+      <data key="d10">5</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">163.25071125081294</data>
+      <data key="d17">LINESTRING (430219.24671353016 4582080.8057178, 430243.3616222622 4582105.987981733, 430277.6844870141 4582140.58724455, 430299.4971011672 4582162.905097821, 430320.75545665197 4582184.1180576775, 430330.6331707785 4582193.9712395985, 430333.8243756378 4582197.149283406)</data>
+      <data key="d20">C-31</data>
+      <data key="d18">71643529</data>
+      <data key="d19">1400448338</data>
+    </edge>
+    <edge source="71643529" target="559765972" id="0">
+      <data key="d8">491443474</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Balmes</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">18.898740908266525</data>
+      <data key="d17">LINESTRING (430219.24671353016 4582080.8057178, 430229.4845074221 4582070.7145299185, 430230.835782124 4582069.502406433, 430232.71499005565 4582067.541306622)</data>
+      <data key="d18">71643529</data>
+      <data key="d19">559765972</data>
+    </edge>
+    <edge source="71643529" target="4719409243" id="0">
+      <data key="d8">[1535871448, 1408687441, 550620361, 1353407053]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Balmes</data>
+      <data key="d13">True</data>
+      <data key="d14">10</data>
+      <data key="d15">False</data>
+      <data key="d16">149.9895298027981</data>
+      <data key="d17">LINESTRING (430115.10756488086 4582188.807960936, 430131.14341299224 4582172.176615674, 430165.7795662956 4582136.024775139, 430167.85747204215 4582133.861890431, 430189.26506689744 4582111.50533442, 430193.4125470637 4582107.179660165, 430202.02202535165 4582098.192202773, 430207.5450142539 4582092.565351708, 430209.2993319254 4582090.6609629635, 430219.24671353016 4582080.8057178)</data>
+      <data key="d18">4719409243</data>
+      <data key="d19">71643529</data>
+    </edge>
+    <edge source="1400448338" target="1400448339" id="0">
+      <data key="d8">126302004</data>
+      <data key="d9">primary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">24.162411346613982</data>
+      <data key="d20">C-31</data>
+      <data key="d18">1400448338</data>
+      <data key="d19">1400448339</data>
+      <data key="d17">LINESTRING (430333.8243756378 4582197.149283406, 430356.88913085964 4582204.499689691)</data>
+    </edge>
+    <edge source="1400448338" target="301573130" id="0">
+      <data key="d8">126302005</data>
+      <data key="d9">primary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">22.29503837048125</data>
+      <data key="d17">LINESTRING (430333.8243756378 4582197.149283406, 430338.6445023529 4582206.25170445, 430344.2564651921 4582216.834300706)</data>
+      <data key="d20">C-31</data>
+      <data key="d18">1400448338</data>
+      <data key="d19">301573130</data>
+    </edge>
+    <edge source="559765972" target="11466476299" id="0">
+      <data key="d8">237522643</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral mar)</data>
+      <data key="d13">True</data>
+      <data key="d14">4</data>
+      <data key="d15">False</data>
+      <data key="d16">188.547059165309</data>
+      <data key="d17">LINESTRING (430232.71499005565 4582067.541306622, 430249.52938834025 4582084.8220299035, 430319.936057778 4582153.692954851, 430346.47260522394 4582179.474022182, 430349.12285196665 4582182.046615417, 430360.7879426315 4582193.437056703, 430368.4757371175 4582198.159605383)</data>
+      <data key="d18">559765972</data>
+      <data key="d19">11466476299</data>
+    </edge>
+    <edge source="559765972" target="559765962" id="0">
+      <data key="d8">237506945</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral mar)</data>
+      <data key="d13">True</data>
+      <data key="d14">4</data>
+      <data key="d15">False</data>
+      <data key="d16">147.7773306923702</data>
+      <data key="d17">LINESTRING (430127.5438510365 4581963.665918722, 430138.3941277539 4581974.597550494, 430212.0972227179 4582047.788005247, 430216.27617680276 4582051.933538016, 430232.71499005565 4582067.541306622)</data>
+      <data key="d18">559765962</data>
+      <data key="d19">559765972</data>
+    </edge>
+    <edge source="71643550" target="194589435" id="0">
+      <data key="d8">[1408654608, 1408654609, 1050464821, 1050464822, 295215799]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Pelai</data>
+      <data key="d13">True</data>
+      <data key="d14">8</data>
+      <data key="d15">False</data>
+      <data key="d16">139.23325171711727</data>
+      <data key="d17">LINESTRING (430254.0915807714 4581926.395590287, 430328.49982904067 4581917.3414459275, 430341.5541523574 4581915.761452247, 430361.4403449963 4581913.338614479, 430364.6144475092 4581912.986124488, 430366.36855971994 4581912.791620142, 430367.9054982353 4581912.621409098, 430392.7954336646 4581913.159448764)</data>
+      <data key="d18">194589435</data>
+      <data key="d19">71643550</data>
+    </edge>
+    <edge source="112398908" target="14135185983" id="0">
+      <data key="d8">1335771615</data>
+      <data key="d9">residential</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer de Torres i Amat</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">7.993157524640004</data>
+      <data key="d17">LINESTRING (430289.0198168236 4581775.2713485565, 430286.2985800319 4581774.897826583, 430283.15661218675 4581774.250782018, 430281.1218481545 4581773.959479905)</data>
+      <data key="d18">112398908</data>
+      <data key="d19">14135185983</data>
+    </edge>
+    <edge source="112398908" target="3868361514" id="0">
+      <data key="d8">[916847081, 11300426]</data>
+      <data key="d9">residential</data>
+      <data key="d11">30</data>
+      <data key="d12">['Carrer dels Tallers', 'Carrer de Valldonzella']</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">133.07247053050213</data>
+      <data key="d17">LINESTRING (430242.78666879877 4581839.568921373, 430247.3287114916 4581838.859021855, 430275.24966229725 4581834.571044309, 430315.5472598785 4581827.777015692, 430315.3066598787 4581823.626856171, 430315.3234481295 4581821.894646957, 430311.4535635271 4581815.114704061, 430295.25481586653 4581787.124744379, 430291.5017076003 4581781.187506439, 430289.0198168236 4581775.2713485565)</data>
+      <data key="d18">3868361514</data>
+      <data key="d19">112398908</data>
+    </edge>
+    <edge source="112426103" target="1282870796" id="0">
+      <data key="d8">4744948</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Plaça de la Universitat</data>
+      <data key="d13">True</data>
+      <data key="d14">6</data>
+      <data key="d15">False</data>
+      <data key="d16">40.54596587543862</data>
+      <data key="d17">LINESTRING (430095.48960325966 4581824.622881326, 430089.6427546395 4581831.363225383, 430086.54643138446 4581834.579627314, 430073.74696691905 4581847.848949771, 430067.7205023467 4581854.1691366695)</data>
+      <data key="d18">112426103</data>
+      <data key="d19">1282870796</data>
+    </edge>
+    <edge source="112426103" target="2495575748" id="0">
+      <data key="d8">238326403</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Ronda de Sant Antoni</data>
+      <data key="d13">False</data>
+      <data key="d15">True</data>
+      <data key="d16">38.693798411987565</data>
+      <data key="d17">LINESTRING (430100.2912642056 4581862.959206131, 430099.7053795014 4581858.5681185825, 430099.05389750376 4581853.444873989, 430095.48960325966 4581824.622881326)</data>
+      <data key="d18">2495575748</data>
+      <data key="d19">112426103</data>
+    </edge>
+    <edge source="1282870796" target="559026426" id="0">
+      <data key="d8">532570624</data>
+      <data key="d9">secondary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Plaça de la Universitat</data>
+      <data key="d13">True</data>
+      <data key="d14">9</data>
+      <data key="d15">False</data>
+      <data key="d16">37.08763954991868</data>
+      <data key="d17">LINESTRING (430067.7205023467 4581854.1691366695, 430048.85319270135 4581872.926381277, 430047.9838523164 4581873.823004681, 430041.5761450293 4581880.491084571)</data>
+      <data key="d18">1282870796</data>
+      <data key="d19">559026426</data>
+    </edge>
+    <edge source="1282870796" target="1282870801" id="0">
+      <data key="d8">111253717</data>
+      <data key="d9">secondary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Plaça de la Universitat</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">46.196559279906445</data>
+      <data key="d17">LINESTRING (430106.21978263377 4581879.423097297, 430092.8606422832 4581871.94650644, 430082.6683022824 4581863.362401126, 430079.25473512826 4581860.56410766, 430073.7876570904 4581857.263798364, 430067.7205023467 4581854.1691366695)</data>
+      <data key="d18">1282870801</data>
+      <data key="d19">1282870796</data>
+    </edge>
+    <edge source="2495575748" target="1282870801" id="0">
+      <data key="d8">1337648827</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Ronda de Sant Antoni</data>
+      <data key="d13">False</data>
+      <data key="d15">True</data>
+      <data key="d16">17.77373802830366</data>
+      <data key="d17">LINESTRING (430106.21978263377 4581879.423097297, 430103.5021453641 4581875.085882267, 430101.6216856133 4581870.851620621, 430100.2912642056 4581862.959206131)</data>
+      <data key="d18">1282870801</data>
+      <data key="d19">2495575748</data>
+    </edge>
+    <edge source="2495575748" target="3868361514" id="0">
+      <data key="d8">[1360091608, 11300426]</data>
+      <data key="d9">['living_street', 'residential']</data>
+      <data key="d11">['30', '10']</data>
+      <data key="d12">Carrer dels Tallers</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">144.1130621678838</data>
+      <data key="d17">LINESTRING (430100.2912642056 4581862.959206131, 430110.4453129321 4581860.640679047, 430159.91350475897 4581852.758067308, 430233.50245327974 4581841.046170388, 430242.78666879877 4581839.568921373)</data>
+      <data key="d18">2495575748</data>
+      <data key="d19">3868361514</data>
+    </edge>
+    <edge source="194589435" target="3868361514" id="0">
+      <data key="d8">4809707</data>
+      <data key="d9">residential</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer de Gravina</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">87.69304890746575</data>
+      <data key="d17">LINESTRING (430254.0915807714 4581926.395590287, 430253.8190301763 4581925.010354659, 430252.74434187706 4581916.737955906, 430243.69054504484 4581846.599440822, 430242.78666879877 4581839.568921373)</data>
+      <data key="d18">194589435</data>
+      <data key="d19">3868361514</data>
+    </edge>
+    <edge source="269369082" target="1382922538" id="0">
+      <data key="d8">[1110435371, 1110435366, 316789518]</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral muntanya)</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">27.079716994183578</data>
+      <data key="d17">LINESTRING (430462.1728603836 4582347.814625712, 430456.88779371075 4582342.513772209, 430455.0675278354 4582341.03235798, 430447.8423630053 4582333.962572725, 430446.0348105596 4582331.193105154, 430443.2998737121 4582328.499159326)</data>
+      <data key="d18">269369082</data>
+      <data key="d19">1382922538</data>
+    </edge>
+    <edge source="1382922538" target="9788435899" id="0">
+      <data key="d8">44027231</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral muntanya)</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">5.805774891939019</data>
+      <data key="d18">1382922538</data>
+      <data key="d19">9788435899</data>
+      <data key="d17">LINESTRING (430443.2998737121 4582328.499159326, 430439.30449976044 4582324.285120195)</data>
+    </edge>
+    <edge source="1382922538" target="2495598155" id="0">
+      <data key="d8">542963106</data>
+      <data key="d9">tertiary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Passeig de Gràcia</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">6.938393948737442</data>
+      <data key="d17">LINESTRING (430443.2998737121 4582328.499159326, 430443.987451463 4582326.960360969, 430446.3925435796 4582322.296267897)</data>
+      <data key="d18">1382922538</data>
+      <data key="d19">2495598155</data>
+    </edge>
+    <edge source="301572132" target="2495598155" id="0">
+      <data key="d8">316789524</data>
+      <data key="d9">primary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">127.52162086914012</data>
+      <data key="d17">LINESTRING (430355.787450486 4582232.545041701, 430368.38659865106 4582246.302530403, 430394.652647711 4582271.831000524, 430428.62434459355 4582304.846617225, 430431.2070993134 4582307.364373121, 430438.71140355326 4582314.76454839, 430439.71579973085 4582315.743060184, 430442.44419411814 4582318.625816427, 430446.3925435796 4582322.296267897)</data>
+      <data key="d20">C-31</data>
+      <data key="d18">301572132</data>
+      <data key="d19">2495598155</data>
+    </edge>
+    <edge source="301572132" target="2521199755" id="0">
+      <data key="d8">673080428</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">6.886846973796513</data>
+      <data key="d17">LINESTRING (430355.787450486 4582232.545041701, 430352.7962486787 4582235.382824775, 430352.03400419466 4582236.111839641, 430350.7911101941 4582237.289590505)</data>
+      <data key="d18">301572132</data>
+      <data key="d19">2521199755</data>
+    </edge>
+    <edge source="301572132" target="301573130" id="0">
+      <data key="d8">673080418</data>
+      <data key="d9">primary</data>
+      <data key="d10">2</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">19.511395808153242</data>
+      <data key="d17">LINESTRING (430344.2564651921 4582216.834300706, 430353.08193707344 4582229.440039527, 430355.787450486 4582232.545041701)</data>
+      <data key="d20">C-31</data>
+      <data key="d18">301573130</data>
+      <data key="d19">301572132</data>
+    </edge>
+    <edge source="301572132" target="559765964" id="0">
+      <data key="d8">27465349</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">22.977795334590773</data>
+      <data key="d17">LINESTRING (430371.3531929316 4582215.67449273, 430369.04026106535 4582218.616778724, 430361.7112296624 4582226.858940088, 430355.787450486 4582232.545041701)</data>
+      <data key="d18">559765964</data>
+      <data key="d19">301572132</data>
+    </edge>
+    <edge source="2521199755" target="301572243" id="0">
+      <data key="d8">1360091612</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d14">4</data>
+      <data key="d15">False</data>
+      <data key="d16">129.24780050834036</data>
+      <data key="d17">LINESTRING (430350.7911101941 4582237.289590505, 430336.9740420276 4582250.790302332, 430274.3987039856 4582311.769742447, 430273.34695373813 4582312.823535935, 430258.36458746553 4582327.712378688)</data>
+      <data key="d18">2521199755</data>
+      <data key="d19">301572243</data>
+    </edge>
+    <edge source="2521199755" target="9788435899" id="0">
+      <data key="d8">[1110435369, 1110435370, 1110435374, 44027231]</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral muntanya)</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">124.07636594945764</data>
+      <data key="d17">LINESTRING (430439.30449976044 4582324.285120195, 430430.58178336563 4582315.38665378, 430427.35078848107 4582312.408802707, 430422.9050976097 4582308.321228575, 430368.19332421245 4582254.031989764, 430364.4958244725 4582250.370271331, 430350.7911101941 4582237.289590505)</data>
+      <data key="d18">9788435899</data>
+      <data key="d19">2521199755</data>
+    </edge>
+    <edge source="301572243" target="11053280241" id="0">
+      <data key="d8">1321516487</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d14">4</data>
+      <data key="d15">False</data>
+      <data key="d16">118.62354245987468</data>
+      <data key="d17">LINESTRING (430258.36458746553 4582327.712378688, 430254.63664113096 4582331.31229291, 430239.48466020805 4582346.813468289, 430182.9348761582 4582403.84971226, 430180.85661799996 4582405.968187037, 430174.6841333242 4582411.845590686)</data>
+      <data key="d18">301572243</data>
+      <data key="d19">11053280241</data>
+    </edge>
+    <edge source="301572243" target="301573106" id="0">
+      <data key="d8">1360091611</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de la Diputació</data>
+      <data key="d13">True</data>
+      <data key="d14">6</data>
+      <data key="d15">False</data>
+      <data key="d16">18.05965917999115</data>
+      <data key="d17">LINESTRING (430258.36458746553 4582327.712378688, 430252.05006522767 4582321.455630963, 430245.4832181416 4582315.045877753)</data>
+      <data key="d18">301572243</data>
+      <data key="d19">301573106</data>
+    </edge>
+    <edge source="301573106" target="4719409243" id="0">
+      <data key="d8">478725549</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Carrer de la Diputació</data>
+      <data key="d13">True</data>
+      <data key="d14">5</data>
+      <data key="d15">False</data>
+      <data key="d16">181.55391344494487</data>
+      <data key="d17">LINESTRING (430245.4832181416 4582315.045877753, 430231.04155727086 4582299.2523097955, 430186.9237241099 4582253.800211563, 430160.0434981451 4582230.565592133, 430137.46969037317 4582209.976438385, 430136.16189753084 4582208.756629755, 430122.4346013242 4582195.987469367, 430115.10756488086 4582188.807960936)</data>
+      <data key="d18">301573106</data>
+      <data key="d19">4719409243</data>
+    </edge>
+    <edge source="301573106" target="301573130" id="0">
+      <data key="d8">[1321516489, 673080417]</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d14">4</data>
+      <data key="d15">False</data>
+      <data key="d16">139.2449453431727</data>
+      <data key="d17">LINESTRING (430245.4832181416 4582315.045877753, 430260.27596357005 4582300.436406062, 430262.4459217007 4582298.283764229, 430319.9441657884 4582241.472220199, 430323.2738689477 4582238.18705252, 430336.5665623303 4582224.935620332, 430338.13146651635 4582223.332861433, 430340.7367951466 4582220.365548045, 430344.2564651921 4582216.834300706)</data>
+      <data key="d18">301573106</data>
+      <data key="d19">301573130</data>
+    </edge>
+    <edge source="301573106" target="3207831035" id="0">
+      <data key="d8">1321516489</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d14">4</data>
+      <data key="d15">False</data>
+      <data key="d16">119.68380701797633</data>
+      <data key="d17">LINESTRING (430160.76197964285 4582399.633385943, 430168.30185245513 4582392.488163449, 430197.2291962239 4582362.709013807, 430224.88441603276 4582335.384872732, 430227.43605198513 4582332.928765899, 430242.0448983627 4582318.332129004, 430245.4832181416 4582315.045877753)</data>
+      <data key="d18">3207831035</data>
+      <data key="d19">301573106</data>
+    </edge>
+    <edge source="4719409243" target="10181609591" id="0">
+      <data key="d8">[1408687440, 449991617]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Balmes</data>
+      <data key="d13">True</data>
+      <data key="d14">10</data>
+      <data key="d15">False</data>
+      <data key="d16">115.91904482990843</data>
+      <data key="d17">LINESTRING (430034.5302687385 4582272.191152439, 430039.3668865677 4582267.38130534, 430058.0845506719 4582247.959272564, 430067.0419466339 4582238.66850863, 430079.6915865523 4582225.544934059, 430096.48059707147 4582208.129036787, 430099.45274158777 4582205.0581693845, 430112.085885203 4582191.945916694, 430115.10756488086 4582188.807960936)</data>
+      <data key="d18">10181609591</data>
+      <data key="d19">4719409243</data>
+    </edge>
+    <edge source="301573130" target="1400448339" id="0">
+      <data key="d8">673080424</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">17.64823342079975</data>
+      <data key="d18">301573130</data>
+      <data key="d19">1400448339</data>
+      <data key="d17">LINESTRING (430344.2564651921 4582216.834300706, 430356.88913085964 4582204.499689691)</data>
+    </edge>
+    <edge source="1400448339" target="559765964" id="0">
+      <data key="d8">1235264094</data>
+      <data key="d9">primary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Gran Via de les Corts Catalanes</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">18.26912167270672</data>
+      <data key="d17">LINESTRING (430356.88913085964 4582204.499689691, 430367.9690387122 4582213.297694373, 430371.3531929316 4582215.67449273)</data>
+      <data key="d20">C-31</data>
+      <data key="d18">1400448339</data>
+      <data key="d19">559765964</data>
+    </edge>
+    <edge source="1400448339" target="11466476299" id="0">
+      <data key="d8">1235264095</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">13.189349717392876</data>
+      <data key="d17">LINESTRING (430356.88913085964 4582204.499689691, 430365.1819670803 4582199.967723441, 430368.4757371175 4582198.159605383)</data>
+      <data key="d18">1400448339</data>
+      <data key="d19">11466476299</data>
+    </edge>
+    <edge source="4022831609" target="30237643" id="0">
+      <data key="d8">1408526881</data>
+      <data key="d9">primary</data>
+      <data key="d10">5</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer d'Aragó</data>
+      <data key="d13">True</data>
+      <data key="d14">15</data>
+      <data key="d15">False</data>
+      <data key="d16">71.01703328456459</data>
+      <data key="d17">LINESTRING (429787.799575029 4582242.657349352, 429786.31314080756 4582241.128452864, 429762.0520761758 4582217.381369801, 429755.562093709 4582211.193362704, 429737.0318196772 4582192.964451575)</data>
+      <data key="d22">yes</data>
+      <data key="d18">4022831609</data>
+      <data key="d19">30237643</data>
+    </edge>
+    <edge source="4022831609" target="555187278" id="0">
+      <data key="d8">[1226864208, 399552097]</data>
+      <data key="d9">residential</data>
+      <data key="d11">20</data>
+      <data key="d12">Plaça del Doctor Letamendi</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">88.82595552347739</data>
+      <data key="d17">LINESTRING (429876.7450923206 4582240.552352544, 429848.2701431639 4582240.983465343, 429808.18649289274 4582241.105244272, 429804.098338503 4582241.1670602, 429796.56056082714 4582241.606495337, 429787.799575029 4582242.657349352)</data>
+      <data key="d18">555187278</data>
+      <data key="d19">4022831609</data>
+    </edge>
+    <edge source="555187278" target="11061736176" id="0">
+      <data key="d8">43802776</data>
+      <data key="d9">living_street</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer d'Enric Granados</data>
+      <data key="d13">True</data>
+      <data key="d14">5.3</data>
+      <data key="d15">False</data>
+      <data key="d16">47.48015377464243</data>
+      <data key="d17">LINESTRING (429910.33462701674 4582207.007458872, 429880.15014734387 4582236.433530589, 429876.7450923206 4582240.552352544)</data>
+      <data key="d18">11061736176</data>
+      <data key="d19">555187278</data>
+    </edge>
+    <edge source="559026426" target="559765962" id="0">
+      <data key="d8">547249781</data>
+      <data key="d9">residential</data>
+      <data key="d10">2</data>
+      <data key="d11">30</data>
+      <data key="d12">Gran Via de les Corts Catalanes (lateral mar)</data>
+      <data key="d13">True</data>
+      <data key="d14">4</data>
+      <data key="d15">False</data>
+      <data key="d16">119.58059282794729</data>
+      <data key="d17">LINESTRING (430041.5761450293 4581880.491084571, 430051.48980818584 4581889.6551730065, 430112.5825400472 4581948.710301996, 430115.0133186528 4581951.051768837, 430127.5438510365 4581963.665918722)</data>
+      <data key="d18">559026426</data>
+      <data key="d19">559765962</data>
+    </edge>
+    <edge source="559765964" target="11466476297" id="0">
+      <data key="d8">8380873</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">22.098477857412952</data>
+      <data key="d17">LINESTRING (430380.0467649838 4582195.417021192, 430375.0392882237 4582208.577638345, 430371.3531929316 4582215.67449273)</data>
+      <data key="d18">11466476297</data>
+      <data key="d19">559765964</data>
+    </edge>
+    <edge source="11466476299" target="11466476297" id="0">
+      <data key="d8">1451848921</data>
+      <data key="d9">residential</data>
+      <data key="d10">1</data>
+      <data key="d11">30</data>
+      <data key="d12">Rambla de Catalunya</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">11.877139116877984</data>
+      <data key="d17">LINESTRING (430368.4757371175 4582198.159605383, 430373.537247781 4582196.711997428, 430380.0467649838 4582195.417021192)</data>
+      <data key="d18">11466476299</data>
+      <data key="d19">11466476297</data>
+    </edge>
+    <edge source="2501773162" target="13228605046" id="0">
+      <data key="d8">[295124099, 1321514100]</data>
+      <data key="d9">living_street</data>
+      <data key="d11">10</data>
+      <data key="d12">Carrer del Consell de Cent</data>
+      <data key="d13">True</data>
+      <data key="d14">5</data>
+      <data key="d15">False</data>
+      <data key="d16">75.22968325094139</data>
+      <data key="d17">LINESTRING (429686.23012970807 4581955.466750205, 429716.805188188 4581986.946573629, 429725.1851399276 4581987.098449068, 429739.85426150705 4581987.366989317, 429742.7002201531 4581987.6724783275, 429747.4762690123 4581990.412992622)</data>
+      <data key="d18">2501773162</data>
+      <data key="d19">13228605046</data>
+    </edge>
+    <edge source="13228605046" target="13228605049" id="0">
+      <data key="d8">[1441734224, 1441734225, 1112801408]</data>
+      <data key="d9">secondary</data>
+      <data key="d10">3</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer de Muntaner</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">36.58027672619717</data>
+      <data key="d17">LINESTRING (429721.8162292391 4582016.498279383, 429728.5745762255 4582009.815402426, 429734.56975774886 4582003.761695381, 429739.794808942 4581998.481561409, 429747.4762690123 4581990.412992622)</data>
+      <data key="d18">13228605049</data>
+      <data key="d19">13228605046</data>
+    </edge>
+    <edge source="10181609591" target="11061736176" id="0">
+      <data key="d8">[295124098, 1112801407, 1112801405, 1192415191]</data>
+      <data key="d9">living_street</data>
+      <data key="d11">10</data>
+      <data key="d12">['Carrer del Consell de Cent', 'Carrer de Balmes']</data>
+      <data key="d13">True</data>
+      <data key="d14">['10', '6']</data>
+      <data key="d15">False</data>
+      <data key="d16">149.6246005373909</data>
+      <data key="d17">LINESTRING (429910.33462701674 4582207.007458872, 429941.5115062326 4582206.683698927, 430005.0383121413 4582267.735099822, 430013.27086640266 4582268.244017673, 430025.229797928 4582268.461584956, 430028.17381518055 4582268.544178618, 430029.0462167218 4582268.835530602, 430034.5302687385 4582272.191152439)</data>
+      <data key="d18">11061736176</data>
+      <data key="d19">10181609591</data>
+    </edge>
+    <edge source="30237643" target="11053219723" id="0">
+      <data key="d8">295124094</data>
+      <data key="d9">secondary</data>
+      <data key="d10">4</data>
+      <data key="d11">50</data>
+      <data key="d12">Carrer d'Aribau</data>
+      <data key="d13">True</data>
+      <data key="d15">False</data>
+      <data key="d16">116.55105402539817</data>
+      <data key="d17">LINESTRING (429817.6910095377 4582108.788808071, 429809.82340598415 4582116.625947644, 429773.10511623416 4582155.186830165, 429761.9143629336 4582166.953353773, 429759.37322672206 4582169.620479267, 429741.5442759034 4582188.368501997, 429737.0318196772 4582192.964451575)</data>
+      <data key="d18">11053219723</data>
+      <data key="d19">30237643</data>
+    </edge>
+    <edge source="11053219723" target="13228605049" id="0">
+      <data key="d8">[1190415833, 1441734226, 1112801411, 1321514101]</data>
+      <data key="d9">living_street</data>
+      <data key="d11">10</data>
+      <data key="d12">['Carrer de Muntaner', 'Carrer del Consell de Cent']</data>
+      <data key="d13">True</data>
+      <data key="d14">['5', '4.9', '4.8', '3']</data>
+      <data key="d15">False</data>
+      <data key="d16">146.77419212862688</data>
+      <data key="d17">LINESTRING (429721.8162292391 4582016.498279383, 429726.48730622686 4582018.762373526, 429728.44477123057 4582019.70933946, 429734.5342203517 4582019.927852499, 429751.4983323716 4582019.741145105, 429813.44423875224 4582082.127492553, 429813.694099648 4582105.3301162105, 429814.3601977866 4582105.901013778, 429817.6910095377 4582108.788808071)</data>
+      <data key="d18">13228605049</data>
+      <data key="d19">11053219723</data>
+    </edge>
+    <data key="d0">2026-09-14 21:48:01</data>
+    <data key="d1">OSMnx 2.1.1</data>
+    <data key="d2">EPSG:32631</data>
+    <data key="d3">True</data>
+  </graph>
+</graphml>
