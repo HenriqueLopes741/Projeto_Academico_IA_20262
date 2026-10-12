@@ -1,0 +1,61 @@
+u,v,nome,via,distancia_m,maxspeed_kmh,sentido_unico,semaforos,faixas,lombadas
+1,2,Carrer d'Aragó,primary,14.22,50.0,True,0,0,0
+1,3,Carrer d'Aragó,primary,148.34,50.0,True,1,1,0
+1,4,Passeig de Gràcia (lateral Llobregat),living_street,132.33,10.0,True,0,1,0
+1,5,Passeig de Gràcia (lateral Llobregat),living_street,137.81,10.0,True,0,1,0
+2,6,Passeig de Gràcia,tertiary,134.88,50.0,False,2,1,0
+2,7,Carrer d'Aragó,primary,15.41,50.0,True,0,0,0
+2,8,Passeig de Gràcia,tertiary,131.89,50.0,False,1,1,0
+3,9,Rambla de Catalunya,residential,131.34,30.0,True,1,2,0
+3,10,Carrer d'Aragó,primary,17.43,50.0,True,0,0,0
+3,11,Rambla de Catalunya,residential,150.95,30.0,True,1,3,0
+4,8,Carrer de València,tertiary,18.73,50.0,True,0,0,0
+4,12,Carrer de València,tertiary,82.6,50.0,True,0,0,0
+4,13,Passeig de Gràcia (lateral Llobregat),living_street,135.54,10.0,True,0,1,0
+5,6,Carrer del Consell de Cent,living_street,16.72,10.0,False,0,0,0
+5,11,Carrer del Consell de Cent,living_street,143.57,10.0,True,0,0,0
+5,14,Passeig de Gràcia (lateral Llobregat),living_street,134.76,10.0,True,0,0,0
+6,15,Passeig de Gràcia,tertiary,134.63,50.0,False,1,0,0
+6,16,Carrer del Consell de Cent,living_street,18.5,10.0,True,0,0,0
+7,16,Passeig de Gràcia (lateral Besòs),living_street,134.6,10.0,True,0,1,0
+7,17,Carrer d'Aragó,primary,159.24,50.0,True,1,1,0
+7,18,Passeig de Gràcia (lateral Besòs),living_street,133.62,10.0,True,0,1,0
+8,18,Carrer de València,tertiary,17.12,50.0,True,0,0,0
+8,19,Passeig de Gràcia,tertiary,135.51,50.0,False,2,2,0
+9,12,Carrer de València,tertiary,69.36,50.0,True,0,1,0
+9,20,Rambla de Catalunya,residential,136.37,30.0,True,1,2,0
+9,21,Carrer de València,tertiary,17.9,50.0,True,0,0,0
+10,21,Rambla de Catalunya,residential,131.57,30.0,True,1,2,0
+10,22,Carrer d'Aragó,primary,177.89,50.0,True,1,2,0
+10,23,Rambla de Catalunya,residential,149.85,30.0,True,1,3,0
+11,24,Rambla de Catalunya,residential,118.67,30.0,True,1,3,0
+12,25,Passatge de Domingo,living_street,136.21,20.0,True,0,0,0
+13,19,Carrer de Mallorca,secondary,18.76,50.0,True,0,0,0
+13,25,Carrer de Mallorca,secondary,83.97,50.0,True,0,0,0
+13,26,Passeig de Gràcia (lateral Llobregat),living_street,133.98,10.0,True,1,0,0
+14,15,Carrer de la Diputació,residential,16.38,30.0,True,0,0,0
+14,24,Carrer de la Diputació,residential,132.46,30.0,True,1,1,0
+14,27,Passeig de Gràcia (lateral Llobregat),living_street,130.04,10.0,True,0,2,0
+15,28,Carrer de la Diputació,residential,18.66,30.0,True,0,0,0
+15,29,Passeig de Gràcia,tertiary,101.48,50.0,False,0,0,0
+16,28,Passeig de Gràcia (lateral Besòs),living_street,134.52,10.0,True,0,1,0
+16,30,Carrer del Consell de Cent,living_street,167.14,10.0,True,0,0,0
+17,31,Carrer de Pau Claris,secondary,131.83,50.0,True,1,2,0
+17,32,Carrer d'Aragó,primary,135.44,50.0,True,1,2,0
+17,33,Carrer de Pau Claris,secondary,115.75,50.0,True,0,1,0
+18,34,Passeig de Gràcia (lateral Besòs),living_street,134.94,10.0,True,1,2,0
+18,35,Carrer de València,tertiary,80.05,50.0,True,0,0,0
+19,34,Carrer de Mallorca,secondary,17.27,50.0,True,0,0,0
+19,36,Passeig de Gràcia,tertiary,133.82,50.0,False,1,3,0
+20,25,Carrer de Mallorca,secondary,74.85,50.0,True,1,1,0
+20,37,Rambla de Catalunya,residential,133.02,30.0,True,2,5,0
+20,38,Carrer de Mallorca,secondary,17.78,50.0,True,0,0,0
+21,38,Rambla de Catalunya,residential,136.25,20.0,True,1,2,0
+21,39,Carrer de València,tertiary,175.56,50.0,True,1,2,0
+22,39,Carrer de Balmes,secondary,130.76,50.0,True,1,2,0
+22,40,Carrer de Balmes,secondary,117.0,50.0,True,0,1,0
+23,40,Rambla de Catalunya,living_street,192.03,10.0,True,0,2,0
+26,36,Carrer de Provença,residential,18.32,30.0,True,0,0,0
+26,37,Carrer de Provença,residential,166.4,30.0,True,1,1,0
+30,33,Carrer de Pau Claris,secondary,35.45,50.0,True,0,1,0
+31,35,Carrer de València,tertiary,72.23,50.0,True,1,1,0

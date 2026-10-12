@@ -1,0 +1,28 @@
+{
+  "crs": "EPSG:32631",
+  "centro_lat_lon": [
+    41.3917,
+    2.1649
+  ],
+  "raio_m": 600,
+  "n_nos": 40,
+  "n_arestas": 60,
+  "bbox_fundo": [
+    429661.05,
+    4582177.55,
+    430559.3,
+    4583048.25
+  ],
+  "obstaculos_no_grafo": {
+    "semaforos": 52,
+    "faixas": 137,
+    "lombadas": 0
+  },
+  "obstaculos_fora_do_grafo": 479,
+  "tolerancias_m": {
+    "no": 15,
+    "aresta": 20
+  },
+  "data_extracao": "2026-10-12",
+  "osmnx": "2.0.7"
+}
